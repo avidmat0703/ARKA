@@ -14,7 +14,7 @@ public class PantallaPrb extends JFrame {
                 {"Calcetines", "5", "Única"},
                 {"Zapatos", "25", "42"},
                 {"Cinturones", "8", "M"},
-                {"Bañadoress", "12", "L"}
+                {"Bañadores", "12", "L"}
         };
 
         String[] columnas = {"Prenda", "Stock", "Talla"};
