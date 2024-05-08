@@ -30,7 +30,7 @@ public class PANTALLA_INICIO extends JFrame {
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    //tula
+    //tulaez
 
     public static void main(String[] args) {
         PANTALLA_INICIO formulario = new PANTALLA_INICIO();
