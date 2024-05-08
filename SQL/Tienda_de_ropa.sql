@@ -1,4 +1,4 @@
-Drop database if exists Tienda_de_ropa;
+ºDrop database if exists Tienda_de_ropa;
 Create database Tienda_de_ropa character set utf8mb4;
 Use Tienda_de_ropa; 
 
