@@ -20,4 +20,3 @@ CREATE TABLE empleado (
     telefono int,
     puesto varchar(20)
 );
-
