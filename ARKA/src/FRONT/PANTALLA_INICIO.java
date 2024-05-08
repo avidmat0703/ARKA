@@ -1,10 +1,10 @@
-package PantallaPrb;
+package FRONT;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PantallaPrb extends JFrame {
-    public PantallaPrb() {
+public class PANTALLA_INICIO extends JFrame {
+    public PANTALLA_INICIO() {
         setTitle("Tabla de Elementos de Ropa");
 
         String[][] datos = {
@@ -32,7 +32,7 @@ public class PantallaPrb extends JFrame {
     }
 
     public static void main(String[] args) {
-        PantallaPrb formulario = new PantallaPrb();
+        PANTALLA_INICIO formulario = new PANTALLA_INICIO();
         formulario.setVisible(true);
     }
 }

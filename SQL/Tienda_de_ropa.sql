@@ -1,4 +1,4 @@
-ºDrop database if exists Tienda_de_ropa;
+Drop database if exists Tienda_de_ropa;
 Create database Tienda_de_ropa character set utf8mb4;
 Use Tienda_de_ropa; 
 
@@ -20,4 +20,3 @@ CREATE TABLE empleado (
     telefono int,
     puesto varchar(20)
 );
-
