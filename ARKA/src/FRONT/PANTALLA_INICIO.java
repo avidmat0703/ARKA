@@ -8,8 +8,8 @@ public class PANTALLA_INICIO extends JFrame {
         setTitle("Tabla de Elementos de Ropa");
 
         String[][] datos = {
-                {"Camiseta", "10", "S"},
-                {"Pantalones", "20", "M"},
+                {"Camiseta", "20", "XL"},
+                {"Pantalones", "10", "M"},
                 {"Sudaderas", "15", "L"},
                 {"Calcetines", "5", "Única"},
                 {"Zapatos", "25", "42"},
