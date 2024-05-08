@@ -94,6 +94,15 @@ class RealizarVentaFrame extends JFrame {
         setTitle("Realizar Venta");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new java.awt.FlowLayout());
+        JButton btnCerrar = new JButton("Cerrar Ventana");
+        btnCerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        add(btnCerrar);
     }
 }
 
