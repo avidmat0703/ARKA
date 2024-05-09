@@ -5,11 +5,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PANTALLA_INICIO extends JFrame {
-    // Constructor
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+            PANTALLA_INICIO pantallaInicio = new PANTALLA_INICIO();
+            pantallaInicio.setVisible(true);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public PANTALLA_INICIO() {
-        // Configuración de la ventana principal
         setTitle("Pantalla Principal");
-        setSize(400, 310);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
@@ -66,16 +75,6 @@ public class PANTALLA_INICIO extends JFrame {
             }
         });
         add(btnGestionarEmpleados);
-    }
-
-    public static void main(String[] args) {
-        PANTALLA_INICIO pantallaInicio = new PANTALLA_INICIO();
-        pantallaInicio.setVisible(true);
-        try{
-            UIManager.setLookAndFeel();
-        } catch(Exception e){
-            System.out.println(e);
-        }
     }
 }
 
