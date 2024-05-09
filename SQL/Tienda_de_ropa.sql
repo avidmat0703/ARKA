@@ -1,6 +1,6 @@
-Drop database if exists Tienda_de_ropa;
-Create database Tienda_de_ropa character set utf8mb4;
-Use Tienda_de_ropa; 
+Drop database if exists Tienda;
+Create database Tienda character set utf8mb4;
+Use Tienda; 
 
 CREATE table producto (
 	id INT AUTO_INCREMENT primary Key,
@@ -20,9 +20,17 @@ CREATE TABLE empleado (
     telefono int,
     puesto varchar(20)
 );
+insert into producto values(id, 'dd', 8, 'd', 'd', 'd'); 
+-- select * from producto;
+
 CREATE TABLE venta(
     id int AUTO_INCREMENT primary key,
     id_producto int,
     unidades int,
-    foreign key id_producto references producto(id));
-)
+    fecha datetime,
+    foreign key (id_producto) references producto(id)
+);
+insert into venta values(
+id, 1, 3, now()
+);
+-- select * from venta;

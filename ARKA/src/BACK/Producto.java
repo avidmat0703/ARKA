@@ -1,6 +1,7 @@
 package BACK;
 
 public class Producto {
+    private final String id = "id";
     private String nombre;
     private int stock;
     private String talla;
