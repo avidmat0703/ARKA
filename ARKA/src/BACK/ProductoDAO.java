@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+/*
 public class ProductoDAO {
     public static Connection conectar() {
         BufferedReader br = null;
@@ -25,4 +25,4 @@ public class ProductoDAO {
 
         }
     }
-}
+}*/
