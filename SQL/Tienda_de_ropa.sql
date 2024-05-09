@@ -20,3 +20,9 @@ CREATE TABLE empleado (
     telefono int,
     puesto varchar(20)
 );
+CREATE TABLE venta(
+    id int AUTO_INCREMENT primary key,
+    id_producto int,
+    unidades int,
+    foreign key id_producto references producto(id));
+)

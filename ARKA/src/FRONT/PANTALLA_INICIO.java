@@ -72,7 +72,7 @@ public class PANTALLA_INICIO extends JFrame {
         PANTALLA_INICIO pantallaInicio = new PANTALLA_INICIO();
         pantallaInicio.setVisible(true);
         try{
-            UIManager.setLookAndFeel(com.);
+            UIManager.setLookAndFeel();
         } catch(Exception e){
             System.out.println(e);
         }
