@@ -1,4 +1,4 @@
-package FRONT;
+package BACK.Class;
 
 import BACK.Class.Producto;
 import BACK.Interfaz.Utiles;
@@ -44,22 +44,22 @@ public class ProductoDAO  implements Utiles{
     }
 
     @Override
-    public boolean darAlta(Object o) {
+    public boolean darAlta() {
         return false;
     }
 
     @Override
-    public boolean darBaja(Object o) {
+    public boolean darBaja() {
         return false;
     }
 
     @Override
-    public boolean modificar(Object o) {
+    public boolean modificar() {
         return false;
     }
 
     @Override
-    public List<Object> listar(Object o) {
+    public List<Object> listar() {
         List<Producto> resultado = new ArrayList<> ();
         String sql = "SELECT * FROM producto";
         Connection connection = conectar ();
@@ -68,6 +68,7 @@ public class ProductoDAO  implements Utiles{
             ResultSet resultSet = statement.executeQuery(sql);
             BufferedWriter bw = null;
             while (resultSet.next()) {
+
                 int id = resultSet.getInt("id");
                 String tipoProducto = resultSet.getString("tipo_producto");
                 int stock = resultSet.getInt("stock");
@@ -76,8 +77,32 @@ public class ProductoDAO  implements Utiles{
                 String marca = resultSet.getString("marca");
                 String descripcion = resultSet.getString("descripcion");
                 try{
-                    bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/Usuario.txt", false ));
-                    bw.write (  );
+                    bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/producto.txt", true ));
+                    bw.write ( String.valueOf ( id ) );
+                    bw.newLine ();
+                    bw.write ( tipoProducto );
+                    bw.newLine ();
+                    bw.write ( String.valueOf ( stock ));
+                    bw.newLine ();
+                    bw.write ( talla );
+                    bw.newLine ();
+                    bw.write ( color );
+                    bw.newLine ();
+                    bw.write ( marca );
+                    bw.newLine ();
+                    bw.write ( descripcion );
+                    bw.newLine ();
+                    if(descripcion.equals ( "Accesorio" ))
+                    {
+                        Accesorio a = new Accesorio ( id, tipoProducto, stock, talla, color, marca);
+                        resultado.add ( a );
+                    }
+                    else
+                    {
+                        Prenda p = new Prenda ( id, tipoProducto, stock, talla, color, marca);
+                        resultado.add ( p );
+                    }
+
                 }
                 catch(IOException e){
                     System.out.println (e.getMessage ());
@@ -92,7 +117,6 @@ public class ProductoDAO  implements Utiles{
                     }
                 }
             }
-            System.out.println("Se ha escrito la información de los productos en el archivo productos.txt");
         } catch (SQLException e) {
             System.out.println ("Error al listar productos.");
         }

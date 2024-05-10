@@ -21,7 +21,9 @@ CREATE TABLE empleado (
     telefono int,
     puesto varchar(20)
 );
-insert into producto values(id, 'dd', 8, 'd', 'd', 'd'); 
+insert into producto values(
+id, 'dd', 8, 'd', 'd', 'd', 'Prenda'); 
+insert into producto values(id, 'Camiseta', 5, 'M', 'Rojo', 'Calvin Klein', 'Accesorio');
 -- select * from producto;
 
 CREATE TABLE venta(
@@ -34,5 +36,5 @@ CREATE TABLE venta(
 insert into venta values(
 id, 1, 3, now()
 );
-select * from empleado;
+select * from producto;
 -- select * from venta;

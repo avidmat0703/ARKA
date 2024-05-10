@@ -3,23 +3,25 @@ package BACK.Class;
 import BACK.Interfaz.Utiles;
 
 public class Producto {
-    private final String id = "id";
+    private int id;
     private String nombre;
     private int stock;
     private String talla;
-    private String descripcion;
     private String color;
     private String marca;
 
-    public Producto(String nombre, int stock, String talla, String descripcion, String color, String marca) {
+    public Producto(int id, String nombre, int stock, String talla,String color, String marca) {
+        this.id = id;
         this.nombre = nombre;
         this.stock = stock;
         this.talla = talla;
-        this.descripcion = descripcion;
         this.color = color;
         this.marca = marca;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -45,14 +47,6 @@ public class Producto {
         this.talla = talla;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getColor() {
         return color;
     }
@@ -72,12 +66,10 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" +
-                ", nombre='" + nombre + '\'' +
+                "nombre='" + nombre + '\'' +
                 ", stock=" + stock +
                 ", talla='" + talla + '\'' +
-                ", descripcion='" + descripcion + '\'' +
                 ", color='" + color + '\'' +
-                ", marca='" + marca + '\'' +
-                '}';
+                ", marca='" + marca + '\'';
     }
 }
