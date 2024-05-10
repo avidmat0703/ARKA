@@ -1,4 +1,4 @@
-package BACK;
+package BACK.Class;
 
 public class Producto {
     private final String id = "id";

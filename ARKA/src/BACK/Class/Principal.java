@@ -1,4 +1,4 @@
-package BACK;
+package BACK.Class;
 
 import java.io.*;
 import java.sql.*;
