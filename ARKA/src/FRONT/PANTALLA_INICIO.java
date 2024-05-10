@@ -1,6 +1,7 @@
 package FRONT;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -79,29 +80,100 @@ public class PANTALLA_INICIO extends JFrame {
 }
 
 class AltaProductosFrame extends JFrame {
+    private JRadioButton accesorioRadioButton;
+    private JRadioButton prendaRadioButton;
+    private JTextField nombreField;
+    private JTextField stockField;
+    private JTextField tallaField;
+    private JTextField descripcionField;
+    private JTextField colorField;
+    private JTextField marcaField;
+
     public AltaProductosFrame() {
         setTitle("Alta de Productos");
-        setSize(300, 200);
+        setSize(400, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new java.awt.FlowLayout());
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        // Como cerrar la ventana actual
-        JButton btnCerrar = new JButton("Cerrar Ventana");
-        btnCerrar.addActionListener(new ActionListener() {
+        accesorioRadioButton = new JRadioButton("Accesorio");
+        prendaRadioButton = new JRadioButton("Prenda");
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(accesorioRadioButton);
+        buttonGroup.add(prendaRadioButton);
+
+        JPanel radioPanel = new JPanel();
+        radioPanel.add(accesorioRadioButton);
+        radioPanel.add(prendaRadioButton);
+        add(radioPanel);
+
+        addFieldWithMargin("Nombre:", nombreField = new JTextField(20));
+        addFieldWithMargin("Stock:", stockField = new JTextField(20));
+        addFieldWithMargin("Talla:", tallaField = new JTextField(20));
+        addFieldWithMargin("Descripción:", descripcionField = new JTextField(20));
+        addFieldWithMargin("Color:", colorField = new JTextField(20));
+        addFieldWithMargin("Marca:", marcaField = new JTextField(20));
+
+        JButton altaButton = new JButton("Dar de alta este producto");
+        altaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
-        add(btnCerrar);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(altaButton);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        add(buttonPanel);
+    }
+
+    private void addFieldWithMargin(String label, JTextField field) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        panel.add(new JLabel(label));
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(field);
+        add(panel);
     }
 }
 
 class BajaProductosFrame extends JFrame {
+
+    private JTextField idTextField;
+    private JButton listarButton;
+    private JButton darDeBajaButton;
+
     public BajaProductosFrame() {
         setTitle("Baja de Productos");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new GridLayout(3, 1));
+
+        idTextField = new JTextField();
+        idTextField.setBorder(BorderFactory.createTitledBorder("Id"));
+        add(idTextField);
+
+        listarButton = new JButton("Listar todos los productos");
+        add(listarButton);
+
+        darDeBajaButton = new JButton("Dar de baja este producto");
+        add(darDeBajaButton);
+
+        listarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ConsultarInventarioFrame().setVisible(true);
+            }
+        });
+
+        darDeBajaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String id = idTextField.getText();
+                dispose();
+            }
+        });
     }
 }
 
