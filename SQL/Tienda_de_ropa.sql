@@ -38,17 +38,13 @@ for each row
 begin
 declare cont int;
 set cont = (select count(*) from producto where id = new.id_producto);
-if cont > 0 then
-insert into ventas values(new.id, new.id_producto, new.unidades, new.fecha);
-else
+if cont = 0 then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL id introducido no pertenece a la tabla "producto"';
     END IF;
 end $$
 delimiter ;
 
-insert into venta values(
-id, 1, 3, now()
-);
+
 
 INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
 VALUES ('Camiseta', 100, 'M', 'Azul', 'Nike', 'Prenda');
@@ -78,8 +74,8 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
-/*insert into producto values(
-id, 'Pulsera', 4, 'S', 'Plata', 'Pandora', 'Accesorio'); 
-insert into producto values(id, 'Camiseta', 5, 'M', 'Rojo', 'Calvin Klein', 'Prenda');
--- select * from producto;*/
 
+INSERT INTO venta values(id, 1, 3, now());
+select * from producto;
+select * from empleado;
+select * from producto p join venta v on p.id = v.id_producto;
