@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class PANTALLA_INICIO extends JFrame {
     public static void main(String[] args) {
         try {
-            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
             PANTALLA_INICIO pantallaInicio = new PANTALLA_INICIO();
             pantallaInicio.setVisible(true);
         }
@@ -116,6 +116,7 @@ class AltaProductosFrame extends JFrame {
         altaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
                 dispose();
             }
         });
@@ -160,6 +161,7 @@ class BajaProductosFrame extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
                 dispose();
             }
         });
@@ -185,10 +187,51 @@ class BajaProductosFrame extends JFrame {
 }
 
 class ModificarProductoFrame extends JFrame {
+    private JTextField idField;
+    private JTextField nombreField;
+    private JTextField stockField;
+    private JTextField tallaField;
+    private JTextField descripcionField;
+    private JTextField colorField;
+    private JTextField marcaField;
+
     public ModificarProductoFrame() {
         setTitle("Modificar Producto");
-        setSize(300, 200);
+        setSize(400, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        addFieldWithMargin("ID del Producto:", idField = new JTextField(20));
+        addFieldWithMargin("Nombre:", nombreField = new JTextField(20));
+        addFieldWithMargin("Stock:", stockField = new JTextField(20));
+        addFieldWithMargin("Talla:", tallaField = new JTextField(20));
+        addFieldWithMargin("Descripción:", descripcionField = new JTextField(20));
+        addFieldWithMargin("Color:", colorField = new JTextField(20));
+        addFieldWithMargin("Marca:", marcaField = new JTextField(20));
+
+        JButton modificarButton = new JButton("Modificar Producto");
+        modificarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Producto modificado correctamente");
+                dispose();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(modificarButton);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        add(buttonPanel);
+    }
+
+    private void addFieldWithMargin(String label, JTextField field) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        panel.add(new JLabel(label));
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(field);
+        add(panel);
     }
 }
 
@@ -201,10 +244,43 @@ class ConsultarInventarioFrame extends JFrame {
 }
 
 class RealizarVentaFrame extends JFrame {
+    private JTextField productoIdField;
+    private JTextField cantidadField;
+    private JTextField clienteIdField;
+
     public RealizarVentaFrame() {
         setTitle("Realizar Venta");
-        setSize(300, 200);
+        setSize(350, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        addFieldWithMargin("ID del Producto:", productoIdField = new JTextField(20));
+        addFieldWithMargin("Cantidad:", cantidadField = new JTextField(20));
+        addFieldWithMargin("ID del Cliente:", clienteIdField = new JTextField(20));
+
+        JButton ventaButton = new JButton("Realizar Venta");
+        ventaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente");
+                dispose();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(ventaButton);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        add(buttonPanel);
+    }
+
+    private void addFieldWithMargin(String label, JTextField field) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        panel.add(new JLabel(label));
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(field);
+        add(panel);
     }
 }
 
