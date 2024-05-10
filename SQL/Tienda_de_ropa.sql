@@ -21,6 +21,31 @@ CREATE TABLE empleado (
     telefono int,
     puesto varchar(20)
 );
+
+CREATE TABLE venta(
+    id int AUTO_INCREMENT primary key,
+    id_producto int,
+    unidades int,
+    fecha datetime,
+    foreign key (id_producto) references producto(id)
+);
+
+delimiter $$
+drop trigger if exists tg_beforeinsertventa$$
+create trigger tg_beforeinsertventa
+before insert on venta
+for each row
+begin
+declare cont int;
+set cont = (select count(*) from producto where id = new.id_producto);
+if cont > 0 then
+insert into ventas values(new.id, new.id_producto, new.unidades, new.fecha);
+else
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL id introducido no pertenece a la tabla "producto"';
+    END IF;
+end $$
+delimiter ;
+
 insert into venta values(
 id, 1, 3, now()
 );
@@ -58,10 +83,3 @@ id, 'Pulsera', 4, 'S', 'Plata', 'Pandora', 'Accesorio');
 insert into producto values(id, 'Camiseta', 5, 'M', 'Rojo', 'Calvin Klein', 'Prenda');
 -- select * from producto;*/
 
-CREATE TABLE venta(
-    id int AUTO_INCREMENT primary key,
-    id_producto int,
-    unidades int,
-    fecha datetime,
-    foreign key (id_producto) references producto(id)
-);
