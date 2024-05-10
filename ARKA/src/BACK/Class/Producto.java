@@ -2,7 +2,7 @@ package BACK.Class;
 
 import BACK.Interfaz.Utiles;
 
-public class Producto implements Utiles {
+public class Producto {
     private final String id = "id";
     private String nombre;
     private int stock;

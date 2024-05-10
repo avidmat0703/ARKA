@@ -1,4 +1,4 @@
-package BACK;
+package FRONT;
 
 import BACK.Class.Producto;
 import BACK.Interfaz.Utiles;
@@ -75,6 +75,23 @@ public class ProductoDAO  implements Utiles{
                 String color = resultSet.getString("color");
                 String marca = resultSet.getString("marca");
                 String linea = String.format("ID: %d, Tipo de Producto: %s, Stock: %d, Talla: %s, Color: %s, Marca: %s%n", id, tipoProducto, stock, talla, color, marca);
+                try{
+                    bw=new BufferedReader(new FileReader ( "ARKA/src/Ficheros/Usuario.txt" ));
+                    usuario=br.readLine ();
+                    contrasena=br.readLine ();
+                }
+                catch(IOException e){
+                    System.out.println (e.getMessage ());
+                }
+                finally{
+                    try{
+                        br.close ();
+                    }
+                    catch(IOException ex)
+                    {
+                        ex.getMessage ();
+                    }
+                }
                 writer.write(linea);
             }
             writer.close();
