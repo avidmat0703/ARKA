@@ -90,7 +90,7 @@ class AltaProductosFrame extends JFrame {
     private JTextField marcaField;
 
     public AltaProductosFrame() {
-        setTitle("Alta de Productos");
+        setTitle("Alta de Producto");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -139,41 +139,10 @@ class AltaProductosFrame extends JFrame {
 }
 
 class BajaProductosFrame extends JFrame {
-
-    private JTextField idTextField;
-    private JButton listarButton;
-    private JButton darDeBajaButton;
-
     public BajaProductosFrame() {
-        setTitle("Baja de Productos");
+        setTitle("Baja de producto");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new GridLayout(3, 1));
-
-        idTextField = new JTextField();
-        idTextField.setBorder(BorderFactory.createTitledBorder("Id"));
-        add(idTextField);
-
-        listarButton = new JButton("Listar todos los productos");
-        add(listarButton);
-
-        darDeBajaButton = new JButton("Dar de baja este producto");
-        add(darDeBajaButton);
-
-        listarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ConsultarInventarioFrame().setVisible(true);
-            }
-        });
-
-        darDeBajaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String id = idTextField.getText();
-                dispose();
-            }
-        });
     }
 }
 
