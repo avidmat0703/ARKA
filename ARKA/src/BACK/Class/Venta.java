@@ -1,6 +1,8 @@
 package BACK.Class;
 
-public class Venta {
+import java.util.List;
+
+public class Venta{
     private final String id = "id";
     private int id_producto;
     private int unidades;

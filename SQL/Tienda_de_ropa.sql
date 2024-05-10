@@ -8,7 +8,8 @@ CREATE table producto (
     stock int,
     talla varchar(10),
     color varchar(10),
-    marca varchar(20)
+    marca varchar(20),
+    descripcion varchar(20)
 );
 
 CREATE TABLE empleado (
@@ -33,4 +34,5 @@ CREATE TABLE venta(
 insert into venta values(
 id, 1, 3, now()
 );
+select * from empleado;
 -- select * from venta;

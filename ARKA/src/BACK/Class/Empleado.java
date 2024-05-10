@@ -1,6 +1,7 @@
 package BACK.Class;
+import BACK.Interfaz.Utiles;
 
-public class Empleado {
+public class Empleado implements Utiles {
     private String dni;
     private String nombre;
     private String apellido1;
