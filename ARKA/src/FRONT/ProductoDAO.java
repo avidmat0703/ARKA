@@ -66,7 +66,7 @@ public class ProductoDAO  implements Utiles{
         try{
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
-            BufferedWriter writer = null;
+            BufferedWriter bw = null;
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String tipoProducto = resultSet.getString("tipo_producto");
@@ -74,27 +74,24 @@ public class ProductoDAO  implements Utiles{
                 String talla = resultSet.getString("talla");
                 String color = resultSet.getString("color");
                 String marca = resultSet.getString("marca");
-                String linea = String.format("ID: %d, Tipo de Producto: %s, Stock: %d, Talla: %s, Color: %s, Marca: %s%n", id, tipoProducto, stock, talla, color, marca);
+                String descripcion = resultSet.getString("descripcion");
                 try{
-                    bw=new BufferedReader(new FileReader ( "ARKA/src/Ficheros/Usuario.txt" ));
-                    usuario=br.readLine ();
-                    contrasena=br.readLine ();
+                    bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/Usuario.txt", false ));
+                    bw.write (  );
                 }
                 catch(IOException e){
                     System.out.println (e.getMessage ());
                 }
                 finally{
                     try{
-                        br.close ();
+                        bw.close ();
                     }
                     catch(IOException ex)
                     {
                         ex.getMessage ();
                     }
                 }
-                writer.write(linea);
             }
-            writer.close();
             System.out.println("Se ha escrito la información de los productos en el archivo productos.txt");
         } catch (SQLException e) {
             System.out.println ("Error al listar productos.");
