@@ -142,7 +142,7 @@ class BajaProductosFrame extends JFrame {
 
     public BajaProductosFrame() {
         setTitle("Baja de Producto");
-        setSize(400, 200);
+        setSize(350, 150);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
