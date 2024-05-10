@@ -1,19 +1,17 @@
 package BACK;
 
 public class Empleado {
-    private int dni;
+    private String dni;
     private String nombre;
-    private String apellido;
     private String apellido1;
     private String apellido2;
     private String email;
     private int tlf;
     private String puesto;
 
-    public Empleado(int dni, String nombre, String apellido, String apellido1, String apellido2, String email, int tlf, String puesto) {
+    public Empleado(String dni, String nombre, String apellido1, String apellido2, String email, int tlf, String puesto) {
         this.dni = dni;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.email = email;
@@ -21,11 +19,11 @@ public class Empleado {
         this.puesto = puesto;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -35,14 +33,6 @@ public class Empleado {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getApellido1() {
@@ -90,7 +80,6 @@ public class Empleado {
         return "Empleado{" +
                 "dni=" + dni +
                 ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
                 ", apellido1='" + apellido1 + '\'' +
                 ", apellido2='" + apellido2 + '\'' +
                 ", email='" + email + '\'' +
