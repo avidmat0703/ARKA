@@ -9,14 +9,20 @@ public class Producto {
     private String talla;
     private String color;
     private String marca;
+    private String descripcion;
 
-    public Producto(int id, String nombre, int stock, String talla,String color, String marca) {
+    public Producto(int id, String nombre, int stock, String talla, String color, String marca, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.stock = stock;
         this.talla = talla;
         this.color = color;
         this.marca = marca;
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public int getId() {
@@ -66,10 +72,13 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" +
-                "nombre='" + nombre + '\'' +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
                 ", stock=" + stock +
                 ", talla='" + talla + '\'' +
                 ", color='" + color + '\'' +
-                ", marca='" + marca + '\'';
+                ", marca='" + marca + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }

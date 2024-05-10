@@ -1,2 +1,2 @@
-David
-1235
+newuser
+password

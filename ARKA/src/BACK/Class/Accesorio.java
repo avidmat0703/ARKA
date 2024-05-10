@@ -1,9 +1,8 @@
 package BACK.Class;
 
 public class Accesorio extends Producto{
-    private final String descripcion = "Accesorio";
     public Accesorio(int id, String nombre, int stock, String talla, String color, String marca) {
-        super ( id, nombre, stock, talla,color, marca );
+        super ( id, nombre, stock, talla,color, marca, "Accesorio" );
     }
 
     @Override
@@ -62,7 +61,12 @@ public class Accesorio extends Producto{
     }
 
     @Override
+    public String getDescripcion() {
+        return super.getDescripcion ();
+    }
+
+    @Override
     public String toString() {
-        return super.toString () + ", Descripción='" + descripcion + "\'}";
+        return super.toString ();
     }
 }

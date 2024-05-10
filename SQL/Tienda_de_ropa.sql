@@ -21,10 +21,42 @@ CREATE TABLE empleado (
     telefono int,
     puesto varchar(20)
 );
-insert into producto values(
-id, 'dd', 8, 'd', 'd', 'd', 'Prenda'); 
-insert into producto values(id, 'Camiseta', 5, 'M', 'Rojo', 'Calvin Klein', 'Accesorio');
--- select * from producto;
+insert into venta values(
+id, 1, 3, now()
+);
+
+INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('Camiseta', 100, 'M', 'Azul', 'Nike', 'Prenda');
+
+INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('Pantalón', 80, 'L', 'Negro', 'Adidas', 'Prenda');
+
+INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('Zapatos', 50, '42', 'Blanco', 'Reebok', 'Prenda');
+
+INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('Gorra', 120, 'Única', 'Rojo', 'Puma', 'Accesorio');
+
+INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('Calcetines', 200, 'S/M', 'Gris', 'Under Armour', 'Accesorio');
+INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
+VALUES ('12345678A', 'Juan', 'García', 'López', 'juan@example.com', 123456789, 'Gerente');
+
+INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
+VALUES ('23456789B', 'María', 'Martínez', 'Pérez', 'maria@example.com', 987654321, 'Asistente');
+
+INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
+VALUES ('34567890C', 'Pedro', 'Rodríguez', 'Sánchez', 'pedro@example.com', 654987321, 'Contador');
+
+INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
+VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123, 'Vendedor');
+
+INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
+VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
+/*insert into producto values(
+id, 'Pulsera', 4, 'S', 'Plata', 'Pandora', 'Accesorio'); 
+insert into producto values(id, 'Camiseta', 5, 'M', 'Rojo', 'Calvin Klein', 'Prenda');
+-- select * from producto;*/
 
 CREATE TABLE venta(
     id int AUTO_INCREMENT primary key,
@@ -33,8 +65,3 @@ CREATE TABLE venta(
     fecha datetime,
     foreign key (id_producto) references producto(id)
 );
-insert into venta values(
-id, 1, 3, now()
-);
-select * from producto;
--- select * from venta;

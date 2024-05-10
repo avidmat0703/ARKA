@@ -1,9 +1,8 @@
 package BACK.Class;
 
 public class Prenda extends Producto{
-    private String descripcion = "Prenda";
     public Prenda(int id, String nombre, int stock, String talla, String color, String marca) {
-        super ( id, nombre, stock, talla, color, marca );
+        super ( id, nombre, stock, talla, color, marca, "Prenda" );
     }
 
     @Override
@@ -62,7 +61,12 @@ public class Prenda extends Producto{
     }
 
     @Override
+    public String getDescripcion() {
+        return super.getDescripcion ();
+    }
+
+    @Override
     public String toString() {
-        return super.toString () + ", Descripción='" + descripcion + "\'}";
+        return super.toString ();
     }
 }
