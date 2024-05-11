@@ -18,11 +18,56 @@ public class PANTALLA_INICIO extends JFrame {
 
     public PANTALLA_INICIO() {
         setTitle("Pantalla Principal");
-        setSize(400, 300);
+        setSize(400, 220);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        JButton btnAlta = new JButton("Alta de productos");
+        JButton btnGestionProductos = new JButton("Gestión de productos");
+        btnGestionProductos.setBounds(50, 20, 300, 30);
+        btnGestionProductos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new GestionProductosFrame().setVisible(true);
+            }
+        });
+        add(btnGestionProductos);
+
+        JButton btnConsultarInventario = new JButton("Consultar inventario");
+        btnConsultarInventario.setBounds(50, 60, 300, 30);
+        btnConsultarInventario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ConsultarInventarioFrame().setVisible(true);
+            }
+        });
+        add(btnConsultarInventario);
+
+        JButton btnRealizarVenta = new JButton("Realizar Venta");
+        btnRealizarVenta.setBounds(50, 100, 300, 30);
+        btnRealizarVenta.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new RealizarVentaFrame().setVisible(true);
+            }
+        });
+        add(btnRealizarVenta);
+
+        JButton btnGestionarEmpleados = new JButton("Gestión de empleados");
+        btnGestionarEmpleados.setBounds(50, 140, 300, 30);
+        btnGestionarEmpleados.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new GestionarEmpleadosFrame().setVisible(true);
+            }
+        });
+        add(btnGestionarEmpleados);
+    }
+}
+
+class GestionProductosFrame extends JFrame {
+    public GestionProductosFrame() {
+        setTitle("Gestión de productos");
+        setSize(400, 180);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(null);
+
+        JButton btnAlta = new JButton("Alta de producto");
         btnAlta.setBounds(50, 20, 300, 30);
         btnAlta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -31,7 +76,7 @@ public class PANTALLA_INICIO extends JFrame {
         });
         add(btnAlta);
 
-        JButton btnBaja = new JButton("Baja de productos");
+        JButton btnBaja = new JButton("Baja de producto");
         btnBaja.setBounds(50, 60, 300, 30);
         btnBaja.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -48,33 +93,6 @@ public class PANTALLA_INICIO extends JFrame {
             }
         });
         add(btnModificar);
-
-        JButton btnConsultarInventario = new JButton("Consultar inventario");
-        btnConsultarInventario.setBounds(50, 140, 300, 30);
-        btnConsultarInventario.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new ConsultarInventarioFrame().setVisible(true);
-            }
-        });
-        add(btnConsultarInventario);
-
-        JButton btnRealizarVenta = new JButton("Realizar Venta");
-        btnRealizarVenta.setBounds(50, 180, 300, 30);
-        btnRealizarVenta.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new RealizarVentaFrame().setVisible(true);
-            }
-        });
-        add(btnRealizarVenta);
-
-        JButton btnGestionarEmpleados = new JButton("Gestionar empleados");
-        btnGestionarEmpleados.setBounds(50, 220, 300, 30);
-        btnGestionarEmpleados.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new GestionarEmpleadosFrame().setVisible(true);
-            }
-        });
-        add(btnGestionarEmpleados);
     }
 }
 
