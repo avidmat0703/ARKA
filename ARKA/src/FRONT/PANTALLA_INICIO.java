@@ -64,7 +64,7 @@ class GestionProductosFrame extends JFrame {
     public GestionProductosFrame() {
         setTitle("Gestión de productos");
         setSize(400, 180);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
         JButton btnAlta = new JButton("Alta de producto");
@@ -99,16 +99,18 @@ class GestionProductosFrame extends JFrame {
 class AltaProductosFrame extends JFrame {
     private JRadioButton accesorioRadioButton;
     private JRadioButton prendaRadioButton;
+    private JTextField codigoField;
     private JTextField nombreField;
     private JTextField stockField;
     private JTextField tallaField;
     private JTextField descripcionField;
     private JTextField colorField;
     private JTextField marcaField;
+    private JTextField precioField;
 
     public AltaProductosFrame() {
         setTitle("Alta de Producto");
-        setSize(400, 400);
+        setSize(450, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -123,12 +125,15 @@ class AltaProductosFrame extends JFrame {
         radioPanel.add(prendaRadioButton);
         add(radioPanel);
 
+        addFieldWithMargin("Código en tienda:", codigoField = new JTextField(20));
         addFieldWithMargin("Nombre:", nombreField = new JTextField(20));
         addFieldWithMargin("Stock:", stockField = new JTextField(20));
         addFieldWithMargin("Talla:", tallaField = new JTextField(20));
         addFieldWithMargin("Descripción:", descripcionField = new JTextField(20));
         addFieldWithMargin("Color:", colorField = new JTextField(20));
         addFieldWithMargin("Marca:", marcaField = new JTextField(20));
+        addFieldWithMargin("Precio:", precioField = new JTextField(20));
+
 
         JButton altaButton = new JButton("Dar de alta este producto");
         altaButton.addActionListener(new ActionListener() {
@@ -161,7 +166,7 @@ class BajaProductosFrame extends JFrame {
 
     public BajaProductosFrame() {
         setTitle("Baja de Producto");
-        setSize(350, 150);
+        setSize(350, 170);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -187,9 +192,9 @@ class BajaProductosFrame extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         buttonPanel.add(listarButton);
-        buttonPanel.add(Box.createVerticalStrut(10));
+        buttonPanel.add(Box.createVerticalStrut(15));
         buttonPanel.add(bajaButton);
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
         add(buttonPanel);
     }
 
@@ -206,28 +211,40 @@ class BajaProductosFrame extends JFrame {
 
 class ModificarProductoFrame extends JFrame {
     private JTextField idField;
+    private JTextField codigoField;
     private JTextField nombreField;
     private JTextField stockField;
     private JTextField tallaField;
     private JTextField descripcionField;
     private JTextField colorField;
     private JTextField marcaField;
+    private JTextField precioField;
 
     public ModificarProductoFrame() {
         setTitle("Modificar Producto");
-        setSize(400, 400);
+        setSize(450, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         addFieldWithMargin("ID del Producto:", idField = new JTextField(20));
+        addFieldWithMargin("Código en tienda:", codigoField = new JTextField(20));
         addFieldWithMargin("Nombre:", nombreField = new JTextField(20));
         addFieldWithMargin("Stock:", stockField = new JTextField(20));
         addFieldWithMargin("Talla:", tallaField = new JTextField(20));
         addFieldWithMargin("Descripción:", descripcionField = new JTextField(20));
         addFieldWithMargin("Color:", colorField = new JTextField(20));
         addFieldWithMargin("Marca:", marcaField = new JTextField(20));
+        addFieldWithMargin("Precio:", precioField = new JTextField(20));
 
-        JButton modificarButton = new JButton("Modificar Producto");
+        JButton listarButton = new JButton("Listar todos los productos");
+        listarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ConsultarInventarioFrame().setVisible(true);
+            }
+        });
+
+        JButton modificarButton = new JButton("   Modificar este producto   ");
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -237,8 +254,11 @@ class ModificarProductoFrame extends JFrame {
         });
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.add(listarButton);
+        buttonPanel.add(Box.createVerticalStrut(15));
         buttonPanel.add(modificarButton);
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         add(buttonPanel);
     }
 
@@ -262,7 +282,7 @@ class ConsultarInventarioFrame extends JFrame {
 }
 
 class RealizarVentaFrame extends JFrame {
-    private JTextField productoIdField;
+    private JTextField codigoField;
     private JTextField cantidadField;
     private JTextField clienteIdField;
 
@@ -272,7 +292,7 @@ class RealizarVentaFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        addFieldWithMargin("ID del Producto:", productoIdField = new JTextField(20));
+        addFieldWithMargin("Código en tienda:", codigoField = new JTextField(20));
         addFieldWithMargin("Cantidad:", cantidadField = new JTextField(20));
 
         JButton ventaButton = new JButton("Realizar Venta");
@@ -303,8 +323,54 @@ class RealizarVentaFrame extends JFrame {
 
 class GestionarEmpleadosFrame extends JFrame {
     public GestionarEmpleadosFrame() {
-        setTitle("Gestionar Empleados");
-        setSize(300, 200);
+        setTitle("Gestión de empleados");
+        setSize(400, 180);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(null);
+
+        JButton btnAltaEmpleado = new JButton("Alta de empleado");
+        btnAltaEmpleado.setBounds(50, 20, 300, 30);
+        btnAltaEmpleado.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new AltaEmpleadoFrame().setVisible(true);
+            }
+        });
+        add(btnAltaEmpleado);
+
+        JButton btnBajaEmpleado = new JButton("Baja de empleado");
+        btnBajaEmpleado.setBounds(50, 60, 300, 30);
+        btnBajaEmpleado.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new BajaEmpleadoFrame().setVisible(true);
+            }
+        });
+        add(btnBajaEmpleado);
+
+        JButton btnModificarEmpleado = new JButton("Modificar empleado");
+        btnModificarEmpleado.setBounds(50, 100, 300, 30);
+        btnModificarEmpleado.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ModificarEmpleadoFrame().setVisible(true);
+            }
+        });
+        add(btnModificarEmpleado);
+    }
+}
+
+class AltaEmpleadoFrame extends JFrame {
+    public AltaEmpleadoFrame() {
+
+    }
+}
+
+class BajaEmpleadoFrame extends JFrame {
+    public BajaEmpleadoFrame() {
+
+    }
+}
+
+class ModificarEmpleadoFrame extends JFrame {
+    public ModificarEmpleadoFrame() {
+
     }
 }
