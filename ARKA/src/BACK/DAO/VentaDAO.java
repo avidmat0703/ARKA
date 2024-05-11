@@ -1,4 +1,4 @@
-package DAO;
+package BACK.DAO;
 import BACK.Class.Venta;
 import BACK.Interfaz.Utiles;
 import java.io.*;

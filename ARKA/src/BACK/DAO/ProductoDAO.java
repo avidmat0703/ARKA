@@ -1,4 +1,4 @@
-package DAO;
+package BACK.DAO;
 
 import BACK.Class.Accesorio;
 import BACK.Class.Prenda;
