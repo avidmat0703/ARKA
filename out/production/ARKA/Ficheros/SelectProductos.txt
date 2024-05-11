@@ -4,9 +4,9 @@ Camiseta
 50
 M
 Azul
-Nike
+New Balance
 Prenda
-0.0
+20.0
 2
 PROD002
 Pantalón
@@ -43,3 +43,12 @@ Rojo
 New Era
 Prenda
 0.0
+6
+EK3432-T
+Calcetines
+25
+35-38
+Negro
+Ekiden
+Prenda
+20.0
