@@ -45,6 +45,7 @@ set cont = (select count(*) from producto where id = new.id_producto);
 if cont = 0 then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL id introducido no pertenece a la tabla "producto"';
 else
+set new.precio_unidad = (select precio from producto where id = new.id_producto);
 set new.total = new.precio_unidad * new.unidades;
 set new.fecha = now();
     END IF;
@@ -66,8 +67,8 @@ SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL código del producto ya ex
 end $$
 delimiter ;
 
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('PROD001', 'Camiseta', 50, 'M', 'Azul', 'Nike', 'Camiseta de algodón');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) 
+VALUES ('PROD001', 'Camiseta', 50, 'M', 'Azul', 'Nike', 'Camiseta de algodón', 20.0);
 
 INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
 VALUES ('PROD002', 'Pantalón', 30, 'L', 'Negro', 'Adidas', 'Pantalón deportivo');
@@ -96,7 +97,7 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
 
-INSERT INTO venta(id_producto, unidades, precio_unidad, fecha) values(1, 3, 20, now());
+INSERT INTO venta(id_producto, unidades) values(1, 3);
 select * from producto;
 use tienda;
 select * from producto p join venta v on p.id = v.id_producto;
