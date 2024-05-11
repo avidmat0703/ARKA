@@ -22,7 +22,7 @@ public class PANTALLA_INICIO extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        JButton btnGestionProductos = new JButton("Gestión de producto");
+        JButton btnGestionProductos = new JButton("Gestión de productos");
         btnGestionProductos.setBounds(50, 20, 300, 30);
         btnGestionProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
