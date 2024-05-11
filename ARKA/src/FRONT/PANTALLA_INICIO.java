@@ -250,13 +250,12 @@ class RealizarVentaFrame extends JFrame {
 
     public RealizarVentaFrame() {
         setTitle("Realizar Venta");
-        setSize(350, 200);
+        setSize(350, 170);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         addFieldWithMargin("ID del Producto:", productoIdField = new JTextField(20));
         addFieldWithMargin("Cantidad:", cantidadField = new JTextField(20));
-        addFieldWithMargin("ID del Cliente:", clienteIdField = new JTextField(20));
 
         JButton ventaButton = new JButton("Realizar Venta");
         ventaButton.addActionListener(new ActionListener() {
