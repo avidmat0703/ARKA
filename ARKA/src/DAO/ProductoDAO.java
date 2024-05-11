@@ -1,5 +1,8 @@
-package BACK.Class;
+package DAO;
 
+import BACK.Class.Accesorio;
+import BACK.Class.Prenda;
+import BACK.Class.Producto;
 import BACK.Interfaz.Utiles;
 
 import java.io.*;

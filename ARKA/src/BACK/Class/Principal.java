@@ -1,5 +1,9 @@
 package BACK.Class;
 
+import DAO.EmpleadoDAO;
+import DAO.ProductoDAO;
+import DAO.VentaDAO;
+
 public class Principal {
     public static void main(String[] args) {
         ProductoDAO p = new ProductoDAO ();
