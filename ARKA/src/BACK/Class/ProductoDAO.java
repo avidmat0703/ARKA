@@ -1,6 +1,5 @@
 package BACK.Class;
 
-import BACK.Class.Producto;
 import BACK.Interfaz.Utiles;
 
 import java.io.*;
@@ -11,59 +10,126 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ProductoDAO  implements Utiles{
-    public static Connection conectar() {
-        String usuario=null;
-        String contrasena=null;
+
+    @Override
+    public void crear() {
+            BufferedReader br = null;
+            try{
+                br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/InsertProductos.txt" ) );
+                String cod = br.readLine ();
+                String nombre = br.readLine ();
+                int stock = Integer.valueOf(br.readLine ());
+                String talla = br.readLine ();
+                String color = br.readLine ();
+                String marca = br.readLine ();
+                String descripcion = br.readLine ();
+                double precio = Double.valueOf ( br.readLine () );
+                String sql = "INSERT INTO Producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) \n" +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+                Connection connection = Utiles.conectar ();
+                try {
+                    PreparedStatement sentencia = connection.prepareStatement(sql);
+                    sentencia.setString ( 1, cod );
+                    sentencia.setString(2, nombre);
+                    sentencia.setInt(3, stock);
+                    sentencia.setString(4, talla);
+                    sentencia.setString(5, color);
+                    sentencia.setString(6, marca);
+                    sentencia.setString(7, descripcion);
+                    sentencia.setDouble (8, precio);
+                    sentencia.executeUpdate();
+                    connection.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error al insertar");
+                }
+            }
+            catch (IOException e)
+            {
+                System.out.println (e.getMessage ());
+            }
+            finally {
+                try {
+                    br.close ();
+                }
+                catch (IOException ex)
+                {
+                    System.out.println (ex.getMessage ());
+                }
+            }
+        }
+
+    @Override
+    public void eliminar() {
         BufferedReader br = null;
         try{
-            br=new BufferedReader(new FileReader ( "ARKA/src/Ficheros/Usuario.txt" ));
-            usuario=br.readLine ();
-            contrasena=br.readLine ();
+            br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/DeleteProductos.txt" ) );
+            int id = Integer.valueOf ( br.readLine ());
+            String sql = "DELETE FROM Producto WHERE id = ?";
+            Connection connection = Utiles.conectar ();
+            try {
+                PreparedStatement sentencia = connection.prepareStatement(sql);
+                sentencia.setInt(1, id);
+                sentencia.executeUpdate();
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Error al eliminar");
+            }
         }
-        catch(IOException e){
+        catch (IOException e)
+        {
             System.out.println (e.getMessage ());
         }
-        finally{
-            try{
+        finally {
+            try {
                 br.close ();
             }
-            catch(IOException ex)
+            catch (IOException ex)
             {
-                ex.getMessage ();
+                System.out.println (ex.getMessage ());
             }
         }
-        Connection con = null;
+    }
 
-        String url = "jdbc:mysql://localhost/Tienda";
-        try {
-            con = DriverManager.getConnection ( url, usuario, contrasena);
+    @Override
+    public void modificar() {
+        BufferedReader br = null;
+        try{
+            br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/UpdateProductos.txt" ) );
+            String id = br.readLine ();
+            String campo = br.readLine ();
+            String valor = br.readLine ();
+            String sql = "UPDATE Producto SET " + campo  + " = ? WHERE id = ?";
+            Connection connection = Utiles.conectar ();
+            try {
+                PreparedStatement sentencia = connection.prepareStatement(sql);
+                sentencia.setString(1, valor);
+                sentencia.setString(2, id);
+                sentencia.executeUpdate();
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Error al modificar.");
+            }
         }
-        catch (SQLException ex) {
-            System.out.println ( "Error al conectar al SGBD." );
+        catch (IOException e)
+        {
+            System.out.println (e.getMessage ());
         }
-        return con;
-    }
-
-    @Override
-    public boolean darAlta() {
-        return false;
-    }
-
-    @Override
-    public boolean darBaja() {
-        return false;
-    }
-
-    @Override
-    public boolean modificar() {
-        return false;
+        finally {
+            try {
+                br.close ();
+            }
+            catch (IOException ex)
+            {
+                System.out.println (ex.getMessage ());
+            }
+        }
     }
 
     @Override
     public List<Object> listar() {
         List<Producto> resultado = new ArrayList<> ();
         String sql = "SELECT * FROM producto";
-        Connection connection = conectar ();
+        Connection connection = Utiles.conectar ();
         try{
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -71,60 +137,68 @@ public class ProductoDAO  implements Utiles{
             while (resultSet.next()) {
 
                 int id = resultSet.getInt ( "id" );
+                String cod = resultSet.getString ( "codigo" );
                 String tipoProducto = resultSet.getString ( "tipo_producto" );
                 int stock = resultSet.getInt ( "stock" );
                 String talla = resultSet.getString ( "talla" );
                 String color = resultSet.getString ( "color" );
                 String marca = resultSet.getString ( "marca" );
                 String descripcion = resultSet.getString ( "descripcion" );
+                double precio = resultSet.getDouble ( "precio" );
                 if(descripcion.equals ( "Accesorio" ))
                 {
-                    Accesorio a = new Accesorio ( id, tipoProducto, stock, talla, color, marca);
+                    Accesorio a = new Accesorio ( id, cod, tipoProducto, stock, talla, color, marca, precio);
                     resultado.add ( a );
                 }
                 else
                 {
-                    Prenda p = new Prenda ( id, tipoProducto, stock, talla, color, marca);
+                    Prenda p = new Prenda ( id, cod, tipoProducto, stock, talla, color, marca, precio);
                     resultado.add ( p );
                 }
             }
+            try{
+                bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/SelectProductos.txt", false ));
+                Iterator<Producto> it = resultado.iterator ();
+                while (it.hasNext ())
+                {
+                    Producto p = it.next ();
+                    bw.write ( String.valueOf ( p.getId () ) );
+                    bw.newLine ();
+                    bw.write ( p.getCodigo () );
+                    bw.newLine ();
+                    bw.write ( p.getNombre () );
+                    bw.newLine ();
+                    bw.write ( String.valueOf ( p.getStock () ));
+                    bw.newLine ();
+                    bw.write ( p.getTalla () );
+                    bw.newLine ();
+                    bw.write ( p.getColor () );
+                    bw.newLine ();
+                    bw.write ( p.getMarca () );
+                    bw.newLine ();
+                    bw.write ( p.getDescripcion () );
+                    bw.newLine ();
+                    bw.write ( String.valueOf ( p.getPrecio () ) );
+                    bw.newLine ();
+                }
+            }
+            catch(IOException e){
+                System.out.println (e.getMessage ());
+            }
+            finally{
                 try{
-                    bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/Productos.txt", false ));
-                    Iterator<Producto> it = resultado.iterator ();
-                    while (it.hasNext ())
-                    {
-                        Producto p = it.next ();
-                        bw.write ( String.valueOf ( p.getId () ) );
-                        bw.newLine ();
-                        bw.write ( p.getNombre () );
-                        bw.newLine ();
-                        bw.write ( String.valueOf ( p.getStock () ));
-                        bw.newLine ();
-                        bw.write ( p.getTalla () );
-                        bw.newLine ();
-                        bw.write ( p.getColor () );
-                        bw.newLine ();
-                        bw.write ( p.getMarca () );
-                        bw.newLine ();
-                        bw.write ( p.getDescripcion () );
-                        bw.newLine ();
-                    }
+                    bw.close ();
                 }
-                catch(IOException e){
-                    System.out.println (e.getMessage ());
+                catch(IOException ex)
+                {
+                    ex.getMessage ();
                 }
-                finally{
-                    try{
-                        bw.close ();
-                    }
-                    catch(IOException ex)
-                    {
-                        ex.getMessage ();
-                    }
-                }
+            }
         } catch (SQLException e) {
             System.out.println ("Error al listar productos.");
         }
         return Collections.singletonList ( resultado );
     }
 }
+
+

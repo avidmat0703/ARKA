@@ -3,12 +3,14 @@ Create database Tienda character set utf8mb4;
 Use Tienda; 
 
 CREATE table producto (
-	id INT AUTO_INCREMENT primary Key,
+	id INT AUTO_INCREMENT primary key,
+    codigo varchar(20),
 	tipo_producto varchar(20),
     stock int,
     talla varchar(10),
     color varchar(10),
     marca varchar(20),
+	precio DECIMAL(5,2),
     descripcion varchar(20)
 );
 
@@ -26,7 +28,9 @@ CREATE TABLE venta(
     id int AUTO_INCREMENT primary key,
     id_producto int,
     unidades int,
+    precio_unidad decimal(5,2),
     fecha datetime,
+	total decimal(5,2),
     foreign key (id_producto) references producto(id)
 );
 
@@ -40,26 +44,43 @@ declare cont int;
 set cont = (select count(*) from producto where id = new.id_producto);
 if cont = 0 then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL id introducido no pertenece a la tabla "producto"';
+else
+set new.total = new.precio_unidad * new.unidades;
+set new.fecha = now();
     END IF;
 end $$
 delimiter ;
 
+delimiter $$
+drop trigger if exists tg_codigoproducto$$
+create trigger tg_codigoproducto
+before insert on producto
+for each row
+begin
+declare cont int;
+set cont = (select count(*) from producto where codigo = new.codigo);
+if cont > 0 then
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL código del producto ya existe."';
+    END IF;
 
+end $$
+delimiter ;
 
-INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('Camiseta', 100, 'M', 'Azul', 'Nike', 'Prenda');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('PROD001', 'Camiseta', 50, 'M', 'Azul', 'Nike', 'Camiseta de algodón');
 
-INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('Pantalón', 80, 'L', 'Negro', 'Adidas', 'Prenda');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('PROD002', 'Pantalón', 30, 'L', 'Negro', 'Adidas', 'Pantalón deportivo');
 
-INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('Zapatos', 50, '42', 'Blanco', 'Reebok', 'Prenda');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('PROD003', 'Zapatos', 20, '42', 'Blanco', 'Puma', 'Zapatos casuales');
 
-INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('Gorra', 120, 'Única', 'Rojo', 'Puma', 'Accesorio');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('PROD004', 'Chaqueta', 15, 'XL', 'Gris', 'The North Face', 'Chaqueta impermeable');
 
-INSERT INTO producto (tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('Calcetines', 200, 'S/M', 'Gris', 'Under Armour', 'Accesorio');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
+VALUES ('PROD005', 'Gorra', 40, 'Única', 'Rojo', 'New Era', 'Gorra ajustable');
+
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('12345678A', 'Juan', 'García', 'López', 'juan@example.com', 123456789, 'Gerente');
 
@@ -75,7 +96,10 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
 
-INSERT INTO venta values(id, 1, 3, now());
+INSERT INTO venta(id_producto, unidades, precio_unidad, fecha) values(1, 3, 20, now());
 select * from producto;
-select * from empleado;
+use tienda;
 select * from producto p join venta v on p.id = v.id_producto;
+UPDATE Empleado SET NoMbre = 'Juan' WHERE dni = '23456789B';
+select * from empleado;
+select * from venta;

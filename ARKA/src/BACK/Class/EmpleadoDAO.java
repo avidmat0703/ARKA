@@ -1,6 +1,5 @@
 package BACK.Class;
 
-import BACK.Class.Producto;
 import BACK.Interfaz.Utiles;
 
 import java.io.*;
@@ -10,60 +9,124 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class EmpleadoDAO  implements Utiles{
-    public static Connection conectar() {
-        String usuario=null;
-        String contrasena=null;
+public class EmpleadoDAO implements Utiles {
+
+    @Override
+    public void crear() {
         BufferedReader br = null;
         try{
-            br=new BufferedReader(new FileReader ( "ARKA/src/Ficheros/Usuario.txt" ));
-            usuario=br.readLine ();
-            contrasena=br.readLine ();
+            br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/InsertEmpleados.txt" ) );
+            String dni = br.readLine ();
+            String nombre = br.readLine ();
+            String apellido = br.readLine ();
+            String apellido2 = br.readLine ();
+            String email = br.readLine ();
+            int telefono = Integer.valueOf ( br.readLine ());
+            String puesto = br.readLine ();
+            String sql = "INSERT INTO Empleado VALUES(?, ?, ?, ?, ?, ?, ?)";
+            Connection connection = Utiles.conectar ();
+            try {
+                PreparedStatement sentencia = connection.prepareStatement(sql);
+                sentencia.setString(1, dni);
+                sentencia.setString(2, nombre);
+                sentencia.setString(3, apellido);
+                sentencia.setString(4, apellido2);
+                sentencia.setString(5, email);
+                sentencia.setInt(6, telefono);
+                sentencia.setString(7, puesto);
+                sentencia.executeUpdate();
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Error al insertar");
+            }
         }
-        catch(IOException e){
+        catch (IOException e)
+        {
             System.out.println (e.getMessage ());
         }
-        finally{
-            try{
+        finally {
+            try {
                 br.close ();
             }
-            catch(IOException ex)
+            catch (IOException ex)
             {
-                ex.getMessage ();
+                System.out.println (ex.getMessage ());
             }
         }
-        Connection con = null;
+    }
 
-        String url = "jdbc:mysql://localhost/Tienda";
-        try {
-            con = DriverManager.getConnection ( url, usuario, contrasena);
+    @Override
+    public void eliminar() {
+        BufferedReader br = null;
+        try{
+            br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/DeleteEmpleados.txt" ) );
+            String id =br.readLine ();
+            String sql = "DELETE FROM Empleado WHERE dni = ?";
+            Connection connection = Utiles.conectar ();
+            try {
+                PreparedStatement sentencia = connection.prepareStatement(sql);
+                sentencia.setString(1, id);
+                sentencia.executeUpdate();
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Error al eliminar");
+            }
         }
-        catch (SQLException ex) {
-            System.out.println ( "Error al conectar al SGBD." );
+        catch (IOException e)
+        {
+            System.out.println (e.getMessage ());
         }
-        return con;
+        finally {
+            try {
+                br.close ();
+            }
+            catch (IOException ex)
+            {
+                System.out.println (ex.getMessage ());
+            }
+        }
     }
 
     @Override
-    public boolean darAlta() {
-        return false;
-    }
-
-    @Override
-    public boolean darBaja() {
-        return false;
-    }
-
-    @Override
-    public boolean modificar() {
-        return false;
+    public void modificar() {
+        BufferedReader br = null;
+        try{
+            br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/UpdateEmpleados.txt" ) );
+            String dni = br.readLine ();
+            String campo = br.readLine ();
+            String valor = br.readLine ();
+            String sql = "UPDATE Empleado SET " + campo  + " = ? WHERE dni = ?";
+            Connection connection = Utiles.conectar ();
+            try {
+                PreparedStatement sentencia = connection.prepareStatement(sql);
+                sentencia.setString(1, valor);
+                sentencia.setString(2, dni);
+                sentencia.executeUpdate();
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Error al modificar.");
+            }
+        }
+        catch (IOException e)
+        {
+            System.out.println (e.getMessage ());
+        }
+        finally {
+            try {
+                br.close ();
+            }
+            catch (IOException ex)
+            {
+                System.out.println (ex.getMessage ());
+            }
+        }
     }
 
     @Override
     public List<Object> listar() {
         List<Empleado> resultado = new ArrayList<> ();
         String sql = "SELECT * FROM empleado";
-        Connection connection = conectar ();
+        Connection connection = Utiles.conectar ();
         try{
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -81,7 +144,7 @@ public class EmpleadoDAO  implements Utiles{
                     resultado.add ( e );
             }
             try{
-                bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/Empleados.txt", false ));
+                bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/SelectEmpleados.txt", false ));
                 Iterator<Empleado> it = resultado.iterator ();
                 while (it.hasNext ())
                 {
