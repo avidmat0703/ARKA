@@ -4,4 +4,3 @@ telefono
 654834677
 12345678A
 puesto
-contable

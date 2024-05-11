@@ -1,5 +1,6 @@
-package BACK.Class;
+package BACK.DAO;
 
+import BACK.Class.Empleado;
 import BACK.Interfaz.Utiles;
 
 import java.io.*;
