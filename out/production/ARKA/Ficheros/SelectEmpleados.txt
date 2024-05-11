@@ -4,7 +4,7 @@ García
 López
 juan@example.com
 123456789
-Gerente
+contable
 23456789B
 Juan
 Martínez

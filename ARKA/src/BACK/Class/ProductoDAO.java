@@ -95,19 +95,23 @@ public class ProductoDAO  implements Utiles{
         BufferedReader br = null;
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/UpdateProductos.txt" ) );
-            String id = br.readLine ();
-            String campo = br.readLine ();
-            String valor = br.readLine ();
-            String sql = "UPDATE Producto SET " + campo  + " = ? WHERE id = ?";
-            Connection connection = Utiles.conectar ();
-            try {
-                PreparedStatement sentencia = connection.prepareStatement(sql);
-                sentencia.setString(1, valor);
-                sentencia.setString(2, id);
-                sentencia.executeUpdate();
-                connection.close();
-            } catch (SQLException ex) {
-                System.out.println("Error al modificar.");
+            int n = Integer.valueOf ( br.readLine () );
+            for(int i=0;i<n;i++)
+            {
+                String id = br.readLine ();
+                String campo = br.readLine ();
+                String valor = br.readLine ();
+                String sql = "UPDATE Producto SET " + campo  + " = ? WHERE id = ?";
+                Connection connection = Utiles.conectar ();
+                try {
+                    PreparedStatement sentencia = connection.prepareStatement(sql);
+                    sentencia.setString(1, valor);
+                    sentencia.setString(2, id);
+                    sentencia.executeUpdate();
+                    connection.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error al modificar.");
+                }
             }
         }
         catch (IOException e)

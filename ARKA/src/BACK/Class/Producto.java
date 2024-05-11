@@ -5,7 +5,6 @@ import BACK.Interfaz.Utiles;
 public class Producto {
     private int id;
     private String codigo;
-
     private String nombre;
     private int stock;
     private String talla;
