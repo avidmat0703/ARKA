@@ -1,10 +1,14 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AltaEmpleadoFrame extends JFrame {
+
+    private String info = "";
     private JTextField DNIField;
     private JTextField nombreField;
     private JTextField apellido1Field;
@@ -31,6 +35,10 @@ public class AltaEmpleadoFrame extends JFrame {
         altaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
+                info = DNIField.getText() + ", " + nombreField.getText() + ", " + apellido1Field.getText() + ", " +
+                        apellido2Field.getText() + ", " + emailField.getText() + ", " + telefonoField.getText() + ", " +
+                        puestoField.getText();
+                LecturaYEscrituraDeFicheros.insertEmpleados(info);
                 JOptionPane.showMessageDialog(AltaEmpleadoFrame.this, "Empleado añadido correctamente");
                 dispose();
             }

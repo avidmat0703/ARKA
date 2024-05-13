@@ -1,13 +1,16 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.VentaDAO;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RealizarVentaFrame extends JFrame {
+    private String info = "";
     private JTextField codigoField;
     private JTextField cantidadField;
-    private JTextField clienteIdField;
 
     public RealizarVentaFrame() {
         setTitle("Realizar venta");
@@ -22,6 +25,10 @@ public class RealizarVentaFrame extends JFrame {
         ventaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
+                info = codigoField.getText() + ", " + cantidadField.getText();
+                LecturaYEscrituraDeFicheros.insertVentas(info);
+                VentaDAO v = new VentaDAO();
+                v.crear();
                 JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente");
                 dispose();
             }

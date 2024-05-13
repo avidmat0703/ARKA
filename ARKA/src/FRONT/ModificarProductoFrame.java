@@ -1,10 +1,13 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ModificarProductoFrame extends JFrame {
+    private String info = "";
     private JTextField idField;
     private JTextField codigoField;
     private JTextField nombreField;
@@ -52,6 +55,12 @@ public class ModificarProductoFrame extends JFrame {
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                info = codigoField.getText() + ", " + nombreField.getText() + ", " + stockField.getText() + ", " + tallaField.getText() +
+                        ", " + descripcionField.getText() + ", " + colorField.getText() + ", " + marcaField.getText() + ", " +
+                        precioField.getText();
+                LecturaYEscrituraDeFicheros.modificarProducto(info);
+
                 StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
                 if (chkCodigo.isSelected()) {
                     cambios.append(" - Código en tienda modificado: ").append(codigoField.getText()).append("\n");

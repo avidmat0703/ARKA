@@ -120,7 +120,7 @@ public class LecturaYEscrituraDeFicheros {
             }
         }
     }
-    public void modificarEmpleado(String info){
+    public static void modificarEmpleado(String info){
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/UpdateEmpleados.txt"));
@@ -135,7 +135,7 @@ public class LecturaYEscrituraDeFicheros {
             }
         }
     }
-    public void modificarProducto(String info){
+    public static void modificarProducto(String info){
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/UpdateProductos.txt"));
@@ -150,7 +150,7 @@ public class LecturaYEscrituraDeFicheros {
             }
         }
     }
-    public void modificarVentas(String info){
+    public static void modificarVentas(String info){
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/UpdateVentas.txt"));
