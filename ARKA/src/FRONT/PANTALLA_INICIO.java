@@ -40,7 +40,7 @@ public class PANTALLA_INICIO extends JFrame {
         });
         add(btnConsultarInventario);
 
-        JButton btnRealizarVenta = new JButton("Realizar Venta");
+        JButton btnRealizarVenta = new JButton("Realizar venta");
         btnRealizarVenta.setBounds(50, 100, 300, 30);
         btnRealizarVenta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -109,7 +109,7 @@ class AltaProductosFrame extends JFrame {
     private JTextField precioField;
 
     public AltaProductosFrame() {
-        setTitle("Alta de Producto");
+        setTitle("Alta de producto");
         setSize(450, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -165,7 +165,7 @@ class BajaProductosFrame extends JFrame {
     private JTextField idField;
 
     public BajaProductosFrame() {
-        setTitle("Baja de Producto");
+        setTitle("Baja de producto");
         setSize(350, 170);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -230,7 +230,7 @@ class ModificarProductoFrame extends JFrame {
     private JCheckBox chkPrecio;
 
     public ModificarProductoFrame() {
-        setTitle("Modificar Producto");
+        setTitle("Modificar producto");
         setSize(450, 520);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -321,7 +321,7 @@ class ModificarProductoFrame extends JFrame {
 
 class ConsultarInventarioFrame extends JFrame {
     public ConsultarInventarioFrame() {
-        setTitle("Consultar Inventario");
+        setTitle("Consultar inventario");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -333,7 +333,7 @@ class RealizarVentaFrame extends JFrame {
     private JTextField clienteIdField;
 
     public RealizarVentaFrame() {
-        setTitle("Realizar Venta");
+        setTitle("Realizar venta");
         setSize(350, 170);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -341,7 +341,7 @@ class RealizarVentaFrame extends JFrame {
         addFieldWithMargin("Código en tienda:", codigoField = new JTextField(20));
         addFieldWithMargin("Cantidad:", cantidadField = new JTextField(20));
 
-        JButton ventaButton = new JButton("Realizar Venta");
+        JButton ventaButton = new JButton("Realizar venta");
         ventaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -404,19 +404,208 @@ class GestionarEmpleadosFrame extends JFrame {
 }
 
 class AltaEmpleadoFrame extends JFrame {
-    public AltaEmpleadoFrame() {
+    private JTextField DNIField;
+    private JTextField nombreField;
+    private JTextField apellido1Field;
+    private JTextField apellido2Field;
+    private JTextField emailField;
+    private JTextField telefonoField;
+    private JTextField puestoField;
 
+    public AltaEmpleadoFrame() {
+        setTitle("Alta de empleado");
+        setSize(450, 400);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        addFieldWithMargin("DNI:", DNIField = new JTextField(20));
+        addFieldWithMargin("Nombre:", nombreField = new JTextField(20));
+        addFieldWithMargin("Primer apellido:", apellido1Field = new JTextField(20));
+        addFieldWithMargin("Segundo apellido:", apellido2Field = new JTextField(20));
+        addFieldWithMargin("Email:", emailField = new JTextField(20));
+        addFieldWithMargin("Número de teléfono:", telefonoField = new JTextField(20));
+        addFieldWithMargin("Puesto:", puestoField = new JTextField(20));
+
+        JButton altaButton = new JButton("Dar de alta este empleado");
+        altaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(AltaEmpleadoFrame.this, "Empleado añadido correctamente");
+                dispose();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(altaButton);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        add(buttonPanel);
+    }
+
+    private void addFieldWithMargin(String label, JTextField field) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        panel.add(new JLabel(label));
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(field);
+        add(panel);
     }
 }
 
 class BajaEmpleadoFrame extends JFrame {
-    public BajaEmpleadoFrame() {
+    private JTextField DNIField;
 
+    public BajaEmpleadoFrame() {
+        setTitle("Baja de emplado");
+        setSize(350, 170);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        addFieldWithMargin("DNI del empleado:", DNIField = new JTextField(20));
+
+        JButton listarButton = new JButton("Listar todos los empleados");
+        listarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ConsultarEmpleadoFrame().setVisible(true);
+            }
+        });
+
+        JButton bajaButton = new JButton("   Eliminar este empleado   ");
+        bajaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente");
+                dispose();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.add(listarButton);
+        buttonPanel.add(Box.createVerticalStrut(15));
+        buttonPanel.add(bajaButton);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
+        add(buttonPanel);
+    }
+
+    private void addFieldWithMargin(String label, JTextField field) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        panel.add(new JLabel(label));
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(field);
+        add(panel);
+    }
+}
+
+class ConsultarEmpleadoFrame extends JFrame {
+    public ConsultarEmpleadoFrame() {
+        setTitle("Consultar empleados");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }
 
 class ModificarEmpleadoFrame extends JFrame {
-    public ModificarEmpleadoFrame() {
+    private JTextField DNIField;
+    private JTextField nombreField;
+    private JTextField apellido1Field;
+    private JTextField apellido2Field;
+    private JTextField emailField;
+    private JTextField telefonoField;
+    private JTextField puestoField;
 
+    private JCheckBox chkDNI;
+    private JCheckBox chkNombre;
+    private JCheckBox chkApellido1;
+    private JCheckBox chkApellido2;
+    private JCheckBox chkEmail;
+    private JCheckBox chkTelefono;
+    private JCheckBox chkPuesto;
+
+    public ModificarEmpleadoFrame() {
+        setTitle("Modificar empleado");
+        setSize(450, 450);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        addFieldWithMargin("DNI:", DNIField = new JTextField(20), chkDNI = new JCheckBox());
+        addFieldWithMargin("Nombre:", nombreField = new JTextField(20), chkNombre = new JCheckBox());
+        addFieldWithMargin("Primer apellido:", apellido1Field = new JTextField(20), chkApellido1 = new JCheckBox());
+        addFieldWithMargin("Segundo apellido:", apellido2Field = new JTextField(20), chkApellido2 = new JCheckBox());
+        addFieldWithMargin("Email:", emailField = new JTextField(20), chkEmail = new JCheckBox());
+        addFieldWithMargin("Número de teléfono:", telefonoField = new JTextField(20), chkTelefono = new JCheckBox());
+        addFieldWithMargin("Puesto:", puestoField = new JTextField(20), chkPuesto = new JCheckBox());
+
+        JButton listarButton = new JButton("Listar todos los empleados");
+        listarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ConsultarEmpleadoFrame().setVisible(true);
+            }
+        });
+
+        JButton modificarButton = new JButton("   Modificar este empleado   ");
+        modificarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
+                if (chkDNI.isSelected()) {
+                    cambios.append(" - DNI modificado: ").append(DNIField.getText()).append("\n");
+                }
+                if (chkNombre.isSelected()) {
+                    cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
+                }
+                if (chkApellido1.isSelected()) {
+                    cambios.append(" - Primer apellido modificado: ").append(apellido1Field.getText()).append("\n");
+                }
+                if (chkApellido2.isSelected()) {
+                    cambios.append(" - Segundo apellido modificado: ").append(apellido2Field.getText()).append("\n");
+                }
+                if (chkEmail.isSelected()) {
+                    cambios.append(" - Email modificado: ").append(emailField.getText()).append("\n");
+                }
+                if (chkTelefono.isSelected()) {
+                    cambios.append(" - Teléfono modificado: ").append(telefonoField.getText()).append("\n");
+                }
+                if (chkPuesto.isSelected()) {
+                    cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
+                }
+                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString());
+                dispose();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.add(listarButton);
+        buttonPanel.add(Box.createVerticalStrut(15));
+        buttonPanel.add(modificarButton);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        add(buttonPanel);
+    }
+
+    private void addFieldWithMargin(String label, JTextField field, JCheckBox checkBox) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        panel.add(checkBox);
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(new JLabel(label));
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(field);
+        add(panel);
+    }
+
+    private void addFieldWithMargin(String label, JTextField field) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        panel.add(new JLabel(label));
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(field);
+        add(panel);
     }
 }
