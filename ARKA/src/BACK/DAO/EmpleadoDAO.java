@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class EmpleadoDAO implements Utiles {
-
     @Override
     public boolean crear() {
         boolean crear = true;
@@ -38,7 +40,7 @@ public class EmpleadoDAO implements Utiles {
                 sentencia.setString(7, puesto);
                 sentencia.executeUpdate();
                 connection.close();
-            } catch (SQLException ex) {
+            } catch (SQLException e) {
                 System.out.println("Error al insertar");
                 crear = false;
             }

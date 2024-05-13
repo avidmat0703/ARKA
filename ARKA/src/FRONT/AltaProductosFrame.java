@@ -52,8 +52,8 @@ public class AltaProductosFrame extends JFrame {
         altaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = codigoField.getText() + ", " + nombreField.getText() + ", " + stockField.getText() + ", " + tallaField.getText() +
-                        ", " + descripcionField.getText() + ", " + colorField.getText() + ", " + marcaField.getText() + ", " +
+                info = codigoField.getText() + "," + nombreField.getText() + "," + stockField.getText() + "," + tallaField.getText() +
+                        "," + descripcionField.getText() + "," + colorField.getText() + "," + marcaField.getText() + "," +
                         precioField.getText();
                 LecturaYEscrituraDeFicheros.insertProductos(info);
                 JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");

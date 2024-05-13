@@ -7,13 +7,13 @@ import BACK.DAO.VentaDAO;
 public class Principal {
     public static void main(String[] args) {
         ProductoDAO p = new ProductoDAO ();
-        p.crear ();
-        p.modificar ();
-        System.out.println (p.listar ());
-        //p.eliminar ();
+        //System.out.println (p.crear ());
+        //p.modificar ();
+        //System.out.println (p.listar ());
+        p.eliminar ();
         //System.out.println (p.listar ());
         EmpleadoDAO e = new EmpleadoDAO ();
-        e.crear ();
+        //e.crear ();
         //e.eliminar ();
         //e.modificar ();
         //System.out.println (e.listar ());

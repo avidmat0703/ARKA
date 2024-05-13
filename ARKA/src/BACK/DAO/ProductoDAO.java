@@ -30,7 +30,12 @@ public class ProductoDAO  implements Utiles{
                 double precio = Double.valueOf ( br.readLine () );
                 String sql = "INSERT INTO Producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) \n" +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+                
                 Connection connection = Utiles.conectar ();
+                if(connection == null)
+                {
+                    crear = false;
+                }
                 try {
                     PreparedStatement sentencia = connection.prepareStatement(sql);
                     sentencia.setString ( 1, cod );

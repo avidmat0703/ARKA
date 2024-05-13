@@ -1,6 +1,8 @@
 package FRONT;
 
+import BACK.Class.Empleado;
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.EmpleadoDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -35,10 +37,12 @@ public class AltaEmpleadoFrame extends JFrame {
         altaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = DNIField.getText() + ", " + nombreField.getText() + ", " + apellido1Field.getText() + ", " +
-                        apellido2Field.getText() + ", " + emailField.getText() + ", " + telefonoField.getText() + ", " +
+                info = DNIField.getText() + "," + nombreField.getText() + "," + apellido1Field.getText() + "," +
+                        apellido2Field.getText() + "," + emailField.getText() + "," + telefonoField.getText() + "," +
                         puestoField.getText();
                 LecturaYEscrituraDeFicheros.insertEmpleados(info);
+                EmpleadoDAO ee = new EmpleadoDAO ();
+                ee.crear ();
                 JOptionPane.showMessageDialog(AltaEmpleadoFrame.this, "Empleado añadido correctamente");
                 dispose();
             }

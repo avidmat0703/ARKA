@@ -77,6 +77,12 @@ public class LecturaYEscrituraDeFicheros {
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/InsertProductos.txt"));
+            String[] partes = info.split ( "," );
+            for(String parte : partes)
+            {
+                salida.write ( parte );
+                salida.newLine ();
+            }
             salida.write(info);
         }catch (IOException ex){
             System.out.println(ex.getMessage());
@@ -93,7 +99,12 @@ public class LecturaYEscrituraDeFicheros {
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/InsertEmpleados.txt"));
-            salida.write(info);
+            String[] partes = info.split ( "," );
+            for(String parte : partes)
+            {
+                salida.write(parte);
+                salida.newLine ();
+            }
         }catch (IOException ex){
             System.out.println(ex.getMessage());
         }finally {
@@ -109,7 +120,10 @@ public class LecturaYEscrituraDeFicheros {
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/InsertVentas.txt"));
-            salida.write(info);
+            String[] inf = info.split(",");
+            salida.write(inf[0]);
+            salida.newLine ();
+            salida.write ( inf[1] );
         }catch (IOException ex){
             System.out.println(ex.getMessage());
         }finally {

@@ -25,7 +25,7 @@ public class RealizarVentaFrame extends JFrame {
         ventaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = codigoField.getText() + ", " + cantidadField.getText();
+                info = codigoField.getText() + "," + cantidadField.getText();
                 LecturaYEscrituraDeFicheros.insertVentas(info);
                 VentaDAO v = new VentaDAO();
                 v.crear();

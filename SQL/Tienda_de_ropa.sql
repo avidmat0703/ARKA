@@ -63,7 +63,6 @@ set cont = (select count(*) from producto where codigo = new.codigo);
 if cont > 0 then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL código del producto ya existe."';
     END IF;
-
 end $$
 delimiter ;
 
@@ -97,10 +96,12 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
 
-INSERT INTO venta(id_producto, unidades) values(1, 3);
-select * from producto;
-use tienda;
 select * from producto p join venta v on p.id = v.id_producto;
 UPDATE Empleado SET NoMbre = 'Juan' WHERE dni = '23456789B';
 select * from empleado;
+
+
+insert into venta (id, id_producto, unidades) values(1, 1, 4);
+delete from producto where id = 1;
+select * from producto;
 select * from venta;

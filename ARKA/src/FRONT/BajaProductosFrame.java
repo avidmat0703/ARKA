@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.ProductoDAO;
+import BACK.DAO.VentaDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,6 +35,8 @@ public class BajaProductosFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 info = idField.getText();
                 LecturaYEscrituraDeFicheros.eliminarProductos(info);
+                ProductoDAO p = new ProductoDAO ();
+                p.eliminar ();
                 JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
                 dispose();
             }
