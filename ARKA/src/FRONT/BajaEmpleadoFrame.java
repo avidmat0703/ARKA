@@ -1,10 +1,13 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BajaEmpleadoFrame extends JFrame {
+    private String info = "";
     private JTextField DNIField;
 
     public JTextField getDNIField() {
@@ -31,6 +34,8 @@ public class BajaEmpleadoFrame extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                info = DNIField.getText();
+                LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
                 JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente");
                 dispose();
             }
@@ -54,4 +59,6 @@ public class BajaEmpleadoFrame extends JFrame {
         panel.add(field);
         add(panel);
     }
+
+
 }
