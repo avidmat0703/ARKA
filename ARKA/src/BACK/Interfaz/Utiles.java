@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface Utiles{
-    public void crear();
-    public void eliminar();
-    public void modificar();
+    public boolean crear();
+    public boolean eliminar();
+    public boolean modificar();
     public List<Object> listar();
     public static Connection conectar() {
         String usuario=null;

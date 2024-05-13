@@ -33,7 +33,7 @@ public class AltaProductosFrame extends JFrame {
         radioPanel.add(prendaRadioButton);
         add(radioPanel);
 
-        addFieldWithMargin("Código en tienda:", codigoField = new JTextField(20));
+        addFieldWithMargin("Código:", codigoField = new JTextField(20));
         addFieldWithMargin("Nombre:", nombreField = new JTextField(20));
         addFieldWithMargin("Stock:", stockField = new JTextField(20));
         addFieldWithMargin("Talla:", tallaField = new JTextField(20));

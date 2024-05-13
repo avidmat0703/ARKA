@@ -15,7 +15,8 @@ import java.util.List;
 public class ProductoDAO  implements Utiles{
 
     @Override
-    public void crear() {
+    public boolean crear() {
+        boolean crear = true;
             BufferedReader br = null;
             try{
                 br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/InsertProductos.txt" ) );
@@ -44,6 +45,7 @@ public class ProductoDAO  implements Utiles{
                     connection.close();
                 } catch (SQLException ex) {
                     System.out.println("Error al insertar");
+                    crear = false;
                 }
             }
             catch (IOException e)
@@ -57,12 +59,15 @@ public class ProductoDAO  implements Utiles{
                 catch (IOException ex)
                 {
                     System.out.println (ex.getMessage ());
+                    crear = false;
                 }
             }
+            return crear;
         }
 
     @Override
-    public void eliminar() {
+    public boolean eliminar() {
+        boolean eliminar = true;
         BufferedReader br = null;
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/DeleteProductos.txt" ) );
@@ -76,11 +81,13 @@ public class ProductoDAO  implements Utiles{
                 connection.close();
             } catch (SQLException ex) {
                 System.out.println("Error al eliminar");
+                eliminar = false;
             }
         }
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            eliminar = false;
         }
         finally {
             try {
@@ -89,12 +96,15 @@ public class ProductoDAO  implements Utiles{
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                eliminar = false;
             }
         }
+        return eliminar;
     }
 
     @Override
-    public void modificar() {
+    public boolean modificar() {
+        boolean modificar = true;
         BufferedReader br = null;
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/UpdateProductos.txt" ) );
@@ -114,12 +124,14 @@ public class ProductoDAO  implements Utiles{
                     connection.close();
                 } catch (SQLException ex) {
                     System.out.println("Error al modificar.");
+                    modificar = false;
                 }
             }
         }
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            modificar = false;
         }
         finally {
             try {
@@ -128,8 +140,10 @@ public class ProductoDAO  implements Utiles{
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                modificar = false;
             }
         }
+        return modificar;
     }
 
     @Override

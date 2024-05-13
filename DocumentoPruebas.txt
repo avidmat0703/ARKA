@@ -1,0 +1,60 @@
+- Al ejecutar la aplicación, se muestra la pantalla de login.(PARA ACCEDER: USUARIO = 12345678A, CONTRASEÑA = 122333.)
+
+
+-Al acceder, se mostrará una ventana emergente dando aviso de falta de stock en determinados productos.
+
+
+-Al cerrar la ventana, se mostrará la pantalla principal con las siguientes opciones:
+    *Consultar inventario
+    *Consultar ventas
+    *Gestión de producto
+    *Gestión de empleados
+    *Realizar Venta
+
+CONSULTAR INVENTARIO
+-Al hacer clic en "Consultar inventario", se mostrará una tabla con todos los productos y sus características.
+
+
+-Al clicar "Volver atrás", la ventana se cierra.
+
+CONSULTAR VENTAS
+-Al hacer clic en "Consultar ventas", se mostrará una tabla con las ventas y sus características.
+
+
+-Al clicar "Volver atrás", la ventana se cierra.
+
+GESTIÓN DE PRODUCTOS
+-Al hacer clic en "Gestión de productos", se mostrará n menú con las siguientes opciones:
+    *Alta de producto
+    *Baja de producto
+    *Modificar producto
+
+
+ALTA DE PRODUCTO
+
+-Al hacer clic en "Alta de producto", se mostrará una pantalla con diferentes campos de texto para introducir
+los atributos del nuevo producto, además de dos botones radio para especificar la categoría del mismo.
+El programa no permitirá activar las dos opciones al mismo tiempo.
+
+-Al dejar algún campo vacío y pulsar en "Dar de alta este producto", el programa mostrará un mensaje de error.
+
+-Al introducir un producto con código "codigoexiste" (ya existe en la base de datos), el programa mostrará un mensaje de error.
+
+-Al introducir un producto con precio negativo, el programa mostrará un mensaje de error.
+
+BAJA DE PRODUCTO
+
+-Al hacer clic en "Baja de producto", se mostrará una pantalla con un campo de texto para introducir
+el ID del producto que se quiere dar de baja. Además, se muestran dos botones. Uno para eliminar el producto dado y otro
+para consultar el inventario.
+
+
+-Al introducir en el campo id "1" (no existe en la base de datos) y clicar en "Dar de baja este producto", mostrará un mensaje de error.
+
+
+-Al introducir en el campo id "idexiste" y clicar en "Dar de baja este producto", el programa mostrará un mensaje
+indicando que el producto se ha dado de baja satisfactoriamente.
+
+MODIFICAR PRODUCTO
+
+

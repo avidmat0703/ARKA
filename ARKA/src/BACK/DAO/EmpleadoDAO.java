@@ -13,7 +13,8 @@ import java.util.List;
 public class EmpleadoDAO implements Utiles {
 
     @Override
-    public void crear() {
+    public boolean crear() {
+        boolean crear = true;
         BufferedReader br = null;
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/InsertEmpleados.txt" ) );
@@ -39,11 +40,14 @@ public class EmpleadoDAO implements Utiles {
                 connection.close();
             } catch (SQLException ex) {
                 System.out.println("Error al insertar");
+                crear = false;
             }
+            return crear;
         }
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            crear = false;
         }
         finally {
             try {
@@ -52,12 +56,15 @@ public class EmpleadoDAO implements Utiles {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                crear = false;
             }
         }
+        return crear;
     }
 
     @Override
-    public void eliminar() {
+    public boolean eliminar() {
+        boolean eliminar = true;
         BufferedReader br = null;
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/DeleteEmpleados.txt" ) );
@@ -71,11 +78,13 @@ public class EmpleadoDAO implements Utiles {
                 connection.close();
             } catch (SQLException ex) {
                 System.out.println("Error al eliminar");
+                eliminar = false;
             }
         }
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            eliminar = false;
         }
         finally {
             try {
@@ -84,12 +93,15 @@ public class EmpleadoDAO implements Utiles {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                eliminar = false;
             }
         }
+        return eliminar;
     }
 
     @Override
-    public void modificar() {
+    public boolean modificar() {
+        boolean modificar = true;
         BufferedReader br = null;
         try{
 
@@ -109,12 +121,14 @@ public class EmpleadoDAO implements Utiles {
                     connection.close ();
                 } catch (SQLException ex) {
                     System.out.println ( "Error al modificar." );
+                    modificar = false;
                 }
             }
         }
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            modificar = false;
         }
         finally {
             try {
@@ -123,8 +137,10 @@ public class EmpleadoDAO implements Utiles {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                modificar = false;
             }
         }
+        return modificar;
     }
 
     @Override

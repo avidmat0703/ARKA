@@ -12,7 +12,8 @@ public class VentaDAO  implements Utiles{
 
 
     @Override
-    public void crear() {
+    public boolean crear() {
+        boolean crear = true;
         BufferedReader br = null;
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/InsertVentas.txt" ) );
@@ -28,11 +29,13 @@ public class VentaDAO  implements Utiles{
                 connection.close();
             } catch (SQLException ex) {
                 System.out.println("Error al insertar");
+                crear = false;
             }
         }
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            crear = false;
         }
         finally {
             try {
@@ -41,17 +44,20 @@ public class VentaDAO  implements Utiles{
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                crear = false;
             }
         }
+        return crear;
     }
 
     @Override
-    public void eliminar() {
+    public boolean eliminar() {
+        return false;
     }
 
     @Override
-    public void modificar() {
-
+    public boolean modificar() {
+        return false;
     }
 
     @Override
