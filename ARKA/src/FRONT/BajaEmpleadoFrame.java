@@ -36,7 +36,7 @@ public class BajaEmpleadoFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 info = DNIField.getText();
                 LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
-                JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente");
+                JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
                 dispose();
             }
         });

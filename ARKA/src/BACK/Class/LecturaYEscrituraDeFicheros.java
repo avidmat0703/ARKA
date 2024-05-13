@@ -67,7 +67,7 @@ public class LecturaYEscrituraDeFicheros {
         }finally {
             try{
                 salida.close();
-            }catch (IOException e){
+            }catch (IOException e) {
                 System.out.println(e.getMessage());
             }
         }
