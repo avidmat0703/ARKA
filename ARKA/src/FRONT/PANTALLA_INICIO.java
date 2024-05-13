@@ -18,12 +18,12 @@ public class PANTALLA_INICIO extends JFrame {
 
     public PANTALLA_INICIO() {
         setTitle("Pantalla Principal");
-        setSize(400, 220);
+        setSize(400, 260);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
         JButton btnGestionProductos = new JButton("Gestión de productos");
-        btnGestionProductos.setBounds(50, 20, 300, 30);
+        btnGestionProductos.setBounds(50, 100, 300, 30);
         btnGestionProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new GestionProductosFrame().setVisible(true);
@@ -32,7 +32,7 @@ public class PANTALLA_INICIO extends JFrame {
         add(btnGestionProductos);
 
         JButton btnConsultarInventario = new JButton("Consultar inventario");
-        btnConsultarInventario.setBounds(50, 60, 300, 30);
+        btnConsultarInventario.setBounds(50, 20, 300, 30);
         btnConsultarInventario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ConsultarInventarioFrame().setVisible(true);
@@ -41,7 +41,7 @@ public class PANTALLA_INICIO extends JFrame {
         add(btnConsultarInventario);
 
         JButton btnRealizarVenta = new JButton("Realizar venta");
-        btnRealizarVenta.setBounds(50, 100, 300, 30);
+        btnRealizarVenta.setBounds(50, 180, 300, 30);
         btnRealizarVenta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new RealizarVentaFrame().setVisible(true);
@@ -57,6 +57,15 @@ public class PANTALLA_INICIO extends JFrame {
             }
         });
         add(btnGestionarEmpleados);
+
+        JButton btnConsultarVentas = new JButton("Consultar las ventas");
+        btnConsultarVentas.setBounds(50, 60, 300, 30);
+        btnConsultarVentas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ConsultarVentasFrame().setVisible(true);
+            }
+        });
+        add(btnConsultarVentas);
     }
 }
 
@@ -503,6 +512,14 @@ class BajaEmpleadoFrame extends JFrame {
 class ConsultarEmpleadoFrame extends JFrame {
     public ConsultarEmpleadoFrame() {
         setTitle("Consultar empleados");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+}
+
+class ConsultarVentasFrame extends JFrame {
+    public ConsultarVentasFrame() {
+        setTitle("Consultar ventas");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
