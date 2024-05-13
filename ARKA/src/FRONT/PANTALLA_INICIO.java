@@ -517,7 +517,6 @@ class ModificarEmpleadoFrame extends JFrame {
     private JTextField telefonoField;
     private JTextField puestoField;
 
-    private JCheckBox chkDNI;
     private JCheckBox chkNombre;
     private JCheckBox chkApellido1;
     private JCheckBox chkApellido2;
@@ -531,7 +530,7 @@ class ModificarEmpleadoFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        addFieldWithMargin("DNI:", DNIField = new JTextField(20), chkDNI = new JCheckBox());
+        addFieldWithMargin("DNI:", DNIField = new JTextField(20));
         addFieldWithMargin("Nombre:", nombreField = new JTextField(20), chkNombre = new JCheckBox());
         addFieldWithMargin("Primer apellido:", apellido1Field = new JTextField(20), chkApellido1 = new JCheckBox());
         addFieldWithMargin("Segundo apellido:", apellido2Field = new JTextField(20), chkApellido2 = new JCheckBox());
@@ -552,9 +551,6 @@ class ModificarEmpleadoFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
-                if (chkDNI.isSelected()) {
-                    cambios.append(" - DNI modificado: ").append(DNIField.getText()).append("\n");
-                }
                 if (chkNombre.isSelected()) {
                     cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
                 }
