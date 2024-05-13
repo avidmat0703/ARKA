@@ -1,6 +1,8 @@
 package FRONT;
 
+import BACK.Class.Empleado;
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.EmpleadoDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,10 +11,6 @@ import java.awt.event.ActionListener;
 public class BajaEmpleadoFrame extends JFrame {
     private String info = "";
     private JTextField DNIField;
-
-    public JTextField getDNIField() {
-        return DNIField;
-    }
 
     public BajaEmpleadoFrame() {
         setTitle("Baja de empleado");
@@ -36,6 +34,8 @@ public class BajaEmpleadoFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 info = DNIField.getText();
                 LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
+                EmpleadoDAO em = new EmpleadoDAO();
+                em.eliminar();
                 JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
                 dispose();
             }

@@ -1,11 +1,15 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BajaProductosFrame extends JFrame {
     private JTextField idField;
+
+    private String info = "";
 
     public BajaProductosFrame() {
         setTitle("Baja de producto");
@@ -27,6 +31,8 @@ public class BajaProductosFrame extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                info = idField.getText();
+                LecturaYEscrituraDeFicheros.eliminarProductos(info);
                 JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
                 dispose();
             }

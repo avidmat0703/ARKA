@@ -1,10 +1,15 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AltaProductosFrame extends JFrame {
+
+    private String info = "";
+
     private JRadioButton accesorioRadioButton;
     private JRadioButton prendaRadioButton;
     private JTextField codigoField;
@@ -47,6 +52,10 @@ public class AltaProductosFrame extends JFrame {
         altaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
+                info = codigoField.getText() + ", " + nombreField.getText() + ", " + stockField.getText() + ", " + tallaField.getText() +
+                        ", " + descripcionField.getText() + ", " + colorField.getText() + ", " + marcaField.getText() + ", " +
+                        precioField.getText();
+                LecturaYEscrituraDeFicheros.insertProductos(info);
                 JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
                 dispose();
             }
