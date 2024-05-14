@@ -30,8 +30,7 @@ CREATE TABLE venta(
     unidades int,
     precio_unidad decimal(5,2),
     fecha datetime,
-	total decimal(5,2),
-    foreign key (id_producto) references producto(id)
+	total decimal(5,2)
 );
 
 delimiter $$
@@ -96,12 +95,5 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
 
-select * from producto p join venta v on p.id = v.id_producto;
-UPDATE Empleado SET NoMbre = 'Juan' WHERE dni = '23456789B';
-select * from empleado;
 
 
-insert into venta (id, id_producto, unidades) values(1, 1, 4);
-delete from producto where id = 1;
-select * from producto;
-select * from venta;
