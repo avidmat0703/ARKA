@@ -114,9 +114,9 @@ public class ProductoDAO  implements Utiles{
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/UpdateProductos.txt" ) );
             int n = Integer.valueOf ( br.readLine () );
+            String id = br.readLine ();
             for(int i=0;i<n;i++)
             {
-                String id = br.readLine ();
                 String campo = br.readLine ();
                 String valor = br.readLine ();
                 String sql = "UPDATE Producto SET " + campo  + " = ? WHERE id = ?";
@@ -185,6 +185,8 @@ public class ProductoDAO  implements Utiles{
             try{
                 bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/SelectProductos.txt", false ));
                 Iterator<Producto> it = resultado.iterator ();
+                bw.write ( String.valueOf ( resultado.size () ) );
+                bw.newLine ();
                 while (it.hasNext ())
                 {
                     Producto p = it.next ();

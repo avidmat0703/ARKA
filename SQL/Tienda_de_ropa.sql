@@ -65,20 +65,20 @@ SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL código del producto ya ex
 end $$
 delimiter ;
 
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) 
-VALUES ('PROD001', 'Camiseta', 50, 'M', 'Azul', 'Nike', 'Camiseta de algodón', 20.0);
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
+VALUES ('P001', 'Camiseta', 50, 'M', 'Rojo', 'Nike', 19.99, 'Camiseta de algodón');
 
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('PROD002', 'Pantalón', 30, 'L', 'Negro', 'Adidas', 'Pantalón deportivo');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
+VALUES ('P002', 'Pantalón', 30, 'L', 'Azul', 'Adidas', 29.99, 'Pantalón deportivo');
 
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('PROD003', 'Zapatos', 20, '42', 'Blanco', 'Puma', 'Zapatos casuales');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
+VALUES ('P003', 'Zapatos', 20, '42', 'Negro', 'Puma', 49.99, 'Zapatos de running');
 
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('PROD004', 'Chaqueta', 15, 'XL', 'Gris', 'The North Face', 'Chaqueta impermeable');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
+VALUES ('P004', 'Sudadera', 40, 'S', 'Gris', 'Reebok', 39.99, 'Sudadera con capucha');
 
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, descripcion) 
-VALUES ('PROD005', 'Gorra', 40, 'Única', 'Rojo', 'New Era', 'Gorra ajustable');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
+VALUES ('P005', 'Chaqueta', 15, 'XL', 'Verde', 'The North Face', 99.99, 'Chaqueta impermeable');
 
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('12345678A', 'Juan', 'García', 'López', 'juan@example.com', 123456789, 'Gerente');
@@ -95,5 +95,7 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
 
+INSERT INTO venta (id, id_producto, unidades) 
+VALUES(1, 4, 3);
 
 

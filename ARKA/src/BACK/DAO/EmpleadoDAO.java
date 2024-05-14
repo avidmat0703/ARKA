@@ -109,8 +109,8 @@ public class EmpleadoDAO implements Utiles {
 
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/UpdateEmpleados.txt" ) );
             int n = Integer.valueOf ( br.readLine () );
+            String dni = br.readLine ();
             for(int i=0;i<n;i++) {
-                String dni = br.readLine ();
                 String campo = br.readLine ();
                 String valor = br.readLine ();
                 String sql = "UPDATE Empleado SET " + campo + " = ? WHERE dni = ?";
@@ -169,6 +169,8 @@ public class EmpleadoDAO implements Utiles {
             try{
                 bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/SelectEmpleados.txt", false ));
                 Iterator<Empleado> it = resultado.iterator ();
+                bw.write ( String.valueOf ( resultado.size () ));
+                bw.newLine ();
                 while (it.hasNext ())
                 {
                     Empleado e = it.next ();

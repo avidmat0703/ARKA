@@ -1,6 +1,7 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.EmpleadoDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -50,30 +51,51 @@ public class ModificarEmpleadoFrame extends JFrame {
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = DNIField.getText() + ", " + nombreField.getText() + ", " + apellido1Field.getText() + ", " +
-                        apellido2Field.getText() + ", " + emailField.getText() + ", " + telefonoField.getText() + ", " +
-                        puestoField.getText();
-                LecturaYEscrituraDeFicheros.modificarEmpleado(info);
-
+                int cont = 0;
+                JCheckBox[] checks = {chkNombre, chkApellido1, chkApellido2, chkEmail, chkTelefono, chkPuesto};
+                for(JCheckBox check : checks)
+                {
+                    if(check.isSelected ())
+                    {
+                        cont++;
+                    }
+                }
                 StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
+                info = String.valueOf ( cont + "," + DNIField.getText());
+
                 if (chkNombre.isSelected()) {
                     cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
+                    info += "," + "nombre";
+                    info += "," + nombreField.getText();
                 }
                 if (chkApellido1.isSelected()) {
                     cambios.append(" - Primer apellido modificado: ").append(apellido1Field.getText()).append("\n");
+                    info += "," + "apellido";
+                    info+= "," + apellido1Field.getText();
                 }
                 if (chkApellido2.isSelected()) {
                     cambios.append(" - Segundo apellido modificado: ").append(apellido2Field.getText()).append("\n");
+                    info += "," + "apellido2";
+                    info+= "," + apellido2Field.getText();
                 }
                 if (chkEmail.isSelected()) {
                     cambios.append(" - Email modificado: ").append(emailField.getText()).append("\n");
+                    info += "," + "email";
+                    info+= "," + emailField.getText();
                 }
                 if (chkTelefono.isSelected()) {
                     cambios.append(" - Teléfono modificado: ").append(telefonoField.getText()).append("\n");
+                    info += "," + "telefono";
+                    info += "," + telefonoField.getText();
                 }
                 if (chkPuesto.isSelected()) {
                     cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
+                    info += "," + "puesto";
+                    info += "," + puestoField.getText();
                 }
+                LecturaYEscrituraDeFicheros.modificarEmpleado(info);
+                EmpleadoDAO ee = new EmpleadoDAO ();
+                ee.modificar ();
                 JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString());
                 dispose();
             }

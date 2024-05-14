@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.EmpleadoDAO;
+import BACK.DAO.ProductoDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -55,37 +57,62 @@ public class ModificarProductoFrame extends JFrame {
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                info = codigoField.getText() + ", " + nombreField.getText() + ", " + stockField.getText() + ", " + tallaField.getText() +
-                        ", " + descripcionField.getText() + ", " + colorField.getText() + ", " + marcaField.getText() + ", " +
-                        precioField.getText();
+                int cont = 0;
+                JCheckBox[] checks = {chkCodigo, chkNombre, chkStock, chkTalla, chkDescripcion, chkColor, chkMarca, chkPrecio};
+                for(JCheckBox check : checks)
+                {
+                    if(check.isSelected ())
+                    {
+                        cont++;
+                    }
+                }
+                info = String.valueOf ( cont + "," + idField.getText());
                 LecturaYEscrituraDeFicheros.modificarProducto(info);
 
                 StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
                 if (chkCodigo.isSelected()) {
                     cambios.append(" - Código en tienda modificado: ").append(codigoField.getText()).append("\n");
+                    info += "," + "codigo";
+                    info += "," + codigoField.getText();
                 }
                 if (chkNombre.isSelected()) {
                     cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
+                    info += "," + "Tipo_producto";
+                    info += "," + nombreField.getText();
                 }
                 if (chkStock.isSelected()) {
                     cambios.append(" - Stock modificado: ").append(stockField.getText()).append("\n");
+                    info += "," + "stock";
+                    info += "," + stockField.getText();
                 }
                 if (chkTalla.isSelected()) {
                     cambios.append(" - Talla modificada: ").append(tallaField.getText()).append("\n");
+                    info += "," + "talla";
+                    info += "," + tallaField.getText();
                 }
                 if (chkDescripcion.isSelected()) {
                     cambios.append(" - Descripción modificada: ").append(descripcionField.getText()).append("\n");
+                    info += "," + "descripcion";
+                    info += "," + descripcionField.getText();
                 }
                 if (chkColor.isSelected()) {
                     cambios.append(" - Color modificado: ").append(colorField.getText()).append("\n");
+                    info += "," + "color";
+                    info += "," + colorField.getText();
                 }
                 if (chkMarca.isSelected()) {
                     cambios.append(" - Marca modificada: ").append(marcaField.getText()).append("\n");
+                    info += "," + "marca";
+                    info += "," + marcaField.getText();
                 }
                 if (chkPrecio.isSelected()) {
                     cambios.append(" - Precio modificado: ").append(precioField.getText()).append("\n");
+                    info += "," + "precio";
+                    info += "," + precioField.getText();
                 }
+                LecturaYEscrituraDeFicheros.modificarProducto(info);
+                ProductoDAO p = new ProductoDAO ();
+                p.modificar ();
                 JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString());
                 dispose();
             }
