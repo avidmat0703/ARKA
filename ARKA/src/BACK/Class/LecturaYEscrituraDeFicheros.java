@@ -60,7 +60,8 @@ public class LecturaYEscrituraDeFicheros {
         }
     }
 
-    public static void insertEmpleados(String info){
+    public static String insertEmpleados(String info){
+        String s = "";
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/InsertEmpleados.txt"));
@@ -79,6 +80,7 @@ public class LecturaYEscrituraDeFicheros {
                 System.out.println(e.getMessage());
             }
         }
+        return s;
     }
 
     public static void insertVentas(String info){
@@ -249,5 +251,46 @@ public class LecturaYEscrituraDeFicheros {
         
         return false;
     }
-
+   public static String error(){
+        BufferedReader br = null;
+        String error = "";
+        try{
+            br=new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/Error.txt" ) );
+            error=br.readLine ();
+        }
+        catch (IOException e)
+        {
+            System.out.println (e.getMessage ());
+        }
+        finally {
+            try{
+                br.close ();
+            }
+            catch (IOException ex)
+            {
+                System.out.println (ex.getMessage ());
+            }
+        }
+        return error;
+   }
+    public static void escribirError(String s){
+        BufferedWriter bw = null;
+        try{
+            bw = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/Error.txt" ) );
+            bw.write ( s );
+        }
+        catch (IOException e)
+        {
+            System.out.println (e.getMessage ());
+        }
+        finally {
+            try{
+                bw.close ();
+            }
+            catch (IOException ex)
+            {
+                ex.getMessage ();
+            }
+        }
+    }
 }

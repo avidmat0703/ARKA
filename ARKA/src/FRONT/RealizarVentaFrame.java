@@ -18,7 +18,7 @@ public class RealizarVentaFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        addFieldWithMargin("Código en tienda:", codigoField = new JTextField(20));
+        addFieldWithMargin("ID:", codigoField = new JTextField(20));
         addFieldWithMargin("Cantidad:", cantidadField = new JTextField(20));
 
         JButton ventaButton = new JButton("Realizar venta");
@@ -29,7 +29,14 @@ public class RealizarVentaFrame extends JFrame {
                 LecturaYEscrituraDeFicheros.insertVentas(info);
                 VentaDAO v = new VentaDAO();
                 v.crear();
-                JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente");
+                if(LecturaYEscrituraDeFicheros.error () == null)
+                {
+                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente");
+                }
+                else {
+                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, LecturaYEscrituraDeFicheros.error ());
+                    LecturaYEscrituraDeFicheros.escribirError ( "" );
+                }
                 dispose();
             }
         });

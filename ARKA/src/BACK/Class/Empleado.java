@@ -1,5 +1,4 @@
 package BACK.Class;
-import BACK.Interfaz.Utiles;
 
 public class Empleado {
     private String dni;

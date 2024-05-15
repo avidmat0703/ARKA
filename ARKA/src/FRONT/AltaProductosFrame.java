@@ -64,7 +64,15 @@ public class AltaProductosFrame extends JFrame {
                 LecturaYEscrituraDeFicheros.insertProductos(info);
                 ProductoDAO p = new ProductoDAO ();
                 p.crear ();
-                JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
+                if(LecturaYEscrituraDeFicheros.error () == null )
+                {
+                    JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
+                }
+                else{
+                    JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
+                    LecturaYEscrituraDeFicheros.escribirError( "" );
+                }
+
                 dispose();
             }
         });

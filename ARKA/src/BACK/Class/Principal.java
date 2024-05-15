@@ -12,7 +12,7 @@ public class Principal {
         //System.out.println (p.crear ());
         //p.modificar ();
         //System.out.println (p.listar ());
-        //p.eliminar ();
+        p.eliminar ();
         //System.out.println (p.listar ());
         EmpleadoDAO e = new EmpleadoDAO ();
         //e.crear ();
@@ -21,7 +21,7 @@ public class Principal {
         //System.out.println (e.listar ());
         VentaDAO v = new VentaDAO ();
         //v.crear ();
-        System.out.println (v.listar ());
+        //System.out.println (v.listar ());
         //LecturaYEscrituraDeFicheros.listarVentas ();
     }
 }

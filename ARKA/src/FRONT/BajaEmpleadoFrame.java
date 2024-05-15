@@ -36,7 +36,15 @@ public class BajaEmpleadoFrame extends JFrame {
                 LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
                 EmpleadoDAO em = new EmpleadoDAO();
                 em.eliminar();
-                JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
+                if(LecturaYEscrituraDeFicheros.error () == null)
+                {
+                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
+                }
+                else {
+                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
+                    LecturaYEscrituraDeFicheros.escribirError ( "" );
+                }
+
                 dispose();
             }
         });

@@ -1,7 +1,8 @@
 package BACK.DAO;
 
 import BACK.Class.Empleado;
-import BACK.Interfaz.Utiles;
+import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesDAO;
 
 import java.io.*;
 import java.sql.*;
@@ -9,11 +10,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
-public class EmpleadoDAO implements Utiles {
+public class EmpleadoDAO implements UtilesDAO {
     @Override
     public boolean crear() {
         boolean crear = true;
@@ -29,7 +27,7 @@ public class EmpleadoDAO implements Utiles {
             String puesto = br.readLine ();
             String contrasena = br.readLine ();
             String sql = "INSERT INTO Empleado VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-            Connection connection = Utiles.conectar ();
+            Connection connection = UtilesDAO.conectar ();
             try {
                 PreparedStatement sentencia = connection.prepareStatement(sql);
                 sentencia.setString(1, dni);
@@ -44,6 +42,7 @@ public class EmpleadoDAO implements Utiles {
                 connection.close();
             } catch (SQLException e) {
                 System.out.println(e.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                 crear = false;
             }
             return crear;
@@ -73,8 +72,8 @@ public class EmpleadoDAO implements Utiles {
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/DeleteEmpleados.txt" ) );
             String id =br.readLine ();
-            String sql = "DELETE FROM Empleado WHERE dni = ?";
-            Connection connection = Utiles.conectar ();
+            String sql = "CALL delete_empleado(?)";
+            Connection connection = UtilesDAO.conectar ();
             try {
                 PreparedStatement sentencia = connection.prepareStatement(sql);
                 sentencia.setString(1, id);
@@ -82,6 +81,7 @@ public class EmpleadoDAO implements Utiles {
                 connection.close();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 eliminar = false;
             }
         }
@@ -116,7 +116,7 @@ public class EmpleadoDAO implements Utiles {
                 String campo = br.readLine ();
                 String valor = br.readLine ();
                 String sql = "UPDATE Empleado SET " + campo + " = ? WHERE dni = ?";
-                Connection connection = Utiles.conectar ();
+                Connection connection = UtilesDAO.conectar ();
                 try {
                     PreparedStatement sentencia = connection.prepareStatement ( sql );
                     sentencia.setString ( 1, valor );
@@ -151,7 +151,7 @@ public class EmpleadoDAO implements Utiles {
     public List<Object> listar() {
         List<Empleado> resultado = new ArrayList<> ();
         String sql = "SELECT * FROM empleado";
-        Connection connection = Utiles.conectar ();
+        Connection connection = UtilesDAO.conectar ();
         try{
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -207,6 +207,7 @@ public class EmpleadoDAO implements Utiles {
             }
         } catch (SQLException e) {
             System.out.println (e.getMessage ());
+            LecturaYEscrituraDeFicheros.escribirError( e.getMessage () );
         }
         return Collections.singletonList ( resultado );
     }

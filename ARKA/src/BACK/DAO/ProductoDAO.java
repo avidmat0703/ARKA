@@ -1,9 +1,10 @@
 package BACK.DAO;
 
 import BACK.Class.Accesorio;
+import BACK.Class.LecturaYEscrituraDeFicheros;
 import BACK.Class.Prenda;
 import BACK.Class.Producto;
-import BACK.Interfaz.Utiles;
+import BACK.Interfaz.UtilesDAO;
 
 import java.io.*;
 import java.sql.*;
@@ -12,7 +13,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class ProductoDAO  implements Utiles{
+public class ProductoDAO  implements UtilesDAO {
 
     @Override
     public boolean crear() {
@@ -31,7 +32,7 @@ public class ProductoDAO  implements Utiles{
                 String sql = "INSERT INTO Producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) \n" +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
                 
-                Connection connection = Utiles.conectar ();
+                Connection connection = UtilesDAO.conectar ();
                 if(connection == null)
                 {
                     crear = false;
@@ -50,7 +51,7 @@ public class ProductoDAO  implements Utiles{
                     connection.close();
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage ());
-                    crear = false;
+                    LecturaYEscrituraDeFicheros.escribirError( ex.getMessage () );
                 }
             }
             catch (IOException e)
@@ -69,7 +70,6 @@ public class ProductoDAO  implements Utiles{
             }
             return crear;
         }
-
     @Override
     public boolean eliminar() {
         boolean eliminar = true;
@@ -77,16 +77,17 @@ public class ProductoDAO  implements Utiles{
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/DeleteProductos.txt" ) );
             int id = Integer.valueOf ( br.readLine ());
-            String sql = "DELETE FROM Producto WHERE id = ?";
-            Connection connection = Utiles.conectar ();
+            String sql = "call delete_producto(?);";
+            Connection connection = UtilesDAO.conectar ();
             try {
                 PreparedStatement sentencia = connection.prepareStatement(sql);
                 sentencia.setInt(1, id);
                 sentencia.executeUpdate();
                 connection.close();
             } catch (SQLException ex) {
-                System.out.println("Error al eliminar");
                 eliminar = false;
+                System.out.println (ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError( ex.getMessage () );
             }
         }
         catch (IOException e)
@@ -120,7 +121,7 @@ public class ProductoDAO  implements Utiles{
                 String campo = br.readLine ();
                 String valor = br.readLine ();
                 String sql = "UPDATE Producto SET " + campo  + " = ? WHERE id = ?";
-                Connection connection = Utiles.conectar ();
+                Connection connection = UtilesDAO.conectar ();
                 try {
                     PreparedStatement sentencia = connection.prepareStatement(sql);
                     sentencia.setString(1, valor);
@@ -155,7 +156,7 @@ public class ProductoDAO  implements Utiles{
     public List<Object> listar() {
         List<Producto> resultado = new ArrayList<> ();
         String sql = "SELECT * FROM producto";
-        Connection connection = Utiles.conectar ();
+        Connection connection = UtilesDAO.conectar ();
         try{
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);

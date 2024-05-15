@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface Utiles{
+public interface UtilesDAO{
     public boolean crear();
     public boolean eliminar();
     public boolean modificar();

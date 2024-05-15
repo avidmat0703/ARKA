@@ -37,7 +37,14 @@ public class BajaProductosFrame extends JFrame {
                 LecturaYEscrituraDeFicheros.eliminarProductos(info);
                 ProductoDAO p = new ProductoDAO ();
                 p.eliminar ();
-                JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
+                if(LecturaYEscrituraDeFicheros.error () == null)
+                {
+                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
+                }
+                else {
+                    JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
+                    LecturaYEscrituraDeFicheros.escribirError ( "" );
+                }
                 dispose();
             }
         });

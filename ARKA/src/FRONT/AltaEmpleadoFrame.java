@@ -44,8 +44,17 @@ public class AltaEmpleadoFrame extends JFrame {
                         puestoField.getText() + "," + contrasenaField.getText ();
                 LecturaYEscrituraDeFicheros.insertEmpleados(info);
                 EmpleadoDAO ee = new EmpleadoDAO ();
-                ee.crear ();
-                JOptionPane.showMessageDialog(AltaEmpleadoFrame.this, "Empleado añadido correctamente");
+                    ee.crear ();
+                    if(LecturaYEscrituraDeFicheros.error () == null)
+                    {
+                        JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,"Empleado creado correctamente.");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,LecturaYEscrituraDeFicheros.error ());
+                        LecturaYEscrituraDeFicheros.escribirError ( "" );
+                    }
+
                 dispose();
             }
         });

@@ -53,22 +53,22 @@ end $$
 delimiter ;
 
 delimiter $$
-drop trigger if exists tg_codigoproducto$$
-create trigger tg_codigoproducto
+drop trigger if exists tg_beforeinsertproducto$$
+create trigger tg_beforeinsertproducto
 before insert on producto
 for each row
 begin
 declare cont int;
 set cont = (select count(*) from producto where codigo = new.codigo);
 if cont > 0 then
-SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL código del producto ya existe.';
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El código del producto ya existe.';
     END IF;
 end $$
 delimiter ;
 
 delimiter $$
 drop trigger if exists tg_beforeinsertempleado$$
-create trigger tg_codigoproducto
+create trigger tg_beforeinsertempleado
 before insert on empleado
 for each row
 begin
@@ -82,18 +82,79 @@ delimiter ;
 
 delimiter $$
 drop trigger if exists tg_beforedeleteproducto$$
-create trigger tg_codigoproducto
-before insert on producto
+create trigger tg_beforedeleteproducto
+before delete on producto
 for each row
 begin
 declare cont int;
-set cont = (select count(*) from producto where codigo = new.codigo);
+set cont = (select count(*) from producto where codigo = old.codigo);
 if cont = 0 then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No existe ningún producto con el id introducido.';
     END IF;
 end $$
 delimiter ;
 
+delimiter $$
+drop trigger if exists tg_beforedeleteempleado$$
+create trigger tg_beforedeleteempleado
+before delete on empleado
+for each row
+begin
+declare cont int;
+set cont = (select count(*) from empleado where dni = old.dni);
+if cont = 0 then
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No existe ningún empleado con el dni introducido.';
+    END IF;
+end $$
+delimiter ;
+
+DELIMITER //
+
+CREATE PROCEDURE delete_empleado(IN dni_param VARCHAR(20))
+BEGIN
+    DECLARE dni_count INT;
+
+    -- Contar el número de filas con el DNI especificado
+    SELECT COUNT(*) INTO dni_count
+    FROM empleado
+    WHERE DNI = dni_param;
+
+    -- Si no existe el DNI, lanzar una excepción
+    IF dni_count = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El DNI especificado no existe en la tabla empleado';
+    ELSE
+        -- Si existe, eliminar el empleado
+        DELETE FROM empleado
+        WHERE DNI = dni_param;
+    END IF;
+END //
+
+DELIMITER //
+
+CREATE PROCEDURE delete_producto(IN id_param INT)
+BEGIN
+    DECLARE id_count INT;
+
+    -- Contar el número de filas con el id especificado
+    SELECT COUNT(*) INTO id_count
+    FROM producto
+    WHERE id = id_param;
+
+    -- Si no existe el id, lanzar una excepción
+    IF id_count = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El id especificado no existe en la tabla producto';
+    ELSE
+        -- Si existe, eliminar el producto
+        DELETE FROM producto
+        WHERE id = id_param;
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER ;
 INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
 VALUES ('P001', 'Camiseta', 50, 'M', 'Rojo', 'Nike', 19.99, 'Camiseta de algodón');
 
@@ -126,5 +187,4 @@ VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 4567
 
 INSERT INTO venta (id, id_producto, unidades) 
 VALUES(1, 4, 3);
-
 

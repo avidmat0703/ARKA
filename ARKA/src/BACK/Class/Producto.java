@@ -1,7 +1,5 @@
 package BACK.Class;
 
-import BACK.Interfaz.Utiles;
-
 public class Producto {
     private int id;
     private String codigo;

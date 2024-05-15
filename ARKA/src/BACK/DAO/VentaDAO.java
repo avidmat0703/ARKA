@@ -1,6 +1,7 @@
 package BACK.DAO;
+import BACK.Class.LecturaYEscrituraDeFicheros;
 import BACK.Class.Venta;
-import BACK.Interfaz.Utiles;
+import BACK.Interfaz.UtilesDAO;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class VentaDAO  implements Utiles{
+public class VentaDAO  implements UtilesDAO {
 
 
     @Override
@@ -20,7 +21,7 @@ public class VentaDAO  implements Utiles{
             int id_producto = Integer.valueOf(br.readLine ());
             int unidades = Integer.valueOf(br.readLine ());
             String sql = "INSERT INTO Venta (id_producto, unidades) VALUES(?, ?)";
-            Connection connection = Utiles.conectar ();
+            Connection connection = UtilesDAO.conectar ();
             try {
                 PreparedStatement sentencia = connection.prepareStatement(sql);
                 sentencia.setInt(1, id_producto);
@@ -29,6 +30,7 @@ public class VentaDAO  implements Utiles{
                 connection.close();
             } catch (SQLException ex) {
                 System.out.println (ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 crear = false;
             }
         }
@@ -64,7 +66,7 @@ public class VentaDAO  implements Utiles{
     public List<Object> listar() {
         List<Venta> resultado = new ArrayList<> ();
         String sql = "SELECT * FROM venta";
-        Connection connection = Utiles.conectar ();
+        Connection connection = UtilesDAO.conectar ();
         try{
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
