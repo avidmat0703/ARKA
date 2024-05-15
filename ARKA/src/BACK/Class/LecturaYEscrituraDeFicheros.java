@@ -1,10 +1,5 @@
 package BACK.Class;
 
-import FRONT.BajaEmpleadoFrame;
-import FRONT.BajaProductosFrame;
-import FRONT.PANTALLA_INICIO;
-
-import javax.swing.*;
 import java.io.*;
 import java.util.Arrays;
 

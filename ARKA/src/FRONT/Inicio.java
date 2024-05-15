@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Login extends JFrame {
+public class Inicio extends JFrame {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
-            Login login = new Login();
+            Inicio login = new Inicio();
             login.setVisible(true);
         }
         catch (Exception ex) {
@@ -20,8 +20,8 @@ public class Login extends JFrame {
     private JTextField usuarioField;
     private JTextField contraseñaField;
 
-    public Login() {
-        setTitle("Login");
+    public Inicio() {
+        setTitle("Inicio");
         setSize(400, 140);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -33,7 +33,7 @@ public class Login extends JFrame {
         btnPantallaInicio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new PANTALLA_INICIO().setVisible(true);
+                new Menu().setVisible(true);
             }
         });
         add(btnPantallaInicio);
