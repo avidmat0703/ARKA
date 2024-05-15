@@ -1,5 +1,7 @@
 package BACK.Class;
 
+import BACK.DAO.EmpleadoDAO;
+import BACK.DAO.ProductoDAO;
 import BACK.DAO.VentaDAO;
 
 import java.io.*;
@@ -153,6 +155,8 @@ public class LecturaYEscrituraDeFicheros {
         }
     }
     public static String[][] listarEmpleados(){
+        EmpleadoDAO ee = new EmpleadoDAO ();
+        ee.listar ();
         String[][]resultado = new String[0][0];
         BufferedReader br = null;
         try {
@@ -181,6 +185,8 @@ public class LecturaYEscrituraDeFicheros {
         return resultado;
     }
     public static String[][] listarProductos(){
+        ProductoDAO p = new ProductoDAO ();
+        p.listar ();
         String[][]resultado = new String[0][0];
         BufferedReader br = null;
         try {

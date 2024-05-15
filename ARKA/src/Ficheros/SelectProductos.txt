@@ -1,4 +1,4 @@
-5
+6
 1
 P001
 Camiseta
@@ -44,3 +44,12 @@ Verde
 The North Face
 Prenda
 99.99
+6
+1
+jusan
+2
+d
+d
+d
+Accesorio
+8.0

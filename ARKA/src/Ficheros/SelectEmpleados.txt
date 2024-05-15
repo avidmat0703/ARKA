@@ -1,11 +1,4 @@
-5
-12345678A
-Juan
-García
-López
-juan@example.com
-123456789
-Gerente
+4
 23456789B
 María
 Martínez
