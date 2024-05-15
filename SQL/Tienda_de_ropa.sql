@@ -30,8 +30,8 @@ CREATE TABLE venta(
     id_producto int,
     unidades int,
     precio_unidad decimal(5,2),
-    fecha datetime,
-	total decimal(5,2)
+	total decimal(5,2),
+    fecha datetime
 );
 
 delimiter $$

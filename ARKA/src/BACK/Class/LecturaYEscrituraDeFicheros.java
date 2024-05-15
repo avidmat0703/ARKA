@@ -1,5 +1,7 @@
 package BACK.Class;
 
+import BACK.DAO.VentaDAO;
+
 import java.io.*;
 import java.util.Arrays;
 
@@ -207,6 +209,8 @@ public class LecturaYEscrituraDeFicheros {
         return resultado;
     }
     public static String[][] listarVentas(){
+        VentaDAO v  = new VentaDAO ();
+        v.listar ();
         String[][]resultado = new String[0][0];
         BufferedReader br = null;
         try {

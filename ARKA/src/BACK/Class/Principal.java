@@ -21,7 +21,7 @@ public class Principal {
         //System.out.println (e.listar ());
         VentaDAO v = new VentaDAO ();
         //v.crear ();
-        //System.out.println (v.listar ());
-        LecturaYEscrituraDeFicheros.listarVentas ();
+        System.out.println (v.listar ());
+        //LecturaYEscrituraDeFicheros.listarVentas ();
     }
 }

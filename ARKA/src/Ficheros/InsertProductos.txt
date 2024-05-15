@@ -1,8 +1,8 @@
-PROD008
-Pulsera
-10
-S
-Plata
-Pandora
-260
+1
+jusan
+2
+d
+d
+d
+8.0
 Accesorio
