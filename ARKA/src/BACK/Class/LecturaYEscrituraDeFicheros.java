@@ -234,6 +234,10 @@ public class LecturaYEscrituraDeFicheros {
         }
         return resultado;
     }
-
+    public static boolean login(){
+        boolean login = true;
+        
+        return false;
+    }
 
 }
