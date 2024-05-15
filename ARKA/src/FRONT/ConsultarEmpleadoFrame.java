@@ -31,15 +31,13 @@ public class ConsultarEmpleadoFrame extends JFrame {
     private void cargarDatosEmpleados() {
         // Crear el modelo de la tabla
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.addColumn("ID");
-        modeloTabla.addColumn("Código");
+        modeloTabla.addColumn("DNI");
         modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Stock");
-        modeloTabla.addColumn("Talla");
-        modeloTabla.addColumn("Color");
-        modeloTabla.addColumn("Marca");
-        modeloTabla.addColumn("Descripción");
-        modeloTabla.addColumn("Precio");
+        modeloTabla.addColumn("Primer apellido");
+        modeloTabla.addColumn("Segundo apellido");
+        modeloTabla.addColumn("Email");
+        modeloTabla.addColumn("Teléfono");
+        modeloTabla.addColumn("Puesto");
 
         // Llenar el modelo de la tabla con los datos de los empleados
         for (String[] empleado : LecturaYEscrituraDeFicheros.listarEmpleados()) {
