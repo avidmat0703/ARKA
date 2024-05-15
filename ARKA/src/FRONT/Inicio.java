@@ -22,7 +22,7 @@ public class Inicio extends JFrame {
 
     public Inicio() {
         setTitle("Inicio");
-        setSize(400, 140);
+        setSize(400, 170);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -37,6 +37,11 @@ public class Inicio extends JFrame {
             }
         });
         add(btnPantallaInicio);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(btnPantallaInicio);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        add(buttonPanel);
     }
 
     private void addFieldWithMargin(String label, JTextField field) {
