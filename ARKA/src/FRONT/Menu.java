@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PANTALLA_INICIO extends JFrame {
-    public PANTALLA_INICIO() {
-        setTitle("Pantalla Principal");
+public class Menu extends JFrame {
+    public Menu() {
+        setTitle("Menú Principal");
         setSize(400, 260);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
