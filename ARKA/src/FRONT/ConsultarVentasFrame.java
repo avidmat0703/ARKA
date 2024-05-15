@@ -28,8 +28,8 @@ public class ConsultarVentasFrame extends JFrame {
         modeloTabla.addColumn("ID-Producto");
         modeloTabla.addColumn("Unidades");
         modeloTabla.addColumn("Precio unidad");
-        modeloTabla.addColumn("Fecha");
         modeloTabla.addColumn("Total");
+        modeloTabla.addColumn("Fecha");
 
         for (String[] ventas : LecturaYEscrituraDeFicheros.listarVentas()) {
             modeloTabla.addRow(ventas);
