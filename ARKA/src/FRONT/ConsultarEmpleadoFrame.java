@@ -13,7 +13,7 @@ public class ConsultarEmpleadoFrame extends JFrame {
 
     public ConsultarEmpleadoFrame() {
         setTitle("Consultar empleados");
-        setSize(600, 400);
+        setSize(600, 158);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Inicializar el DAO
