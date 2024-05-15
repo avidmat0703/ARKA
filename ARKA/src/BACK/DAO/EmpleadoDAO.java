@@ -43,7 +43,7 @@ public class EmpleadoDAO implements Utiles {
                 sentencia.executeUpdate();
                 connection.close();
             } catch (SQLException e) {
-                System.out.println("Error al insertar");
+                System.out.println(e.getMessage ());
                 crear = false;
             }
             return crear;
@@ -81,7 +81,7 @@ public class EmpleadoDAO implements Utiles {
                 sentencia.executeUpdate();
                 connection.close();
             } catch (SQLException ex) {
-                System.out.println("Error al eliminar");
+                System.out.println(ex.getMessage ());
                 eliminar = false;
             }
         }
@@ -124,7 +124,7 @@ public class EmpleadoDAO implements Utiles {
                     sentencia.executeUpdate ();
                     connection.close ();
                 } catch (SQLException ex) {
-                    System.out.println ( "Error al modificar." );
+                    System.out.println ( ex.getMessage () );
                     modificar = false;
                 }
             }
@@ -206,7 +206,7 @@ public class EmpleadoDAO implements Utiles {
                 }
             }
         } catch (SQLException e) {
-            System.out.println ("Error al listar empleados.");
+            System.out.println (e.getMessage ());
         }
         return Collections.singletonList ( resultado );
     }

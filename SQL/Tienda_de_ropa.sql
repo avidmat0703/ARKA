@@ -43,7 +43,7 @@ begin
 declare cont int;
 set cont = (select count(*) from producto where id = new.id_producto);
 if cont = 0 then
-SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL id introducido no pertenece a la tabla "producto"';
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El id introducido no pertenece a ningún producto.';
 else
 set new.precio_unidad = (select precio from producto where id = new.id_producto);
 set new.total = new.precio_unidad * new.unidades;
@@ -61,7 +61,35 @@ begin
 declare cont int;
 set cont = (select count(*) from producto where codigo = new.codigo);
 if cont > 0 then
-SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL código del producto ya existe."';
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: EL código del producto ya existe.';
+    END IF;
+end $$
+delimiter ;
+
+delimiter $$
+drop trigger if exists tg_beforeinsertempleado$$
+create trigger tg_codigoproducto
+before insert on empleado
+for each row
+begin
+declare cont int;
+set cont = (select count(*) from empleado where dni = new.dni);
+if cont > 0 then
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe un empleado con el DNI introducido.';
+    END IF;
+end $$
+delimiter ;
+
+delimiter $$
+drop trigger if exists tg_beforedeleteproducto$$
+create trigger tg_codigoproducto
+before insert on producto
+for each row
+begin
+declare cont int;
+set cont = (select count(*) from producto where codigo = new.codigo);
+if cont = 0 then
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No existe ningún producto con el id introducido.';
     END IF;
 end $$
 delimiter ;

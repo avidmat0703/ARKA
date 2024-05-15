@@ -49,7 +49,7 @@ public class ProductoDAO  implements Utiles{
                     sentencia.executeUpdate();
                     connection.close();
                 } catch (SQLException ex) {
-                    System.out.println("Error al insertar");
+                    System.out.println(ex.getMessage ());
                     crear = false;
                 }
             }

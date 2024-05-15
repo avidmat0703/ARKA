@@ -1,2 +1,2 @@
-alex
-12345
+newuser
+password

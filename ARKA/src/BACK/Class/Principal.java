@@ -15,13 +15,13 @@ public class Principal {
         //p.eliminar ();
         //System.out.println (p.listar ());
         EmpleadoDAO e = new EmpleadoDAO ();
-        e.crear ();
+        //e.crear ();
         //e.eliminar ();
         //e.modificar ();
         //System.out.println (e.listar ());
         VentaDAO v = new VentaDAO ();
         //v.crear ();
-        //System.out.println (v.listar ());
-        LecturaYEscrituraDeFicheros.listarEmpleados ();
+        System.out.println (v.listar ());
+        //LecturaYEscrituraDeFicheros.listarEmpleados ();
     }
 }

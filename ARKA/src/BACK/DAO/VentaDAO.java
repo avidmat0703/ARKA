@@ -28,7 +28,7 @@ public class VentaDAO  implements Utiles{
                 sentencia.executeUpdate();
                 connection.close();
             } catch (SQLException ex) {
-                System.out.println("Error al insertar");
+                System.out.println (ex.getMessage ());
                 crear = false;
             }
         }
@@ -74,10 +74,10 @@ public class VentaDAO  implements Utiles{
                 int id = resultSet.getInt ( "id" );
                 int id_producto = resultSet.getInt ( "id_producto" );
                 int unidades = resultSet.getInt ( "unidades" );
-                String fecha = resultSet.getString ( "fecha" );
                 double precio_unidad = resultSet.getDouble ( "precio_unidad" );
+                String fecha = resultSet.getString ( "fecha" );
                 double total = resultSet.getDouble ( "total" );
-                Venta v = new Venta ( id, id_producto, unidades, fecha, precio_unidad, total);
+                Venta v = new Venta ( id, id_producto, unidades, precio_unidad, total, fecha);
                 resultado.add ( v );
             }
             try{
@@ -92,11 +92,11 @@ public class VentaDAO  implements Utiles{
                     bw.newLine ();
                     bw.write ( String.valueOf(v.getUnidades () ));
                     bw.newLine ();
-                    bw.write ( v.getFecha () );
-                    bw.newLine ();
                     bw.write ( String.valueOf ( v.getPrecio_unidad () ) );
                     bw.newLine ();
                     bw.write ( String.valueOf ( v.getTotal () ) );
+                    bw.newLine ();
+                    bw.write ( v.getFecha () );
                     bw.newLine ();
                 }
             }

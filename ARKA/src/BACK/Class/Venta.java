@@ -6,9 +6,9 @@ public class Venta{
     private int id;
     private int id_producto;
     private int unidades;
-    private String fecha;
     private double precio_unidad;
     private double total;
+    private String fecha;
 
     public int getId_producto() {
         return id_producto;
@@ -34,13 +34,13 @@ public class Venta{
         return fecha;
     }
 
-    public Venta(int id, int id_producto, int unidades, String fecha, double precio_unidad, double total) {
+    public Venta(int id, int id_producto, int unidades, double precio_unidad,double total, String fecha) {
         this.id = id;
         this.id_producto = id_producto;
         this.unidades = unidades;
-        this.fecha = fecha;
         this.precio_unidad = precio_unidad;
         this.total = total;
+        this.fecha = fecha;
     }
 
     public double getPrecio_unidad() {
