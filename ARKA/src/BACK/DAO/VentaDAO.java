@@ -83,9 +83,12 @@ public class VentaDAO  implements Utiles{
             try{
                 bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/SelectVentas.txt", false ));
                 Iterator<Venta> it = resultado.iterator ();
+                int n = resultado.size ();
                 while (it.hasNext ())
                 {
                     Venta v = it.next ();
+                    bw.write ( String.valueOf ( n ) );
+                    bw.newLine ();
                     bw.write ( String.valueOf ( v.getId () ) );
                     bw.newLine ();
                     bw.write ( String.valueOf ( v.getId_producto () ) );

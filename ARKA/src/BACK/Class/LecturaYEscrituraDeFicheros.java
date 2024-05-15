@@ -211,6 +211,7 @@ public class LecturaYEscrituraDeFicheros {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader ("ARKA/src/Ficheros/SelectVentas.txt"));
+            int n = Integer.valueOf ( br.readLine () );
             String[][] s = new String[n][6];
             for(int i = 0; i < n; i++)
             {
