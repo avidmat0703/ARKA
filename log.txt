@@ -1,0 +1,4 @@
+may 13, 2024 9:24:04 P. M. BACK.DAO.EmpleadoDAO crear
+SEVERE: Excepción SQL: Duplicate entry '77796092H' for key 'empleado.PRIMARY'
+may 13, 2024 9:24:04 P. M. BACK.DAO.EmpleadoDAO crear
+SEVERE: Código de error SQL: 1062
