@@ -1,11 +1,11 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
 import BACK.DAO.ProductoDAO;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.List;
 
 public class ConsultarEmpleadoFrame extends JFrame {
     private ProductoDAO productoDAO; // Suponiendo que tienes un DAO para manejar los empleados
@@ -29,9 +29,6 @@ public class ConsultarEmpleadoFrame extends JFrame {
     }
 
     private void cargarDatosEmpleados() {
-        // Obtener la lista de empleados desde la base de datos
-        List<Object> empleados = productoDAO.listar();
-
         // Crear el modelo de la tabla
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("ID");
@@ -45,13 +42,11 @@ public class ConsultarEmpleadoFrame extends JFrame {
         modeloTabla.addColumn("Precio");
 
         // Llenar el modelo de la tabla con los datos de los empleados
-        for (Object empleado : empleados) {
-            Object[] fila = (Object[]) empleado;
-            modeloTabla.addRow(fila);
+        for (String[] empleado : LecturaYEscrituraDeFicheros.listarEmpleados()) {
+            modeloTabla.addRow(empleado);
         }
 
         // Asignar el modelo de la tabla al JTable
         tablaEmpleados.setModel(modeloTabla);
     }
 }
-

@@ -1,2 +1,2 @@
-newuser
-password
+root
+12345
