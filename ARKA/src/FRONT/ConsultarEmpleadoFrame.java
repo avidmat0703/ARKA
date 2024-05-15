@@ -6,7 +6,6 @@ import BACK.DAO.ProductoDAO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.List;
 
 public class ConsultarEmpleadoFrame extends JFrame {
     private ProductoDAO productoDAO; // Suponiendo que tienes un DAO para manejar los empleados
