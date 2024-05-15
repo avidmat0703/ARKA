@@ -34,6 +34,7 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 new PANTALLA_INICIO().setVisible(true);
+                info += usuarioField.getText () + "," + contraseñaField.getText ();
             }
         });
         add(btnPantallaInicio);
