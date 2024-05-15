@@ -50,7 +50,6 @@ public class LecturaYEscrituraDeFicheros {
                 salida.write ( parte );
                 salida.newLine ();
             }
-            salida.write(info);
         }catch (IOException ex){
             System.out.println(ex.getMessage());
         }finally {

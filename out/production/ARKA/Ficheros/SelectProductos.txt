@@ -1,12 +1,13 @@
+5
 1
 PROD001
-Camiseta
-50
+Polo
+35
 M
-Azul
-New Balance
+Rojo
+Calvin Klein
 Prenda
-20.0
+35.0
 2
 PROD002
 Pantalón
@@ -15,7 +16,7 @@ L
 Negro
 Adidas
 Prenda
-0.0
+45.0
 3
 PROD003
 Zapatos
@@ -24,7 +25,7 @@ Zapatos
 Blanco
 Puma
 Prenda
-0.0
+54.9
 4
 PROD004
 Chaqueta
@@ -33,7 +34,7 @@ XL
 Gris
 The North Face
 Prenda
-0.0
+79.99
 5
 PROD005
 Gorra
@@ -42,13 +43,4 @@ Gorra
 Rojo
 New Era
 Prenda
-0.0
-6
-EK3432-T
-Calcetines
-25
-35-38
-Negro
-Ekiden
-Prenda
-20.0
+25.0

@@ -26,8 +26,8 @@ public class ProductoDAO  implements Utiles{
                 String talla = br.readLine ();
                 String color = br.readLine ();
                 String marca = br.readLine ();
-                String descripcion = br.readLine ();
                 double precio = Double.valueOf ( br.readLine () );
+                String descripcion = br.readLine ();
                 String sql = "INSERT INTO Producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) \n" +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
                 

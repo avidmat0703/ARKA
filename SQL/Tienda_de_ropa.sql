@@ -21,7 +21,8 @@ CREATE TABLE empleado (
     apellido2 varchar(20),
     email varchar(50),
     telefono int,
-    puesto varchar(20)
+    puesto varchar(20),
+    contrasena varchar(20)
 );
 
 CREATE TABLE venta(
