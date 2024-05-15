@@ -21,7 +21,7 @@ public class AltaEmpleadoFrame extends JFrame {
     private JTextField contrasenaField;
 
     public AltaEmpleadoFrame() {
-        setTitle("Alta de empleado");
+        setTitle("Alta de empleados");
         setSize(450, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
