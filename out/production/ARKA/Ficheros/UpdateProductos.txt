@@ -1,7 +1,4 @@
-2
-6
-stock
-25
 1
-marca
-New Balance
+4
+precio
+79.99

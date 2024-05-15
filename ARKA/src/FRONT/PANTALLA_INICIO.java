@@ -5,19 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PANTALLA_INICIO extends JFrame {
-
-    private String info = "";
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
-            PANTALLA_INICIO pantallaInicio = new PANTALLA_INICIO();
-            pantallaInicio.setVisible(true);
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
     public PANTALLA_INICIO() {
         setTitle("Pantalla Principal");
         setSize(400, 260);
@@ -70,5 +57,3 @@ public class PANTALLA_INICIO extends JFrame {
         add(btnConsultarVentas);
     }
 }
-
-

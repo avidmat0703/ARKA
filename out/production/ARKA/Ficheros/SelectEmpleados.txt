@@ -1,12 +1,13 @@
+5
 12345678A
 Juan
 García
 López
 juan@example.com
 123456789
-contable
+Gerente
 23456789B
-Juan
+María
 Martínez
 Pérez
 maria@example.com
@@ -33,10 +34,3 @@ Díaz
 carlos@example.com
 456789123
 Recepcionista
-77796092H
-Jose
-Cuevas
-Marfil
-jose@gmail.com
-654834677
-Gestor BBDD
