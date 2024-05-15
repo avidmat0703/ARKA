@@ -51,6 +51,7 @@ public class EmpleadoDAO implements UtilesDAO {
         {
             System.out.println (e.getMessage ());
             crear = false;
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
         }
         finally {
             try {
@@ -59,6 +60,7 @@ public class EmpleadoDAO implements UtilesDAO {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 crear = false;
             }
         }
@@ -88,6 +90,7 @@ public class EmpleadoDAO implements UtilesDAO {
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             eliminar = false;
         }
         finally {
@@ -97,6 +100,7 @@ public class EmpleadoDAO implements UtilesDAO {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 eliminar = false;
             }
         }
@@ -132,6 +136,7 @@ public class EmpleadoDAO implements UtilesDAO {
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             modificar = false;
         }
         finally {
@@ -141,6 +146,7 @@ public class EmpleadoDAO implements UtilesDAO {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 modificar = false;
             }
         }
@@ -195,6 +201,7 @@ public class EmpleadoDAO implements UtilesDAO {
             }
             catch(IOException e){
                 System.out.println (e.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             finally{
                 try{
@@ -203,6 +210,7 @@ public class EmpleadoDAO implements UtilesDAO {
                 catch(IOException ex)
                 {
                     ex.getMessage ();
+                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 }
             }
         } catch (SQLException e) {

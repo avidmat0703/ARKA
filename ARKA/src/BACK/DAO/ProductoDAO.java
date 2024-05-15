@@ -57,6 +57,7 @@ public class ProductoDAO  implements UtilesDAO {
             catch (IOException e)
             {
                 System.out.println (e.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             finally {
                 try {
@@ -65,6 +66,7 @@ public class ProductoDAO  implements UtilesDAO {
                 catch (IOException ex)
                 {
                     System.out.println (ex.getMessage ());
+                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                     crear = false;
                 }
             }
@@ -93,6 +95,7 @@ public class ProductoDAO  implements UtilesDAO {
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             eliminar = false;
         }
         finally {
@@ -102,7 +105,7 @@ public class ProductoDAO  implements UtilesDAO {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
-                eliminar = false;
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             }
         }
         return eliminar;
@@ -137,6 +140,7 @@ public class ProductoDAO  implements UtilesDAO {
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             modificar = false;
         }
         finally {
@@ -146,6 +150,7 @@ public class ProductoDAO  implements UtilesDAO {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 modificar = false;
             }
         }
@@ -213,6 +218,7 @@ public class ProductoDAO  implements UtilesDAO {
             }
             catch(IOException e){
                 System.out.println (e.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             finally{
                 try{
@@ -224,7 +230,8 @@ public class ProductoDAO  implements UtilesDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println ("Error al listar productos.");
+            System.out.println (e.getMessage ());
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
         }
         return Collections.singletonList ( resultado );
     }

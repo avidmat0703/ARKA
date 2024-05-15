@@ -37,6 +37,7 @@ public class VentaDAO  implements UtilesDAO {
         catch (IOException e)
         {
             System.out.println (e.getMessage ());
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             crear = false;
         }
         finally {
@@ -46,6 +47,7 @@ public class VentaDAO  implements UtilesDAO {
             catch (IOException ex)
             {
                 System.out.println (ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 crear = false;
             }
         }
@@ -107,6 +109,7 @@ public class VentaDAO  implements UtilesDAO {
             }
             catch(IOException e){
                 System.out.println (e.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             finally{
                 try{
@@ -115,10 +118,12 @@ public class VentaDAO  implements UtilesDAO {
                 catch(IOException ex)
                 {
                     ex.getMessage ();
+                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 }
             }
         } catch (SQLException e) {
             System.out.println ("Error al listar productos.");
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
         }
         return Collections.singletonList ( resultado );
     }
