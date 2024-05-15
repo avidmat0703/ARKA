@@ -1,7 +1,7 @@
 package BACK.Class;
 import BACK.Interfaz.Utiles;
 
-public class Empleado{
+public class Empleado {
     private String dni;
     private String nombre;
     private String apellido1;
@@ -9,8 +9,9 @@ public class Empleado{
     private String email;
     private int tlf;
     private String puesto;
+    private String contrasena;
 
-    public Empleado(String dni, String nombre, String apellido1, String apellido2, String email, int tlf, String puesto) {
+    public Empleado(String dni, String nombre, String apellido1, String apellido2, String email, int tlf, String puesto, String contrasena) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -18,6 +19,7 @@ public class Empleado{
         this.email = email;
         this.tlf = tlf;
         this.puesto = puesto;
+        this.contrasena = contrasena;
     }
 
     public String getDni() {
@@ -79,13 +81,14 @@ public class Empleado{
     @Override
     public String toString() {
         return "Empleado{" +
-                "dni=" + dni +
+                "dni='" + dni + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido1='" + apellido1 + '\'' +
                 ", apellido2='" + apellido2 + '\'' +
                 ", email='" + email + '\'' +
                 ", tlf=" + tlf +
                 ", puesto='" + puesto + '\'' +
+                ", contrasena='" + contrasena + '\'' +
                 '}';
     }
 }

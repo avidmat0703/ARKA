@@ -1,6 +1,7 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.ProductoDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,14 +17,13 @@ public class AltaProductosFrame extends JFrame {
     private JTextField nombreField;
     private JTextField stockField;
     private JTextField tallaField;
-    private JTextField descripcionField;
     private JTextField colorField;
     private JTextField marcaField;
     private JTextField precioField;
 
     public AltaProductosFrame() {
         setTitle("Alta de producto");
-        setSize(450, 500);
+        setSize(450, 460);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -42,7 +42,6 @@ public class AltaProductosFrame extends JFrame {
         addFieldWithMargin("Nombre:", nombreField = new JTextField(20));
         addFieldWithMargin("Stock:", stockField = new JTextField(20));
         addFieldWithMargin("Talla:", tallaField = new JTextField(20));
-        addFieldWithMargin("Descripción:", descripcionField = new JTextField(20));
         addFieldWithMargin("Color:", colorField = new JTextField(20));
         addFieldWithMargin("Marca:", marcaField = new JTextField(20));
         addFieldWithMargin("Precio:", precioField = new JTextField(20));
@@ -52,10 +51,19 @@ public class AltaProductosFrame extends JFrame {
         altaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = codigoField.getText() + "," + nombreField.getText() + "," + stockField.getText() + "," + tallaField.getText() +
-                        "," + descripcionField.getText() + "," + colorField.getText() + "," + marcaField.getText() + "," +
+                info = codigoField.getText() + "," + nombreField.getText() + "," + stockField.getText() + "," + tallaField.getText() +  "," + colorField.getText() + "," + marcaField.getText() + "," +
                         precioField.getText();
+                if(accesorioRadioButton.isSelected ())
+                {
+                    info += ",Accesorio";
+                }
+                if(prendaRadioButton.isSelected ())
+                {
+                    info += ",Prenda";
+                }
                 LecturaYEscrituraDeFicheros.insertProductos(info);
+                ProductoDAO p = new ProductoDAO ();
+                p.crear ();
                 JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
                 dispose();
             }

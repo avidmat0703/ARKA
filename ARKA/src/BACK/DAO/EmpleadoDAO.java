@@ -27,7 +27,8 @@ public class EmpleadoDAO implements Utiles {
             String email = br.readLine ();
             int telefono = Integer.valueOf ( br.readLine ());
             String puesto = br.readLine ();
-            String sql = "INSERT INTO Empleado VALUES(?, ?, ?, ?, ?, ?, ?)";
+            String contrasena = br.readLine ();
+            String sql = "INSERT INTO Empleado VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             Connection connection = Utiles.conectar ();
             try {
                 PreparedStatement sentencia = connection.prepareStatement(sql);
@@ -38,6 +39,7 @@ public class EmpleadoDAO implements Utiles {
                 sentencia.setString(5, email);
                 sentencia.setInt(6, telefono);
                 sentencia.setString(7, puesto);
+                sentencia.setString(8, contrasena);
                 sentencia.executeUpdate();
                 connection.close();
             } catch (SQLException e) {
@@ -163,7 +165,8 @@ public class EmpleadoDAO implements Utiles {
                 String email = resultSet.getString ( "email" );
                 int telefono = resultSet.getInt ( "telefono" );
                 String puesto = resultSet.getString ( "puesto" );
-                    Empleado e = new Empleado ( dni, nombre, apellido, apellido2, email, telefono, puesto);
+                String contrasena = resultSet.getString ( "contrasena" );
+                    Empleado e = new Empleado ( dni, nombre, apellido, apellido2, email, telefono, puesto, contrasena);
                     resultado.add ( e );
             }
             try{

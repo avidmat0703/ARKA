@@ -18,6 +18,7 @@ public class AltaEmpleadoFrame extends JFrame {
     private JTextField emailField;
     private JTextField telefonoField;
     private JTextField puestoField;
+    private JTextField contrasenaField;
 
     public AltaEmpleadoFrame() {
         setTitle("Alta de empleado");
@@ -32,6 +33,7 @@ public class AltaEmpleadoFrame extends JFrame {
         addFieldWithMargin("Email:", emailField = new JTextField(20));
         addFieldWithMargin("Número de teléfono:", telefonoField = new JTextField(20));
         addFieldWithMargin("Puesto:", puestoField = new JTextField(20));
+        addFieldWithMargin("Contraseña:", contrasenaField = new JTextField(20));
 
         JButton altaButton = new JButton("Dar de alta este empleado");
         altaButton.addActionListener(new ActionListener () {
@@ -39,7 +41,7 @@ public class AltaEmpleadoFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 info = DNIField.getText() + "," + nombreField.getText() + "," + apellido1Field.getText() + "," +
                         apellido2Field.getText() + "," + emailField.getText() + "," + telefonoField.getText() + "," +
-                        puestoField.getText();
+                        puestoField.getText() + "," + contrasenaField.getText ();
                 LecturaYEscrituraDeFicheros.insertEmpleados(info);
                 EmpleadoDAO ee = new EmpleadoDAO ();
                 ee.crear ();
