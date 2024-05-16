@@ -8,6 +8,22 @@ import java.io.*;
 import java.util.Arrays;
 
 public class LecturaYEscrituraDeFicheros {
+
+    public static void Login(String info){
+        BufferedWriter salida = null;
+        try {
+            salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/Login.txt"));
+            salida.write(info);
+        }catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            try{
+                salida.close();
+            }catch (IOException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
     public static void eliminarEmpleados(String info){
         BufferedWriter salida = null;
         try {
@@ -240,11 +256,6 @@ public class LecturaYEscrituraDeFicheros {
         }
         return resultado;
     }
-    public static boolean login(){
-        boolean login = true;
-        
-        return false;
-    }
    public static String error(){
         BufferedReader br = null;
         String error = "";
@@ -332,4 +343,7 @@ public class LecturaYEscrituraDeFicheros {
             }
         }
     }
+
+
+
 }

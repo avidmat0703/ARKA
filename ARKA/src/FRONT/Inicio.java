@@ -1,5 +1,7 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,10 +34,23 @@ public class Inicio extends JFrame {
         JButton btnPantallaInicio = new JButton("Acceder");
         btnPantallaInicio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                new Menu().setVisible(true);
+                String usuario = usuarioField.getText();
+                String contraseña = new String(contraseñaField.getText());
+
+                if(usuario.isEmpty() || contraseña.isEmpty()) {
+                    JOptionPane.showMessageDialog(Inicio.this, "Rellene los campos");
+                    LecturaYEscrituraDeFicheros.escribirError("Rellene los campos.");
+                } else {
+                    info = usuario + ", " + contraseña;
+                    LecturaYEscrituraDeFicheros.Login(info);
+                    dispose();
+                    new Menu().setVisible(true);
+                }
             }
         });
+
+        add(btnPantallaInicio);
+        setVisible(true);
         add(btnPantallaInicio);
 
         JPanel buttonPanel = new JPanel();

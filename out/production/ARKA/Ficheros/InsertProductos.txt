@@ -1,8 +1,8 @@
-s
-s
-2
-s
-s
-s
-12
+e
+e
+3
+d
+d
+d
+3
 Accesorio
