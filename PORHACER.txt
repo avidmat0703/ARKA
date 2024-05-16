@@ -1,4 +1,4 @@
 - Crear documento para pruebas.
-- Errores: campos vacíos ,tipo erróneo y errores de login.
+- Errores: campos vacíos ,tipo erróneo.
 - Método aviso stock.
 - (secundario) implementar imágenes.

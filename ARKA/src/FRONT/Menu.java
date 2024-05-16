@@ -1,5 +1,8 @@
 package FRONT;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.ProductoDAO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -73,5 +76,10 @@ public class Menu extends JFrame {
         pack();
         setMinimumSize(new Dimension(400, 260));
         setLocationRelativeTo(null);
+        ProductoDAO p = new ProductoDAO ();
+        if(!p.stock ()){
+            JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.error ());
+            LecturaYEscrituraDeFicheros.escribirError ( "" );
+        }
     }
 }
