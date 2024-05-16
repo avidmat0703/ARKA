@@ -171,7 +171,7 @@ BEGIN
     END IF;
 END //
 
-CREATE PROCEDURE stock(IN id_param INT)
+/*CREATE PROCEDURE stock(IN id_param INT)
 BEGIN
     DECLARE stockk INT;
 	Declare mensaje varchar(20);
@@ -185,7 +185,7 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = mensaje;
 	END IF;
-END //
+END //*/
 
 CREATE PROCEDURE update_empleado(IN dni_param varchar(9))
 BEGIN
@@ -234,8 +234,4 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
 
-INSERT INTO venta (id, id_producto, unidades) 
-VALUES(1, 4, 3);
-CALL update_producto(1);
-select * from producto;
-CALL stock(5);
+
