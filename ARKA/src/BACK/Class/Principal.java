@@ -28,5 +28,6 @@ public class Principal {
         //LecturaYEscrituraDeFicheros.listarProductos ();
         //LecturaYEscrituraDeFicheros.Login ( "12345678A" );
         System.out.println (p.stock ());
+        System.out.println (LecturaYEscrituraDeFicheros.error ());
     }
 }

@@ -352,7 +352,9 @@ public class LecturaYEscrituraDeFicheros {
             }
         }
     }
+    /*public boolean stock{
 
+    }*/
 
 
 }
