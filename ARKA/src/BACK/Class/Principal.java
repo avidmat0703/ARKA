@@ -25,6 +25,7 @@ public class Principal {
         //System.out.println (v.listar ());
         //LecturaYEscrituraDeFicheros.listarVentas ();
        // LecturaYEscrituraDeFicheros.listarEmpleados();
-        LecturaYEscrituraDeFicheros.listarProductos ();
+        //LecturaYEscrituraDeFicheros.listarProductos ();
+        LecturaYEscrituraDeFicheros.Login ( "12345678A" );
     }
 }

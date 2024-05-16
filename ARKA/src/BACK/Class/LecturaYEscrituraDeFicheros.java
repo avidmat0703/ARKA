@@ -10,18 +10,27 @@ import java.util.Arrays;
 public class LecturaYEscrituraDeFicheros {
 
     public static void Login(String info){
+        EmpleadoDAO ee=  new EmpleadoDAO ();
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/Login.txt"));
-            salida.write(info);
+            String[] partes = info.split ( "," );
+            for(String parte : partes)
+            {
+                salida.write(parte);
+                salida.newLine ();
+            }
         }catch (IOException ex){
             System.out.println(ex.getMessage());
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         }finally {
             try{
                 salida.close();
             }catch (IOException e){
                 System.out.println(e.getMessage());
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
+            System.out.println (ee.existeYContrasenaCorrecta ());
         }
     }
     public static void eliminarEmpleados(String info){

@@ -1,6 +1,7 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.DAO.EmpleadoDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,7 +28,6 @@ public class Inicio extends JFrame {
         setSize(400, 170);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-
         addFieldWithMargin("Usuario:", usuarioField = new JTextField(20));
         addFieldWithMargin("Contraseña:", contraseñaField = new JTextField(20));
 
@@ -35,16 +35,22 @@ public class Inicio extends JFrame {
         btnPantallaInicio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String usuario = usuarioField.getText();
-                String contraseña = new String(contraseñaField.getText());
-
-                if(usuario.isEmpty() || contraseña.isEmpty()) {
+                String contrasena = new String(contraseñaField.getText());
+                if(usuario.isEmpty() || contrasena.isEmpty()) {
                     JOptionPane.showMessageDialog(Inicio.this, "Rellene los campos");
-                    LecturaYEscrituraDeFicheros.escribirError("Rellene los campos.");
-                } else {
-                    info = usuario + ", " + contraseña;
+                }
+                else {
+                    info = usuario + "," + contrasena;
                     LecturaYEscrituraDeFicheros.Login(info);
-                    dispose();
-                    new Menu().setVisible(true);
+                    if(LecturaYEscrituraDeFicheros.error () == null){
+                        dispose();
+                        new Menu().setVisible(true);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(Inicio.this, LecturaYEscrituraDeFicheros.error ());
+                        LecturaYEscrituraDeFicheros.escribirError ( "" );
+                    }
+
                 }
             }
         });

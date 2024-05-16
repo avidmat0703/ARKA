@@ -79,7 +79,8 @@ public class EmpleadoDAO implements UtilesDAO {
         try{
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/DeleteEmpleados.txt" ) );
             String id =br.readLine ();
-            String sql = "CALL delete_empleado(?)";
+            String sql = "CALL existe_empleado(?)";
+            String sql2 = "DELETE FROM Empleado where dni = ?";
             Connection connection = UtilesDAO.conectar ();
             if(connection != null) {
                 try {
@@ -93,8 +94,22 @@ public class EmpleadoDAO implements UtilesDAO {
                     eliminar = false;
                 }
             }
-            else{
-                eliminar = false;
+            if(eliminar) {
+                Connection con = UtilesDAO.conectar ();
+                if (con != null) {
+                    try {
+                        PreparedStatement sentencia = con.prepareStatement ( sql2 );
+                        sentencia.setString ( 1, id );
+                        sentencia.executeUpdate ();
+                        con.close ();
+                    } catch (SQLException ex) {
+                        System.out.println ( ex.getMessage () );
+                        LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                        eliminar = false;
+                    }
+                } else {
+                    eliminar = false;
+                }
             }
         }
         catch (IOException e)
@@ -247,5 +262,70 @@ public class EmpleadoDAO implements UtilesDAO {
             listar = false;
         }
         return listar;
+    }
+    public boolean existeYContrasenaCorrecta() {
+        boolean existe = true;
+        BufferedReader br = null;
+        try{
+            br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/Login.txt" ) );
+            String usuario = br.readLine ();
+            String contrasena = br.readLine ();
+                String sql = "CALL existe_empleado(?)";
+                String sql2 = "CALL contrasena(?, ?)";
+                Connection connection = UtilesDAO.conectar ();
+                if(connection != null) {
+                    try {
+                        PreparedStatement sentencia = connection.prepareStatement ( sql );
+                        sentencia.setString ( 1, usuario );
+                        sentencia.executeUpdate ();
+                        connection.close ();
+                    } catch (SQLException ex) {
+                        System.out.println ( ex.getMessage () );
+                        LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                        existe = false;
+                    }
+                }
+                else {
+                    existe = false;
+                }
+                if(existe)
+                {
+                    Connection con = UtilesDAO.conectar ();
+                    if(con != null) {
+                        try {
+                            PreparedStatement sentencia2 = con.prepareStatement ( sql2 );
+                            sentencia2.setString ( 1, usuario );
+                            sentencia2.setString ( 2, contrasena );
+                            sentencia2.executeUpdate ();
+                            con.close ();
+                        } catch (SQLException ex) {
+                            System.out.println ( ex.getMessage () );
+                            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                            existe = false;
+                        }
+                    }
+                }
+                else{
+                    existe=false;
+                }
+        }
+        catch (IOException e)
+        {
+            System.out.println (e.getMessage ());
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+            existe = false;
+        }
+        finally {
+            try {
+                br.close ();
+            }
+            catch (IOException ex)
+            {
+                System.out.println (ex.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                existe = false;
+            }
+        }
+        return existe;
     }
 }
