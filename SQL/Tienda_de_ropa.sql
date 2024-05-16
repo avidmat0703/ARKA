@@ -4,7 +4,7 @@ Use Tienda;
 
 CREATE table producto (
 	id INT AUTO_INCREMENT primary key,
-    codigo varchar(20),
+    codigo varchar(20) unique,
 	tipo_producto varchar(20),
     stock int,
     talla varchar(10),
@@ -220,7 +220,7 @@ BEGIN
             LEAVE bucle;
         ELSE
             SET vcontador = vcontador + 1;
-                SET mensaje = CONCAT(mensaje, ' ID: ', vid, ' Stock: ', vstock, '.\r\n');
+                SET mensaje = CONCAT(mensaje, ' ID: ', vid, ' Stock: ', vstock, '.');
         END IF;
     END LOOP;
     CLOSE cursor1;

@@ -76,10 +76,10 @@ public class Menu extends JFrame {
         pack();
         setMinimumSize(new Dimension(400, 260));
         setLocationRelativeTo(null);
-        ProductoDAO p = new ProductoDAO ();
-        if(!p.stock ()){
+        /*ProductoDAO p = new ProductoDAO ();
+        if(p.stock () == null){
             JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.error ());
             LecturaYEscrituraDeFicheros.escribirError ( "" );
-        }
+        }*/
     }
 }

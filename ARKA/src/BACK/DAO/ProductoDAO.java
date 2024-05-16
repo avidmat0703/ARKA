@@ -255,26 +255,32 @@ public class ProductoDAO  implements UtilesDAO {
         }
         return listar;
     }
-    public boolean stock() {
-        boolean stock = true;
+
+    /* NO MODIFICAR
+    public String stock() {
+        String resultado = "";
         BufferedReader br = null;
-            String sql = "CALL stock()";
+        String sql = "SELECT STOCK() AS resultado";
             Connection connection = UtilesDAO.conectar ();
             if (connection != null) {
                 try {
                     PreparedStatement sentencia = connection.prepareStatement ( sql );
-                    sentencia.executeUpdate ();
+                    ResultSet resultSet = sentencia.executeQuery ();
+                    if(resultSet.next ())
+                    {
+
+                         resultado = resultSet.getString("resultado");
+                    }
                     connection.close ();
                 } catch (SQLException ex) {
                     System.out.println ( ex.getMessage () );
+
                     LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
-                    stock = false;
                 }
             } else {
-                stock = false;
             }
-            return stock;
-    }
+            return resultado;
+    }*/
 }
 
 
