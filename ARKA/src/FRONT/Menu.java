@@ -1,59 +1,77 @@
 package FRONT;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Menu extends JFrame {
     public Menu() {
         setTitle("Menú Principal");
-        setSize(400, 260);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        add(panel);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 0, 10, 0);
+
+
+        Dimension buttonSize = new Dimension(300, 30);
 
         JButton btnGestionProductos = new JButton("Gestión de productos");
-        btnGestionProductos.setBounds(50, 100, 300, 30);
+        btnGestionProductos.setPreferredSize(buttonSize);
         btnGestionProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new GestionProductosFrame().setVisible(true);
             }
         });
-        add(btnGestionProductos);
+        panel.add(btnGestionProductos, gbc);
 
         JButton btnConsultarInventario = new JButton("Consultar inventario");
-        btnConsultarInventario.setBounds(50, 20, 300, 30);
+        gbc.gridy = 1;
+        btnConsultarInventario.setPreferredSize(buttonSize);
         btnConsultarInventario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ConsultarInventarioFrame().setVisible(true);
             }
         });
-        add(btnConsultarInventario);
+        panel.add(btnConsultarInventario, gbc);
 
         JButton btnRealizarVenta = new JButton("Realizar venta");
-        btnRealizarVenta.setBounds(50, 180, 300, 30);
+        gbc.gridy = 2;
+        btnRealizarVenta.setPreferredSize(buttonSize);
         btnRealizarVenta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new RealizarVentaFrame().setVisible(true);
             }
         });
-        add(btnRealizarVenta);
+        panel.add(btnRealizarVenta, gbc);
 
         JButton btnGestionarEmpleados = new JButton("Gestión de empleados");
-        btnGestionarEmpleados.setBounds(50, 140, 300, 30);
+        gbc.gridy = 3;
+        btnGestionarEmpleados.setPreferredSize(buttonSize);
         btnGestionarEmpleados.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new GestionarEmpleadosFrame().setVisible(true);
             }
         });
-        add(btnGestionarEmpleados);
+        panel.add(btnGestionarEmpleados, gbc);
 
         JButton btnConsultarVentas = new JButton("Consultar las ventas");
-        btnConsultarVentas.setBounds(50, 60, 300, 30);
+        gbc.gridy = 4;
+        btnConsultarVentas.setPreferredSize(buttonSize);
         btnConsultarVentas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ConsultarVentasFrame().setVisible(true);
             }
         });
-        add(btnConsultarVentas);
+        panel.add(btnConsultarVentas, gbc);
+
+        pack();
+        setMinimumSize(new Dimension(400, 260));
+        setLocationRelativeTo(null);
     }
 }
