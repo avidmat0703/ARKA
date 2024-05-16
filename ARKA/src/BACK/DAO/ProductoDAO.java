@@ -13,76 +13,71 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class ProductoDAO  implements UtilesDAO {
+public class ProductoDAO implements UtilesDAO {
 
     @Override
     public boolean crear() {
         boolean crear = true;
-            BufferedReader br = null;
-            try{
-                br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/InsertProductos.txt" ) );
-                String cod = br.readLine ();
-                String nombre = br.readLine ();
-                int stock = Integer.valueOf(br.readLine ());
-                String talla = br.readLine ();
-                String color = br.readLine ();
-                String marca = br.readLine ();
-                double precio = Double.valueOf ( br.readLine () );
-                String descripcion = br.readLine ();
-                String sql = "INSERT INTO Producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) \n" +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-                
-                Connection connection = UtilesDAO.conectar ();
-                if(connection != null) {
-                    try {
-                        PreparedStatement sentencia = connection.prepareStatement ( sql );
-                        sentencia.setString ( 1, cod );
-                        sentencia.setString ( 2, nombre );
-                        sentencia.setInt ( 3, stock );
-                        sentencia.setString ( 4, talla );
-                        sentencia.setString ( 5, color );
-                        sentencia.setString ( 6, marca );
-                        sentencia.setString ( 7, descripcion );
-                        sentencia.setDouble ( 8, precio );
-                        sentencia.executeUpdate ();
-                        connection.close ();
-                    } catch (SQLException ex) {
-                        System.out.println ( ex.getMessage () );
-                        LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
-                    }
-                }
-                else {
-                    crear = false;
-                }
-            }
-            catch (IOException e)
-            {
-                System.out.println (e.getMessage ());
-                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
-            }
-            finally {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/InsertProductos.txt" ) );
+            String cod = br.readLine ();
+            String nombre = br.readLine ();
+            int stock = Integer.valueOf ( br.readLine () );
+            String talla = br.readLine ();
+            String color = br.readLine ();
+            String marca = br.readLine ();
+            double precio = Double.valueOf ( br.readLine () );
+            String descripcion = br.readLine ();
+            String sql = "INSERT INTO Producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) \n" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+
+            Connection connection = UtilesDAO.conectar ();
+            if (connection != null) {
                 try {
-                    br.close ();
-                }
-                catch (IOException ex)
-                {
-                    System.out.println (ex.getMessage ());
+                    PreparedStatement sentencia = connection.prepareStatement ( sql );
+                    sentencia.setString ( 1, cod );
+                    sentencia.setString ( 2, nombre );
+                    sentencia.setInt ( 3, stock );
+                    sentencia.setString ( 4, talla );
+                    sentencia.setString ( 5, color );
+                    sentencia.setString ( 6, marca );
+                    sentencia.setString ( 7, descripcion );
+                    sentencia.setDouble ( 8, precio );
+                    sentencia.executeUpdate ();
+                    connection.close ();
+                } catch (SQLException ex) {
+                    System.out.println ( ex.getMessage () );
                     LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
-                    crear = false;
                 }
+            } else {
+                crear = false;
             }
-            return crear;
+        } catch (IOException e) {
+            System.out.println ( e.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+        } finally {
+            try {
+                br.close ();
+            } catch (IOException ex) {
+                System.out.println ( ex.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                crear = false;
+            }
         }
+        return crear;
+    }
+
     @Override
     public boolean eliminar() {
         boolean eliminar = true;
         BufferedReader br = null;
-        try{
+        try {
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/DeleteProductos.txt" ) );
-            int id = Integer.valueOf ( br.readLine ());
+            int id = Integer.valueOf ( br.readLine () );
             String sql = "call delete_producto(?);";
             Connection connection = UtilesDAO.conectar ();
-            if(connection != null) {
+            if (connection != null) {
                 try {
                     PreparedStatement sentencia = connection.prepareStatement ( sql );
                     sentencia.setInt ( 1, id );
@@ -93,24 +88,18 @@ public class ProductoDAO  implements UtilesDAO {
                     System.out.println ( ex.getMessage () );
                     LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 }
-            }
-            else{
+            } else {
                 eliminar = false;
             }
-        }
-        catch (IOException e)
-        {
-            System.out.println (e.getMessage ());
+        } catch (IOException e) {
+            System.out.println ( e.getMessage () );
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             eliminar = false;
-        }
-        finally {
+        } finally {
             try {
                 br.close ();
-            }
-            catch (IOException ex)
-            {
-                System.out.println (ex.getMessage ());
+            } catch (IOException ex) {
+                System.out.println ( ex.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             }
         }
@@ -121,18 +110,17 @@ public class ProductoDAO  implements UtilesDAO {
     public boolean modificar() {
         boolean modificar = true;
         BufferedReader br = null;
-        try{
+        try {
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/UpdateProductos.txt" ) );
             int n = Integer.valueOf ( br.readLine () );
             String id = br.readLine ();
-            for(int i=0;i<n;i++)
-            {
+            for (int i = 0; i < n; i++) {
                 String campo = br.readLine ();
                 String valor = br.readLine ();
-                String sql = "UPDATE Producto SET " + campo  + " = ? WHERE id = ?";
+                String sql = "UPDATE Producto SET " + campo + " = ? WHERE id = ?";
                 String sql2 = "CALL update_producto(?)";
                 Connection connection = UtilesDAO.conectar ();
-                if(connection != null) {
+                if (connection != null) {
                     try {
 
                         PreparedStatement sentencia = connection.prepareStatement ( sql );
@@ -148,27 +136,21 @@ public class ProductoDAO  implements UtilesDAO {
                         modificar = false;
                         LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                     }
-                }
-                else{
+                } else {
                     modificar = false;
 
                 }
 
             }
-        }
-        catch (IOException e)
-        {
-            System.out.println (e.getMessage ());
+        } catch (IOException e) {
+            System.out.println ( e.getMessage () );
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             modificar = false;
-        }
-        finally {
+        } finally {
             try {
                 br.close ();
-            }
-            catch (IOException ex)
-            {
-                System.out.println (ex.getMessage ());
+            } catch (IOException ex) {
+                System.out.println ( ex.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 modificar = false;
             }
@@ -182,7 +164,7 @@ public class ProductoDAO  implements UtilesDAO {
         boolean listar = true;
         String sql = "SELECT * FROM producto";
         Connection connection = UtilesDAO.conectar ();
-        if(connection != null) {
+        if (connection != null) {
             try {
                 Statement statement = connection.createStatement ();
                 ResultSet resultSet = statement.executeQuery ( sql );
@@ -249,15 +231,13 @@ public class ProductoDAO  implements UtilesDAO {
                 LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                 listar = false;
             }
-        }
-        else{
+        } else {
             listar = false;
         }
         return listar;
     }
 
-    /* NO MODIFICAR
-    public String stock() {
+    public void stock() {
         String resultado = "";
         BufferedReader br = null;
         String sql = "SELECT STOCK() AS resultado";
@@ -268,8 +248,28 @@ public class ProductoDAO  implements UtilesDAO {
                     ResultSet resultSet = sentencia.executeQuery ();
                     if(resultSet.next ())
                     {
-
                          resultado = resultSet.getString("resultado");
+                         BufferedWriter bw = null;
+                         try{
+                             bw = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/Stock.txt" ) );
+                             String[] partes = resultado.split ( "," );
+                             for (String parte : partes) {
+                                 bw.write ( parte );
+                                 bw.newLine ();
+                             }
+                         }
+                         catch(IOException e)
+                         {
+                             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+                         }
+                         finally {
+                             try{
+                                 bw.close ();
+                             }
+                             catch (IOException ex){
+                                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                             }
+                         }
                     }
                     connection.close ();
                 } catch (SQLException ex) {
@@ -279,8 +279,7 @@ public class ProductoDAO  implements UtilesDAO {
                 }
             } else {
             }
-            return resultado;
-    }*/
+    }
 }
 
 

@@ -201,7 +201,8 @@ delimiter ;
 
 DELIMITER //
 
-CREATE PROCEDURE stock()
+CREATE FUNCTION stock()
+RETURNS VARCHAR(255) DETERMINISTIC
 BEGIN
     DECLARE vfinal INT DEFAULT 0;
     DECLARE vstock INT;
@@ -220,14 +221,13 @@ BEGIN
             LEAVE bucle;
         ELSE
             SET vcontador = vcontador + 1;
-                SET mensaje = CONCAT(mensaje, ' ID: ', vid, ' Stock: ', vstock, '.');
+                SET mensaje = CONCAT(mensaje, 'ID: ', vid, ' Stock: ', vstock, ',');
         END IF;
     END LOOP;
     CLOSE cursor1;
 
     IF vcontador > 0 THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = mensaje;
+        RETURN mensaje;
     END IF;
 END //
 
@@ -264,5 +264,5 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
 CALL existe_empleado('12345678A');
- call stock();
 call contrasena('12345678A', '1234');
+select stock() as resultado;
