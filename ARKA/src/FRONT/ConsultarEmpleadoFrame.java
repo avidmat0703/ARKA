@@ -1,25 +1,29 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
-import BACK.DAO.EmpleadoDAO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class ConsultarEmpleadoFrame extends JFrame {
-    private EmpleadoDAO empleadoDAO;
     private JTable tablaEmpleados;
 
     public ConsultarEmpleadoFrame() {
         setTitle("Consultar empleados");
         setSize(1200, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        empleadoDAO = new EmpleadoDAO();
         tablaEmpleados = new JTable();
         JScrollPane scrollPane = new JScrollPane(tablaEmpleados);
         add(scrollPane, BorderLayout.CENTER);
         cargarDatosEmpleados();
+        if(LecturaYEscrituraDeFicheros.error () == null)
+        {
+            cargarDatosEmpleados();
+        }
+        else {
+            JOptionPane.showMessageDialog(ConsultarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
+            LecturaYEscrituraDeFicheros.escribirError ( "" );
+        }
     }
 
     private void cargarDatosEmpleados() {

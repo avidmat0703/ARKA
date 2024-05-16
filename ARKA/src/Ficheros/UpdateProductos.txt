@@ -1,4 +1,4 @@
 1
-4
-precio
-79.99
+1
+codigo
+P01

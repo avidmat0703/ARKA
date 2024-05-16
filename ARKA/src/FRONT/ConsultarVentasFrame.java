@@ -7,22 +7,27 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class ConsultarVentasFrame extends JFrame {
-    private VentaDAO ventaDAO;
-    private JTable tablaEmpleados;
+    private JTable tablaVentas;
 
     public ConsultarVentasFrame() {
         setTitle("Consultar inventario");
         setSize(1200, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        ventaDAO = new VentaDAO();
-        tablaEmpleados = new JTable();
-        JScrollPane scrollPane = new JScrollPane(tablaEmpleados);
+        tablaVentas = new JTable();
+        JScrollPane scrollPane = new JScrollPane(tablaVentas);
         add(scrollPane, BorderLayout.CENTER);
-        cargarDatosEmpleados();
+        cargarDatosVentas();
+        if(LecturaYEscrituraDeFicheros.error () == null)
+        {
+            cargarDatosVentas();
+        }
+        else {
+            JOptionPane.showMessageDialog(ConsultarVentasFrame.this, LecturaYEscrituraDeFicheros.error ());
+            LecturaYEscrituraDeFicheros.escribirError ( "" );
+        }
     }
 
-    private void cargarDatosEmpleados() {
+    private void cargarDatosVentas() {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("ID");
         modeloTabla.addColumn("ID-Producto");
@@ -35,6 +40,6 @@ public class ConsultarVentasFrame extends JFrame {
             modeloTabla.addRow(ventas);
         }
 
-        tablaEmpleados.setModel(modeloTabla);
+        tablaVentas.setModel(modeloTabla);
     }
 }

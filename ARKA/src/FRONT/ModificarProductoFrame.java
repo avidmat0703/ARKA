@@ -113,7 +113,16 @@ public class ModificarProductoFrame extends JFrame {
                 LecturaYEscrituraDeFicheros.modificarProducto(info);
                 ProductoDAO p = new ProductoDAO ();
                 p.modificar ();
-                JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString());
+                if(LecturaYEscrituraDeFicheros.error () == null)
+                {
+                    JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString());
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(ModificarProductoFrame.this, LecturaYEscrituraDeFicheros.error ());
+                    LecturaYEscrituraDeFicheros.escribirError ( "" );
+                }
+
                 dispose();
             }
         });

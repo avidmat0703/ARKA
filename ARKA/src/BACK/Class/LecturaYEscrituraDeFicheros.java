@@ -141,107 +141,101 @@ public class LecturaYEscrituraDeFicheros {
             }
         }
     }
-    public static void modificarVentas(String info){
-        BufferedWriter salida = null;
-        try {
-            salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/UpdateVentas.txt"));
-            salida.write ( info );
-        }catch (IOException ex){
-            System.out.println(ex.getMessage());
-        }finally {
-            try{
-                salida.close();
-            }catch (IOException e){
-                System.out.println(e.getMessage());
-            }
-        }
-    }
     public static String[][] listarEmpleados(){
         EmpleadoDAO ee = new EmpleadoDAO ();
-        ee.listar ();
         String[][]resultado = new String[0][0];
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader ("ARKA/src/Ficheros/SelectEmpleados.txt"));
-            int n = Integer.valueOf ( br.readLine () );
-            String[][] s = new String[n][7];
-            for(int i = 0; i < n; i++)
-            {
-                for(int j = 0; j < 7 ; j++)
+        vaciarEmpleados ();
+        if(ee.listar ()) {
+            BufferedReader br = null;
+            try {
+                br = new BufferedReader(new FileReader ("ARKA/src/Ficheros/SelectEmpleados.txt"));
+                int n = Integer.valueOf ( br.readLine () );
+                String[][] s = new String[n][7];
+                for(int i = 0; i < n; i++)
                 {
-                    s[i][j] = br.readLine ();
+                    for(int j = 0; j < 7 ; j++)
+                    {
+                        s[i][j] = br.readLine ();
 
+                    }
+                    System.out.println (Arrays.toString ( s[i] ));
                 }
-                System.out.println (Arrays.toString ( s[i] ));
-            }
-            resultado = s;
-        }catch (IOException ex){
-            System.out.println(ex.getMessage());
-        }finally {
-            try{
-                br.close();
-            }catch (IOException e){
-                System.out.println(e.getMessage());
+                resultado = s;
+            }catch (IOException ex){
+                System.out.println(ex.getMessage());
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+            }finally {
+                try{
+                    br.close();
+                }catch (IOException e){
+                    System.out.println(e.getMessage());
+                }
             }
         }
         return resultado;
     }
     public static String[][] listarProductos(){
         ProductoDAO p = new ProductoDAO ();
-        p.listar ();
         String[][]resultado = new String[0][0];
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader ("ARKA/src/Ficheros/SelectProductos.txt"));
-            int n = Integer.valueOf ( br.readLine () );
-            String[][] s = new String[n][9];
-            for(int i = 0; i < n; i++)
-            {
-                for(int j = 0; j < 9 ; j++)
+        vaciarProductos ();
+        if(p.listar ())
+        {
+            BufferedReader br = null;
+            try {
+                br = new BufferedReader(new FileReader ("ARKA/src/Ficheros/SelectProductos.txt"));
+                int n = Integer.valueOf ( br.readLine () );
+                String[][] s = new String[n][9];
+                for(int i = 0; i < n; i++)
                 {
-                    s[i][j] = br.readLine ();
+                    for(int j = 0; j < 9 ; j++)
+                    {
+                        s[i][j] = br.readLine ();
 
+                    }
+                    System.out.println (Arrays.toString ( s[i] ));
                 }
-                System.out.println (Arrays.toString ( s[i] ));
-            }
-            resultado = s;
-        }catch (IOException ex){
-            System.out.println(ex.getMessage());
-        }finally {
-            try{
-                br.close();
-            }catch (IOException e) {
-                System.out.println(e.getMessage());
+                resultado = s;
+            }catch (IOException ex){
+                System.out.println(ex.getMessage());
+            }finally {
+                try{
+                    br.close();
+                }catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
         return resultado;
     }
     public static String[][] listarVentas(){
         VentaDAO v  = new VentaDAO ();
-        v.listar ();
         String[][]resultado = new String[0][0];
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader ("ARKA/src/Ficheros/SelectVentas.txt"));
-            int n = Integer.valueOf ( br.readLine () );
-            String[][] s = new String[n][6];
-            for(int i = 0; i < n; i++)
-            {
-                for(int j = 0; j < 6 ; j++)
+        vaciarVentas ();
+        if(v.listar ())
+        {
+            BufferedReader br = null;
+            try {
+                br = new BufferedReader(new FileReader ("ARKA/src/Ficheros/SelectVentas.txt"));
+                int n = Integer.valueOf ( br.readLine () );
+                String[][] s = new String[n][6];
+                for(int i = 0; i < n; i++)
                 {
-                    s[i][j] = br.readLine ();
+                    for(int j = 0; j < 6 ; j++)
+                    {
+                        s[i][j] = br.readLine ();
 
+                    }
+                    System.out.println (Arrays.toString ( s[i] ));
                 }
-                System.out.println (Arrays.toString ( s[i] ));
-            }
-            resultado = s;
-        }catch (IOException ex){
-            System.out.println(ex.getMessage());
-        }finally {
-            try{
-                br.close();
-            }catch (IOException e) {
-                System.out.println(e.getMessage());
+                resultado = s;
+            }catch (IOException ex){
+                System.out.println(ex.getMessage());
+            }finally {
+                try{
+                    br.close();
+                }catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
         return resultado;
@@ -290,6 +284,51 @@ public class LecturaYEscrituraDeFicheros {
             catch (IOException ex)
             {
                 ex.getMessage ();
+            }
+        }
+    }
+    public static void vaciarProductos(){
+        BufferedWriter salida = null;
+        try {
+            salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/SelectProductos.txt"));
+            salida.write ( "" );
+        }catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            try{
+                salida.close();
+            }catch (IOException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    public static void vaciarEmpleados(){
+        BufferedWriter salida = null;
+        try {
+            salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/SelectEmpleados.txt"));
+            salida.write ( "" );
+        }catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            try{
+                salida.close();
+            }catch (IOException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    public static void vaciarVentas(){
+        BufferedWriter salida = null;
+        try {
+            salida = new BufferedWriter(new FileWriter("ARKA/src/Ficheros/SelectVentas.txt"));
+            salida.write ( "" );
+        }catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            try{
+                salida.close();
+            }catch (IOException e){
+                System.out.println(e.getMessage());
             }
         }
     }

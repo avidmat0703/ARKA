@@ -28,21 +28,26 @@ public class EmpleadoDAO implements UtilesDAO {
             String contrasena = br.readLine ();
             String sql = "INSERT INTO Empleado VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             Connection connection = UtilesDAO.conectar ();
-            try {
-                PreparedStatement sentencia = connection.prepareStatement(sql);
-                sentencia.setString(1, dni);
-                sentencia.setString(2, nombre);
-                sentencia.setString(3, apellido);
-                sentencia.setString(4, apellido2);
-                sentencia.setString(5, email);
-                sentencia.setInt(6, telefono);
-                sentencia.setString(7, puesto);
-                sentencia.setString(8, contrasena);
-                sentencia.executeUpdate();
-                connection.close();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage ());
-                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+            if(connection != null) {
+                try {
+                    PreparedStatement sentencia = connection.prepareStatement ( sql );
+                    sentencia.setString ( 1, dni );
+                    sentencia.setString ( 2, nombre );
+                    sentencia.setString ( 3, apellido );
+                    sentencia.setString ( 4, apellido2 );
+                    sentencia.setString ( 5, email );
+                    sentencia.setInt ( 6, telefono );
+                    sentencia.setString ( 7, puesto );
+                    sentencia.setString ( 8, contrasena );
+                    sentencia.executeUpdate ();
+                    connection.close ();
+                } catch (SQLException e) {
+                    System.out.println ( e.getMessage () );
+                    LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+                    crear = false;
+                }
+            }
+            else{
                 crear = false;
             }
             return crear;
@@ -76,14 +81,19 @@ public class EmpleadoDAO implements UtilesDAO {
             String id =br.readLine ();
             String sql = "CALL delete_empleado(?)";
             Connection connection = UtilesDAO.conectar ();
-            try {
-                PreparedStatement sentencia = connection.prepareStatement(sql);
-                sentencia.setString(1, id);
-                sentencia.executeUpdate();
-                connection.close();
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage ());
-                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+            if(connection != null) {
+                try {
+                    PreparedStatement sentencia = connection.prepareStatement ( sql );
+                    sentencia.setString ( 1, id );
+                    sentencia.executeUpdate ();
+                    connection.close ();
+                } catch (SQLException ex) {
+                    System.out.println ( ex.getMessage () );
+                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                    eliminar = false;
+                }
+            }
+            else{
                 eliminar = false;
             }
         }
@@ -112,7 +122,6 @@ public class EmpleadoDAO implements UtilesDAO {
         boolean modificar = true;
         BufferedReader br = null;
         try{
-
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/UpdateEmpleados.txt" ) );
             int n = Integer.valueOf ( br.readLine () );
             String dni = br.readLine ();
@@ -120,15 +129,25 @@ public class EmpleadoDAO implements UtilesDAO {
                 String campo = br.readLine ();
                 String valor = br.readLine ();
                 String sql = "UPDATE Empleado SET " + campo + " = ? WHERE dni = ?";
+                String sql2 = "CALL update_empleado(?)";
                 Connection connection = UtilesDAO.conectar ();
-                try {
-                    PreparedStatement sentencia = connection.prepareStatement ( sql );
-                    sentencia.setString ( 1, valor );
-                    sentencia.setString ( 2, dni );
-                    sentencia.executeUpdate ();
-                    connection.close ();
-                } catch (SQLException ex) {
-                    System.out.println ( ex.getMessage () );
+                if(connection != null) {
+                    try {
+                        PreparedStatement sentencia = connection.prepareStatement ( sql );
+                        PreparedStatement sentencia2 = connection.prepareStatement ( sql2 );
+                        sentencia2.setString ( 1, dni );
+                        sentencia.setString ( 1, valor );
+                        sentencia.setString ( 2, dni );
+                        sentencia.executeUpdate ();
+                        sentencia2.executeUpdate ();
+                        connection.close ();
+                    } catch (SQLException ex) {
+                        System.out.println ( ex.getMessage () );
+                        LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                        modificar = false;
+                    }
+                }
+                else {
                     modificar = false;
                 }
             }
@@ -154,69 +173,79 @@ public class EmpleadoDAO implements UtilesDAO {
     }
 
     @Override
-    public List<Object> listar() {
+    public boolean listar() {
+        boolean listar = true;
         List<Empleado> resultado = new ArrayList<> ();
         String sql = "SELECT * FROM empleado";
-        Connection connection = UtilesDAO.conectar ();
-        try{
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            BufferedWriter bw = null;
-            while (resultSet.next()) {
 
-                String dni = resultSet.getString ( "DNI" );
-                String nombre = resultSet.getString ( "nombre" );
-                String  apellido = resultSet.getString ( "apellido" );
-                String apellido2 = resultSet.getString ( "apellido2" );
-                String email = resultSet.getString ( "email" );
-                int telefono = resultSet.getInt ( "telefono" );
-                String puesto = resultSet.getString ( "puesto" );
-                String contrasena = resultSet.getString ( "contrasena" );
+        Connection connection = UtilesDAO.conectar ();
+        if(connection != null){
+            try{
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                BufferedWriter bw = null;
+                while (resultSet.next()) {
+
+                    String dni = resultSet.getString ( "DNI" );
+                    String nombre = resultSet.getString ( "nombre" );
+                    String  apellido = resultSet.getString ( "apellido" );
+                    String apellido2 = resultSet.getString ( "apellido2" );
+                    String email = resultSet.getString ( "email" );
+                    int telefono = resultSet.getInt ( "telefono" );
+                    String puesto = resultSet.getString ( "puesto" );
+                    String contrasena = resultSet.getString ( "contrasena" );
                     Empleado e = new Empleado ( dni, nombre, apellido, apellido2, email, telefono, puesto, contrasena);
                     resultado.add ( e );
-            }
-            try{
-                bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/SelectEmpleados.txt", false ));
-                Iterator<Empleado> it = resultado.iterator ();
-                bw.write ( String.valueOf ( resultado.size () ));
-                bw.newLine ();
-                while (it.hasNext ())
-                {
-                    Empleado e = it.next ();
-                    bw.write ( e.getDni () );
-                    bw.newLine ();
-                    bw.write ( e.getNombre () );
-                    bw.newLine ();
-                    bw.write ( e.getApellido1 () );
-                    bw.newLine ();
-                    bw.write ( e.getApellido2 () );
-                    bw.newLine ();
-                    bw.write ( e.getEmail () );
-                    bw.newLine ();
-                    bw.write ( String.valueOf(e.getTlf () ));
-                    bw.newLine ();
-                    bw.write ( e.getPuesto () );
-                    bw.newLine ();
                 }
-            }
-            catch(IOException e){
-                System.out.println (e.getMessage ());
-                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
-            }
-            finally{
                 try{
-                    bw.close ();
+                    bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/SelectEmpleados.txt", false ));
+                    Iterator<Empleado> it = resultado.iterator ();
+                    bw.write ( String.valueOf ( resultado.size () ));
+                    bw.newLine ();
+                    while (it.hasNext ())
+                    {
+                        Empleado e = it.next ();
+                        bw.write ( e.getDni () );
+                        bw.newLine ();
+                        bw.write ( e.getNombre () );
+                        bw.newLine ();
+                        bw.write ( e.getApellido1 () );
+                        bw.newLine ();
+                        bw.write ( e.getApellido2 () );
+                        bw.newLine ();
+                        bw.write ( e.getEmail () );
+                        bw.newLine ();
+                        bw.write ( String.valueOf(e.getTlf () ));
+                        bw.newLine ();
+                        bw.write ( e.getPuesto () );
+                        bw.newLine ();
+                    }
                 }
-                catch(IOException ex)
-                {
-                    ex.getMessage ();
-                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                catch(IOException e){
+                    System.out.println (e.getMessage ());
+                    LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+                    listar = false;
                 }
+                finally{
+                    try{
+                        bw.close ();
+                    }
+                    catch(IOException ex)
+                    {
+                        ex.getMessage ();
+                        LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                        listar=false;
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println (e.getMessage ());
+                LecturaYEscrituraDeFicheros.escribirError( e.getMessage () );
+                listar=false;
             }
-        } catch (SQLException e) {
-            System.out.println (e.getMessage ());
-            LecturaYEscrituraDeFicheros.escribirError( e.getMessage () );
         }
-        return Collections.singletonList ( resultado );
+        else{
+            listar = false;
+        }
+        return listar;
     }
 }

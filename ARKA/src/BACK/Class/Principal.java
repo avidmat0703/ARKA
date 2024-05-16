@@ -3,6 +3,7 @@ package BACK.Class;
 import BACK.DAO.EmpleadoDAO;
 import BACK.DAO.ProductoDAO;
 import BACK.DAO.VentaDAO;
+import FRONT.ConsultarInventarioFrame;
 
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ public class Principal {
         //System.out.println (p.crear ());
         //p.modificar ();
         //System.out.println (p.listar ());
-        p.eliminar ();
+        //p.eliminar ();
         //System.out.println (p.listar ());
         EmpleadoDAO e = new EmpleadoDAO ();
         //e.crear ();
@@ -23,5 +24,7 @@ public class Principal {
         //v.crear ();
         //System.out.println (v.listar ());
         //LecturaYEscrituraDeFicheros.listarVentas ();
+       // LecturaYEscrituraDeFicheros.listarEmpleados();
+        LecturaYEscrituraDeFicheros.listarProductos ();
     }
 }

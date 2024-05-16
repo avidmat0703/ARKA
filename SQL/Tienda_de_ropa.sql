@@ -153,6 +153,55 @@ BEGIN
 END //
 
 DELIMITER ;
+DELIMITER //
+
+CREATE PROCEDURE update_producto(IN id_param INT)
+BEGIN
+    DECLARE id_count INT;
+
+    -- Contar el número de filas con el id especificado
+    SELECT COUNT(*) INTO id_count
+    FROM producto
+    WHERE id = id_param;
+
+    -- Si no existe el id, lanzar una excepción
+    IF id_count = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El id especificado no existe en la tabla producto';
+    END IF;
+END //
+
+CREATE PROCEDURE stock(IN id_param INT)
+BEGIN
+    DECLARE stockk INT;
+	Declare mensaje varchar(20);
+    SELECT stock INTO stockk
+    FROM producto
+    WHERE id = id_param;
+    
+    SELECT concat('ID: ', id_param, '. Stock: ', stockk) INTO mensaje;
+	
+    IF stockk < 5 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = mensaje;
+	END IF;
+END //
+
+CREATE PROCEDURE update_empleado(IN dni_param varchar(9))
+BEGIN
+    DECLARE dni_count INT;
+
+    -- Contar el número de filas con el id especificado
+    SELECT COUNT(*) INTO dni_count
+    FROM empleado
+    WHERE dni = dni_param;
+
+    -- Si no existe el id, lanzar una excepción
+    IF dni_count = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El dni especificado no existe en la tabla "Empleado"';
+    END IF;
+END //
 
 DELIMITER ;
 INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
@@ -168,7 +217,7 @@ INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio,
 VALUES ('P004', 'Sudadera', 40, 'S', 'Gris', 'Reebok', 39.99, 'Sudadera con capucha');
 
 INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
-VALUES ('P005', 'Chaqueta', 15, 'XL', 'Verde', 'The North Face', 99.99, 'Chaqueta impermeable');
+VALUES ('P005', 'Chaqueta', 1, 'XL', 'Verde', 'The North Face', 99.99, 'Chaqueta impermeable');
 
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('12345678A', 'Juan', 'García', 'López', 'juan@example.com', 123456789, 'Gerente');
@@ -187,4 +236,6 @@ VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 4567
 
 INSERT INTO venta (id, id_producto, unidades) 
 VALUES(1, 4, 3);
-
+CALL update_producto(1);
+select * from producto;
+CALL stock(5);

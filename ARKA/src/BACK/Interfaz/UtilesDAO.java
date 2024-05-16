@@ -1,5 +1,7 @@
 package BACK.Interfaz;
 
+import BACK.Class.LecturaYEscrituraDeFicheros;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +14,7 @@ public interface UtilesDAO{
     public boolean crear();
     public boolean eliminar();
     public boolean modificar();
-    public List<Object> listar();
+    public boolean listar();
     public static Connection conectar() {
         String usuario=null;
         String contrasena=null;
@@ -42,6 +44,7 @@ public interface UtilesDAO{
         }
         catch (SQLException ex) {
             System.out.println ( "Error al conectar al SGBD." );
+            LecturaYEscrituraDeFicheros.escribirError ( "Error al conectar al SGBD." );
         }
         return con;
     }

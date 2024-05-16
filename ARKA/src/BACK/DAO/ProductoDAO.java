@@ -33,25 +33,26 @@ public class ProductoDAO  implements UtilesDAO {
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
                 
                 Connection connection = UtilesDAO.conectar ();
-                if(connection == null)
-                {
-                    crear = false;
+                if(connection != null) {
+                    try {
+                        PreparedStatement sentencia = connection.prepareStatement ( sql );
+                        sentencia.setString ( 1, cod );
+                        sentencia.setString ( 2, nombre );
+                        sentencia.setInt ( 3, stock );
+                        sentencia.setString ( 4, talla );
+                        sentencia.setString ( 5, color );
+                        sentencia.setString ( 6, marca );
+                        sentencia.setString ( 7, descripcion );
+                        sentencia.setDouble ( 8, precio );
+                        sentencia.executeUpdate ();
+                        connection.close ();
+                    } catch (SQLException ex) {
+                        System.out.println ( ex.getMessage () );
+                        LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                    }
                 }
-                try {
-                    PreparedStatement sentencia = connection.prepareStatement(sql);
-                    sentencia.setString ( 1, cod );
-                    sentencia.setString(2, nombre);
-                    sentencia.setInt(3, stock);
-                    sentencia.setString(4, talla);
-                    sentencia.setString(5, color);
-                    sentencia.setString(6, marca);
-                    sentencia.setString(7, descripcion);
-                    sentencia.setDouble (8, precio);
-                    sentencia.executeUpdate();
-                    connection.close();
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage ());
-                    LecturaYEscrituraDeFicheros.escribirError( ex.getMessage () );
+                else {
+                    crear = false;
                 }
             }
             catch (IOException e)
@@ -81,15 +82,20 @@ public class ProductoDAO  implements UtilesDAO {
             int id = Integer.valueOf ( br.readLine ());
             String sql = "call delete_producto(?);";
             Connection connection = UtilesDAO.conectar ();
-            try {
-                PreparedStatement sentencia = connection.prepareStatement(sql);
-                sentencia.setInt(1, id);
-                sentencia.executeUpdate();
-                connection.close();
-            } catch (SQLException ex) {
+            if(connection != null) {
+                try {
+                    PreparedStatement sentencia = connection.prepareStatement ( sql );
+                    sentencia.setInt ( 1, id );
+                    sentencia.executeUpdate ();
+                    connection.close ();
+                } catch (SQLException ex) {
+                    eliminar = false;
+                    System.out.println ( ex.getMessage () );
+                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                }
+            }
+            else{
                 eliminar = false;
-                System.out.println (ex.getMessage ());
-                LecturaYEscrituraDeFicheros.escribirError( ex.getMessage () );
             }
         }
         catch (IOException e)
@@ -124,17 +130,30 @@ public class ProductoDAO  implements UtilesDAO {
                 String campo = br.readLine ();
                 String valor = br.readLine ();
                 String sql = "UPDATE Producto SET " + campo  + " = ? WHERE id = ?";
+                String sql2 = "CALL update_producto(?)";
                 Connection connection = UtilesDAO.conectar ();
-                try {
-                    PreparedStatement sentencia = connection.prepareStatement(sql);
-                    sentencia.setString(1, valor);
-                    sentencia.setString(2, id);
-                    sentencia.executeUpdate();
-                    connection.close();
-                } catch (SQLException ex) {
-                    System.out.println("Error al modificar.");
-                    modificar = false;
+                if(connection != null) {
+                    try {
+
+                        PreparedStatement sentencia = connection.prepareStatement ( sql );
+                        PreparedStatement sentencia2 = connection.prepareStatement ( sql2 );
+                        sentencia2.setString ( 1, id );
+                        sentencia.setString ( 1, valor );
+                        sentencia.setString ( 2, id );
+                        sentencia.executeUpdate ();
+                        sentencia2.executeUpdate ();
+                        connection.close ();
+                    } catch (SQLException ex) {
+                        System.out.println ( ex.getMessage () );
+                        modificar = false;
+                        LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                    }
                 }
+                else{
+                    modificar = false;
+
+                }
+
             }
         }
         catch (IOException e)
@@ -158,82 +177,84 @@ public class ProductoDAO  implements UtilesDAO {
     }
 
     @Override
-    public List<Object> listar() {
+    public boolean listar() {
         List<Producto> resultado = new ArrayList<> ();
+        boolean listar = true;
         String sql = "SELECT * FROM producto";
         Connection connection = UtilesDAO.conectar ();
-        try{
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            BufferedWriter bw = null;
-            while (resultSet.next()) {
+        if(connection != null) {
+            try {
+                Statement statement = connection.createStatement ();
+                ResultSet resultSet = statement.executeQuery ( sql );
+                BufferedWriter bw = null;
+                while (resultSet.next ()) {
 
-                int id = resultSet.getInt ( "id" );
-                String cod = resultSet.getString ( "codigo" );
-                String tipoProducto = resultSet.getString ( "tipo_producto" );
-                int stock = resultSet.getInt ( "stock" );
-                String talla = resultSet.getString ( "talla" );
-                String color = resultSet.getString ( "color" );
-                String marca = resultSet.getString ( "marca" );
-                String descripcion = resultSet.getString ( "descripcion" );
-                double precio = resultSet.getDouble ( "precio" );
-                if(descripcion.equals ( "Accesorio" ))
-                {
-                    Accesorio a = new Accesorio ( id, cod, tipoProducto, stock, talla, color, marca, precio);
-                    resultado.add ( a );
+                    int id = resultSet.getInt ( "id" );
+                    String cod = resultSet.getString ( "codigo" );
+                    String tipoProducto = resultSet.getString ( "tipo_producto" );
+                    int stock = resultSet.getInt ( "stock" );
+                    String talla = resultSet.getString ( "talla" );
+                    String color = resultSet.getString ( "color" );
+                    String marca = resultSet.getString ( "marca" );
+                    String descripcion = resultSet.getString ( "descripcion" );
+                    double precio = resultSet.getDouble ( "precio" );
+                    if (descripcion.equals ( "Accesorio" )) {
+                        Accesorio a = new Accesorio ( id, cod, tipoProducto, stock, talla, color, marca, precio );
+                        resultado.add ( a );
+                    } else {
+                        Prenda p = new Prenda ( id, cod, tipoProducto, stock, talla, color, marca, precio );
+                        resultado.add ( p );
+                    }
                 }
-                else
-                {
-                    Prenda p = new Prenda ( id, cod, tipoProducto, stock, talla, color, marca, precio);
-                    resultado.add ( p );
+                try {
+                    bw = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/SelectProductos.txt", false ) );
+                    Iterator<Producto> it = resultado.iterator ();
+                    bw.write ( String.valueOf ( resultado.size () ) );
+                    bw.newLine ();
+                    while (it.hasNext ()) {
+                        Producto p = it.next ();
+                        bw.write ( String.valueOf ( p.getId () ) );
+                        bw.newLine ();
+                        bw.write ( p.getCodigo () );
+                        bw.newLine ();
+                        bw.write ( p.getNombre () );
+                        bw.newLine ();
+                        bw.write ( String.valueOf ( p.getStock () ) );
+                        bw.newLine ();
+                        bw.write ( p.getTalla () );
+                        bw.newLine ();
+                        bw.write ( p.getColor () );
+                        bw.newLine ();
+                        bw.write ( p.getMarca () );
+                        bw.newLine ();
+                        bw.write ( p.getDescripcion () );
+                        bw.newLine ();
+                        bw.write ( String.valueOf ( p.getPrecio () ) );
+                        bw.newLine ();
+                    }
+                } catch (IOException e) {
+                    System.out.println ( e.getMessage () );
+                    LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+                    listar = false;
+                } finally {
+                    try {
+                        bw.close ();
+                    } catch (IOException ex) {
+                        ex.getMessage ();
+                        listar = false;
+                    }
                 }
-            }
-            try{
-                bw=new BufferedWriter(new FileWriter ( "ARKA/src/Ficheros/SelectProductos.txt", false ));
-                Iterator<Producto> it = resultado.iterator ();
-                bw.write ( String.valueOf ( resultado.size () ) );
-                bw.newLine ();
-                while (it.hasNext ())
-                {
-                    Producto p = it.next ();
-                    bw.write ( String.valueOf ( p.getId () ) );
-                    bw.newLine ();
-                    bw.write ( p.getCodigo () );
-                    bw.newLine ();
-                    bw.write ( p.getNombre () );
-                    bw.newLine ();
-                    bw.write ( String.valueOf ( p.getStock () ));
-                    bw.newLine ();
-                    bw.write ( p.getTalla () );
-                    bw.newLine ();
-                    bw.write ( p.getColor () );
-                    bw.newLine ();
-                    bw.write ( p.getMarca () );
-                    bw.newLine ();
-                    bw.write ( p.getDescripcion () );
-                    bw.newLine ();
-                    bw.write ( String.valueOf ( p.getPrecio () ) );
-                    bw.newLine ();
-                }
-            }
-            catch(IOException e){
-                System.out.println (e.getMessage ());
+            } catch (SQLException e) {
+                System.out.println ( e.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+                listar = false;
             }
-            finally{
-                try{
-                    bw.close ();
-                }
-                catch(IOException ex)
-                {
-                    ex.getMessage ();
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println (e.getMessage ());
-            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
         }
-        return Collections.singletonList ( resultado );
+        else{
+            listar = false;
+        }
+
+        return listar;
     }
 }
 

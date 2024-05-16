@@ -96,7 +96,15 @@ public class ModificarEmpleadoFrame extends JFrame {
                 LecturaYEscrituraDeFicheros.modificarEmpleado(info);
                 EmpleadoDAO ee = new EmpleadoDAO ();
                 ee.modificar ();
-                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString());
+                if(LecturaYEscrituraDeFicheros.error () == null)
+                {
+                    JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString());
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
+                    LecturaYEscrituraDeFicheros.escribirError ( "" );
+                }
                 dispose();
             }
         });

@@ -1,5 +1,4 @@
 - Crear documento para pruebas.
-- Crear y configurar mensajes de error.
-- Pantalla login usuarios.
+- Errores: campos vacíos ,tipo erróneo y errores de login.
 - Método aviso stock.
 - (secundario) implementar imágenes.

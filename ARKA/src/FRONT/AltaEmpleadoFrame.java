@@ -45,6 +45,7 @@ public class AltaEmpleadoFrame extends JFrame {
                 LecturaYEscrituraDeFicheros.insertEmpleados(info);
                 EmpleadoDAO ee = new EmpleadoDAO ();
                     ee.crear ();
+
                     if(LecturaYEscrituraDeFicheros.error () == null)
                     {
                         JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,"Empleado creado correctamente.");

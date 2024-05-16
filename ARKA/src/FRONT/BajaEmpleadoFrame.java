@@ -24,7 +24,7 @@ public class BajaEmpleadoFrame extends JFrame {
         listarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ConsultarEmpleadoFrame().setVisible(true);
+                    new ConsultarEmpleadoFrame().setVisible(true);
             }
         });
 
