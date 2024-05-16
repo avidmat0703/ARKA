@@ -253,8 +253,27 @@ public class ProductoDAO  implements UtilesDAO {
         else{
             listar = false;
         }
-
         return listar;
+    }
+    public boolean stock() {
+        boolean stock = true;
+        BufferedReader br = null;
+            String sql = "CALL stock()";
+            Connection connection = UtilesDAO.conectar ();
+            if (connection != null) {
+                try {
+                    PreparedStatement sentencia = connection.prepareStatement ( sql );
+                    sentencia.executeUpdate ();
+                    connection.close ();
+                } catch (SQLException ex) {
+                    System.out.println ( ex.getMessage () );
+                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                    stock = false;
+                }
+            } else {
+                stock = false;
+            }
+            return stock;
     }
 }
 

@@ -26,6 +26,7 @@ public class Principal {
         //LecturaYEscrituraDeFicheros.listarVentas ();
        // LecturaYEscrituraDeFicheros.listarEmpleados();
         //LecturaYEscrituraDeFicheros.listarProductos ();
-        LecturaYEscrituraDeFicheros.Login ( "12345678A" );
+        //LecturaYEscrituraDeFicheros.Login ( "12345678A" );
+        System.out.println (p.stock ());
     }
 }

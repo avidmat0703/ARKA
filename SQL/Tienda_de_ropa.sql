@@ -220,11 +220,7 @@ BEGIN
             LEAVE bucle;
         ELSE
             SET vcontador = vcontador + 1;
-            IF vcontador = 1 THEN
-                SET mensaje = CONCAT('ID: ', vid, ' Stock: ', vstock, '.');
-            ELSE
-                SET mensaje = CONCAT(mensaje, ' ID: ', vid, ' Stock: ', vstock, '.');
-            END IF;
+                SET mensaje = CONCAT(mensaje, ' ID: ', vid, ' Stock: ', vstock, '.\r\n');
         END IF;
     END LOOP;
     CLOSE cursor1;
@@ -268,5 +264,5 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
 CALL existe_empleado('12345678A');
--- call stock();
+ call stock();
 call contrasena('12345678A', '1234');
