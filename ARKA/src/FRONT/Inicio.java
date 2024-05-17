@@ -1,8 +1,6 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
-import BACK.DAO.EmpleadoDAO;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,7 +48,6 @@ public class Inicio extends JFrame {
                         JOptionPane.showMessageDialog(Inicio.this, LecturaYEscrituraDeFicheros.error ());
                         LecturaYEscrituraDeFicheros.escribirError ( "" );
                     }
-
                 }
             }
         });
