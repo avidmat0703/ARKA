@@ -4,6 +4,7 @@ import BACK.Class.LecturaYEscrituraDeFicheros;
 import BACK.DAO.EmpleadoDAO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -63,9 +64,14 @@ public class ModificarEmpleadoFrame extends JFrame {
                 boolean empty=false;
                     info = String.valueOf ( cont + "," + DNIField.getText());
                     if(DNIField.getText ().isEmpty ()) {
-                        JOptionPane.showMessageDialog ( ModificarEmpleadoFrame.this, "Debe introducir el DNI de un empleado", "Error", JOptionPane.ERROR_MESSAGE );
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog ( ModificarEmpleadoFrame.this, "Debe introducir el DNI de un empleado", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                     }
-                    else{
+                    else {
                     StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
                         if (chkNombre.isSelected()) {
                             cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
@@ -140,19 +146,32 @@ public class ModificarEmpleadoFrame extends JFrame {
                             }
                         }
                         if(empty){
-                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+                            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                            int nuevoAncho = 70;
+                            int nuevoAlto = 70;
+                            Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                            ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                         }
-                        else{
+                        else {
                             LecturaYEscrituraDeFicheros.modificarEmpleado(info);
 
-                            if(LecturaYEscrituraDeFicheros.error () == null)
-                            {
-                                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString());
+                            if(LecturaYEscrituraDeFicheros.error () == null) {
+                                ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
+                                int nuevoAncho = 100;
+                                int nuevoAlto = 100;
+                                Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                                ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString(), "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
                                 DNIField.setText ( "" );
                             }
-                            else
-                            {
-                                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE);
+                            else {
+                                ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                                int nuevoAncho = 70;
+                                int nuevoAlto = 70;
+                                Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                                ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                                 LecturaYEscrituraDeFicheros.escribirError ( "" );
                             }
                         }

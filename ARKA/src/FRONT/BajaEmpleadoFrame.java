@@ -5,6 +5,7 @@ import BACK.Class.LecturaYEscrituraDeFicheros;
 import BACK.DAO.EmpleadoDAO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,14 +40,30 @@ public class BajaEmpleadoFrame extends JFrame {
                     info = dni;
                     LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
                     if (LecturaYEscrituraDeFicheros.error() == null) {
-                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
-                    } else {
-                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error(),"Error", JOptionPane.ERROR_MESSAGE);
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
+                        int nuevoAncho = 100;
+                        int nuevoAlto = 100;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
+                    }
+                    else {
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error(),"Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                         LecturaYEscrituraDeFicheros.escribirError("");
                     }
                 }
-                 else {
-                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Debe introducir el DNI de un empleado.", "Error", JOptionPane.ERROR_MESSAGE);
+                else {
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Debe introducir el DNI de un empleado.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
             }
         });

@@ -5,6 +5,7 @@ import BACK.DAO.EmpleadoDAO;
 import BACK.DAO.ProductoDAO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -69,7 +70,12 @@ public class ModificarProductoFrame extends JFrame {
                 boolean empty = false;
                 info = String.valueOf ( cont + "," + idField.getText());
                 if(idField.getText ().isEmpty ()) {
-                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID de un producto.", "Error", JOptionPane.ERROR_MESSAGE );
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID de un producto.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado );
                 }
                 else{
                     StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
@@ -169,19 +175,32 @@ public class ModificarProductoFrame extends JFrame {
                             precioField.setText ( "" );
                         }
                     }
-                    if(empty){
-                        JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    if(empty) {
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                     }
                     else{
                         LecturaYEscrituraDeFicheros.modificarProducto(info);
-                        if(LecturaYEscrituraDeFicheros.error () == null)
-                        {
-                            JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString());
+                        if(LecturaYEscrituraDeFicheros.error () == null) {
+                            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
+                            int nuevoAncho = 100;
+                            int nuevoAlto = 100;
+                            Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                            ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                            JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString(), "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
                             idField.setText ( "" );
                         }
-                        else
-                        {
-                            JOptionPane.showMessageDialog(ModificarProductoFrame.this, LecturaYEscrituraDeFicheros.error ());
+                        else {
+                            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                            int nuevoAncho = 70;
+                            int nuevoAlto = 70;
+                            Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                            ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                            JOptionPane.showMessageDialog(ModificarProductoFrame.this, LecturaYEscrituraDeFicheros.error (), "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                             LecturaYEscrituraDeFicheros.escribirError ( "" );
                         }
                     }

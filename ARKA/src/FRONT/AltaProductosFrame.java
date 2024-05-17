@@ -4,6 +4,7 @@ import BACK.Class.LecturaYEscrituraDeFicheros;
 import BACK.DAO.ProductoDAO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -58,22 +59,23 @@ public class AltaProductosFrame extends JFrame {
                 String color = colorField.getText ();
                 String marca = marcaField.getText ();
                 String precio = precioField.getText ();
-                if(!((!prendaRadioButton.isSelected () && !accesorioRadioButton.isSelected ()) || codigo.isEmpty ()||nombre.isEmpty ()||stock.isEmpty ()||talla.isEmpty ()||color.isEmpty ()||marca.isEmpty ()||precio.isEmpty ()))
-                {
+                if(!((!prendaRadioButton.isSelected () && !accesorioRadioButton.isSelected ()) || codigo.isEmpty ()||nombre.isEmpty ()||stock.isEmpty ()||talla.isEmpty ()||color.isEmpty ()||marca.isEmpty ()||precio.isEmpty ())) {
                     info = codigoField.getText() + "," + nombreField.getText() + "," + stockField.getText() + "," + tallaField.getText() +  "," + colorField.getText() + "," + marcaField.getText() + "," +
                             precioField.getText();
-                    if(accesorioRadioButton.isSelected ())
-                    {
+                    if(accesorioRadioButton.isSelected ()) {
                         info += ",Accesorio";
                     }
-                    if(prendaRadioButton.isSelected ())
-                    {
+                    if(prendaRadioButton.isSelected ()) {
                         info += ",Prenda";
                     }
                     LecturaYEscrituraDeFicheros.insertProductos(info);
-                    if(LecturaYEscrituraDeFicheros.error () == null )
-                    {
-                        JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
+                    if(LecturaYEscrituraDeFicheros.error () == null ) {
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
+                        int nuevoAncho = 100;
+                        int nuevoAlto = 100;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
                         codigoField.setText("");
                         nombreField.setText("");
                         stockField.setText("");
@@ -82,17 +84,28 @@ public class AltaProductosFrame extends JFrame {
                         marcaField.setText("");
                         precioField.setText("");
                     }
-                    else{
-                        JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE);
+                    else {
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                         LecturaYEscrituraDeFicheros.escribirError( "" );
                     }
                 }
-                else{
-                    JOptionPane.showMessageDialog ( AltaProductosFrame.this,"No deben haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE );
+                else {
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog ( AltaProductosFrame.this,"No deben haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
             }
         });
-            JPanel buttonPanel = new JPanel();
+
+        JPanel buttonPanel = new JPanel();
         buttonPanel.add(altaButton);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         add(buttonPanel);

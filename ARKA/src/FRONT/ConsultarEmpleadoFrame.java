@@ -21,7 +21,12 @@ public class ConsultarEmpleadoFrame extends JFrame {
             cargarDatosEmpleados();
         }
         else {
-            JOptionPane.showMessageDialog(ConsultarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE);
+            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+            int nuevoAncho = 70;
+            int nuevoAlto = 70;
+            Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+            ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+            JOptionPane.showMessageDialog(ConsultarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
             LecturaYEscrituraDeFicheros.escribirError ( "" );
         }
     }

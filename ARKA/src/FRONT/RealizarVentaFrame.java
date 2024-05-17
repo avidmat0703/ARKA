@@ -4,6 +4,7 @@ import BACK.Class.LecturaYEscrituraDeFicheros;
 import BACK.DAO.VentaDAO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,27 +30,38 @@ public class RealizarVentaFrame extends JFrame {
                 String cantidad = cantidadField.getText();
 
                 if (codigo.isEmpty() || cantidad.isEmpty()) {
-
-                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, "No deben haber campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, "No deben haber campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                }
+                else {
                     info = codigo + "," + cantidad;
-
                     LecturaYEscrituraDeFicheros.insertVentas(info);
-
                     VentaDAO v = new VentaDAO();
                     v.crear();
-
                     if (LecturaYEscrituraDeFicheros.error() == null) {
-                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente");
-                    } else {
-                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, LecturaYEscrituraDeFicheros.error(),"Error", JOptionPane.ERROR_MESSAGE);
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
+                        int nuevoAncho = 100;
+                        int nuevoAlto = 100;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
+                    }
+                    else {
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, LecturaYEscrituraDeFicheros.error(),"Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                         LecturaYEscrituraDeFicheros.escribirError("");
                     }
                 }
             }
         });
-
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(ventaButton);

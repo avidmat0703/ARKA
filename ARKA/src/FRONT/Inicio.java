@@ -36,7 +36,12 @@ public class Inicio extends JFrame {
                 String usuario = usuarioField.getText();
                 String contrasena = new String(contraseñaField.getText());
                 if(usuario.isEmpty() || contrasena.isEmpty()) {
-                    JOptionPane.showMessageDialog(Inicio.this, "Rellene los campos");
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog(null, "Rellene los campos", "Aviso", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
                 }
                 else {
                     info = usuario + "," + contrasena;
@@ -51,7 +56,7 @@ public class Inicio extends JFrame {
                         int nuevoAlto = 70;
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                        JOptionPane.showMessageDialog(Inicio.this, LecturaYEscrituraDeFicheros.error (), "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                        JOptionPane.showMessageDialog(Inicio.this, LecturaYEscrituraDeFicheros.error (), "Aviso", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                         LecturaYEscrituraDeFicheros.escribirError ( "" );
                     }
                 }
