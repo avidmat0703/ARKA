@@ -1,2 +1,2 @@
-12345678A
-1234
+newuser
+password

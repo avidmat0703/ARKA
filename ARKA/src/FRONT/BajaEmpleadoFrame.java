@@ -32,22 +32,33 @@ public class BajaEmpleadoFrame extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = DNIField.getText();
-                LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
-                EmpleadoDAO em = new EmpleadoDAO();
-                em.eliminar();
-                if(LecturaYEscrituraDeFicheros.error () == null)
-                {
-                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
-                }
-                else {
-                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
-                    LecturaYEscrituraDeFicheros.escribirError ( "" );
-                }
+                // Obtener el valor del campo DNI
+                String dni = DNIField.getText();
 
-                dispose();
+                if (dni.isEmpty()) {
+
+                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "El campo DNI debe estar completo.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+
+                    info = dni;
+
+                    LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
+
+                    EmpleadoDAO em = new EmpleadoDAO();
+                    em.eliminar();
+
+                    if (LecturaYEscrituraDeFicheros.error() == null) {
+                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
+                    } else {
+                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error());
+                        LecturaYEscrituraDeFicheros.escribirError("");
+                    }
+
+                    dispose();
+                }
             }
         });
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));

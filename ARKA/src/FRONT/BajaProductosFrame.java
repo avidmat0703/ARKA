@@ -33,21 +33,32 @@ public class BajaProductosFrame extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = idField.getText();
-                LecturaYEscrituraDeFicheros.eliminarProductos(info);
-                ProductoDAO p = new ProductoDAO ();
-                p.eliminar ();
-                if(LecturaYEscrituraDeFicheros.error () == null)
-                {
-                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
+                String id = idField.getText();
+
+                if (id.isEmpty()) {
+
+                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "El campo ID debe estar completo.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+
+                    info = id;
+
+                    LecturaYEscrituraDeFicheros.eliminarProductos(info);
+
+                    ProductoDAO p = new ProductoDAO();
+                    p.eliminar();
+
+                    if (LecturaYEscrituraDeFicheros.error() == null) {
+                        JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente.");
+                    } else {
+                        JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error());
+                        LecturaYEscrituraDeFicheros.escribirError("");
+                    }
+
+                    dispose();
                 }
-                else {
-                    JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
-                    LecturaYEscrituraDeFicheros.escribirError ( "" );
-                }
-                dispose();
             }
         });
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));

@@ -22,24 +22,36 @@ public class RealizarVentaFrame extends JFrame {
         addFieldWithMargin("Cantidad:", cantidadField = new JTextField(20));
 
         JButton ventaButton = new JButton("Realizar venta");
-        ventaButton.addActionListener(new ActionListener () {
+        ventaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = codigoField.getText() + "," + cantidadField.getText();
-                LecturaYEscrituraDeFicheros.insertVentas(info);
-                VentaDAO v = new VentaDAO();
-                v.crear();
-                if(LecturaYEscrituraDeFicheros.error () == null)
-                {
-                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente");
+                String codigo = codigoField.getText();
+                String cantidad = cantidadField.getText();
+
+                if (codigo.isEmpty() || cantidad.isEmpty()) {
+
+                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Ambos campos, código y cantidad, deben estar completos.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+
+                    info = codigo + "," + cantidad;
+
+                    LecturaYEscrituraDeFicheros.insertVentas(info);
+
+                    VentaDAO v = new VentaDAO();
+                    v.crear();
+
+                    if (LecturaYEscrituraDeFicheros.error() == null) {
+                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente");
+                    } else {
+                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, LecturaYEscrituraDeFicheros.error());
+                        LecturaYEscrituraDeFicheros.escribirError("");
+                    }
+
+                    dispose();
                 }
-                else {
-                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, LecturaYEscrituraDeFicheros.error ());
-                    LecturaYEscrituraDeFicheros.escribirError ( "" );
-                }
-                dispose();
             }
         });
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(ventaButton);

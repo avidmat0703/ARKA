@@ -48,36 +48,53 @@ public class AltaProductosFrame extends JFrame {
 
 
         JButton altaButton = new JButton("Dar de alta este producto");
-        altaButton.addActionListener(new ActionListener () {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                info = codigoField.getText() + "," + nombreField.getText() + "," + stockField.getText() + "," + tallaField.getText() +  "," + colorField.getText() + "," + marcaField.getText() + "," +
-                        precioField.getText();
-                if(accesorioRadioButton.isSelected ())
-                {
-                    info += ",Accesorio";
-                }
-                if(prendaRadioButton.isSelected ())
-                {
-                    info += ",Prenda";
-                }
-                LecturaYEscrituraDeFicheros.insertProductos(info);
-                ProductoDAO p = new ProductoDAO ();
-                p.crear ();
-                if(LecturaYEscrituraDeFicheros.error () == null )
-                {
-                    JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
-                }
-                else{
-                    JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
-                    LecturaYEscrituraDeFicheros.escribirError( "" );
-                }
+            altaButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
 
-                dispose();
-            }
-        });
+                    String codigo = codigoField.getText();
+                    String nombre = nombreField.getText();
+                    String stock = stockField.getText();
+                    String talla = tallaField.getText();
+                    String color = colorField.getText();
+                    String marca = marcaField.getText();
+                    String precio = precioField.getText();
 
-        JPanel buttonPanel = new JPanel();
+
+                    if (codigo.isEmpty() || nombre.isEmpty() || stock.isEmpty() ||
+                            talla.isEmpty() || color.isEmpty() || marca.isEmpty() ||
+                            precio.isEmpty() || (!accesorioRadioButton.isSelected() && !prendaRadioButton.isSelected())) {
+
+                        JOptionPane.showMessageDialog(AltaProductosFrame.this, "Todos los campos deben estar completos, y debe seleccionar un tipo de producto (Accesorio o Prenda).", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+
+                        info = codigo + "," + nombre + "," + stock + "," + talla + "," + color + "," + marca + "," + precio;
+
+                        if (accesorioRadioButton.isSelected()) {
+                            info += ",Accesorio";
+                        } else if (prendaRadioButton.isSelected()) {
+                            info += ",Prenda";
+                        }
+
+                        LecturaYEscrituraDeFicheros.insertProductos(info);
+
+                        ProductoDAO p = new ProductoDAO();
+                        p.crear();
+
+                        if (LecturaYEscrituraDeFicheros.error() == null) {
+                            JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
+                        } else {
+                            JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error());
+                            LecturaYEscrituraDeFicheros.escribirError("");
+                        }
+
+                        dispose();
+                    }
+                }
+            });
+
+
+            JPanel buttonPanel = new JPanel();
         buttonPanel.add(altaButton);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         add(buttonPanel);
