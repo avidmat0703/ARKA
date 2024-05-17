@@ -66,69 +66,125 @@ public class ModificarProductoFrame extends JFrame {
                         cont++;
                     }
                 }
+                boolean empty = false;
                 info = String.valueOf ( cont + "," + idField.getText());
-                LecturaYEscrituraDeFicheros.modificarProducto(info);
-                idField.setText ( "" );
-
-                StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
-                if (chkCodigo.isSelected()) {
-                    cambios.append(" - Código en tienda modificado: ").append(codigoField.getText()).append("\n");
-                    info += "," + "codigo";
-                    info += "," + codigoField.getText();
-                    codigoField.setText ( "" );
+                if(idField.getText ().isEmpty ()) {
+                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID de algún producto.", "Error", JOptionPane.ERROR_MESSAGE );
                 }
-                if (chkNombre.isSelected()) {
-                    cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
-                    info += "," + "Tipo_producto";
-                    info += "," + nombreField.getText();
-                    nombreField.setText ( "" );
-                }
-                if (chkStock.isSelected()) {
-                    cambios.append(" - Stock modificado: ").append(stockField.getText()).append("\n");
-                    info += "," + "stock";
-                    info += "," + stockField.getText();
-                    stockField.setText ( "" );
-                }
-                if (chkTalla.isSelected()) {
-                    cambios.append(" - Talla modificada: ").append(tallaField.getText()).append("\n");
-                    info += "," + "talla";
-                    info += "," + tallaField.getText();
-                    tallaField.setText ( "" );
-                }
-                if (chkDescripcion.isSelected()) {
-                    cambios.append(" - Descripción modificada: ").append(descripcionField.getText()).append("\n");
-                    info += "," + "descripcion";
-                    info += "," + descripcionField.getText();
-                }
-                if (chkColor.isSelected()) {
-                    cambios.append(" - Color modificado: ").append(colorField.getText()).append("\n");
-                    info += "," + "color";
-                    info += "," + colorField.getText();
-                    colorField.setText ( "" );
-                }
-                if (chkMarca.isSelected()) {
-                    cambios.append(" - Marca modificada: ").append(marcaField.getText()).append("\n");
-                    info += "," + "marca";
-                    info += "," + marcaField.getText();
-                    marcaField.setText ( "" );
-                }
-                if (chkPrecio.isSelected()) {
-                    cambios.append(" - Precio modificado: ").append(precioField.getText()).append("\n");
-                    info += "," + "precio";
-                    info += "," + precioField.getText();
-                    precioField.setText ( "" );
-                }
-                LecturaYEscrituraDeFicheros.modificarProducto(info);
-                ProductoDAO p = new ProductoDAO ();
-                p.modificar ();
-                if(LecturaYEscrituraDeFicheros.error () == null)
-                {
-                    JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString());
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(ModificarProductoFrame.this, LecturaYEscrituraDeFicheros.error ());
-                    LecturaYEscrituraDeFicheros.escribirError ( "" );
+                else{
+                    StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
+                    if (chkCodigo.isSelected()) {
+                        cambios.append(" - Código en tienda modificado: ").append(codigoField.getText()).append("\n");
+                        info += "," + "codigo";
+                        info += "," + codigoField.getText();
+                        if(codigoField.getText ().isEmpty ())
+                        {
+                            empty=true;
+                        }
+                        else{
+                            codigoField.setText ( "" );
+                        }
+                    }
+                    if (chkNombre.isSelected()) {
+                        cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
+                        info += "," + "Tipo_producto";
+                        info += "," + nombreField.getText();
+                        if(nombreField.getText ().isEmpty ())
+                        {
+                            empty=true;
+                        }
+                        else{
+                            nombreField.setText ( "" );
+                        }
+                    }
+                    if (chkStock.isSelected()) {
+                        cambios.append(" - Stock modificado: ").append(stockField.getText()).append("\n");
+                        info += "," + "stock";
+                        info += "," + stockField.getText();
+                        if(stockField.getText ().isEmpty ())
+                        {
+                            empty=true;
+                        }
+                        else{
+                            stockField.setText ( "" );
+                        }
+                    }
+                    if (chkTalla.isSelected()) {
+                        cambios.append(" - Talla modificada: ").append(tallaField.getText()).append("\n");
+                        info += "," + "talla";
+                        info += "," + tallaField.getText();
+                        if(tallaField.getText ().isEmpty ())
+                        {
+                            empty=true;
+                        }
+                        else{
+                            tallaField.setText ( "" );
+                        }
+                    }
+                    if (chkDescripcion.isSelected()) {
+                        cambios.append(" - Descripción modificada: ").append(descripcionField.getText()).append("\n");
+                        info += "," + "descripcion";
+                        info += "," + descripcionField.getText();
+                        if(descripcionField.getText ().isEmpty ())
+                        {
+                            empty=true;
+                        }
+                        else{
+                            descripcionField.setText ( "" );
+                        }
+                    }
+                    if (chkColor.isSelected()) {
+                        cambios.append(" - Color modificado: ").append(colorField.getText()).append("\n");
+                        info += "," + "color";
+                        info += "," + colorField.getText();
+                        if(colorField.getText ().isEmpty ())
+                        {
+                            empty=true;
+                        }
+                        else{
+                           colorField.setText ( "" );
+                        }
+                    }
+                    if (chkMarca.isSelected()) {
+                        cambios.append(" - Marca modificada: ").append(marcaField.getText()).append("\n");
+                        info += "," + "marca";
+                        info += "," + marcaField.getText();
+                        if(marcaField.getText ().isEmpty ())
+                        {
+                            empty=true;
+                        }
+                        else{
+                            marcaField.setText ( "" );
+                        }
+                    }
+                    if (chkPrecio.isSelected()) {
+                        cambios.append(" - Precio modificado: ").append(precioField.getText()).append("\n");
+                        info += "," + "precio";
+                        info += "," + precioField.getText();
+                        if(precioField.getText ().isEmpty ())
+                        {
+                            empty=true;
+                        }
+                        else{
+                            precioField.setText ( "" );
+                        }
+                    }
+                    if(empty){
+                        JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Los campos seleccionados no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                        LecturaYEscrituraDeFicheros.modificarEmpleado(info);
+                        if(LecturaYEscrituraDeFicheros.error () == null)
+                        {
+                            JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString());
+                            idField.setText ( "" );
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(ModificarProductoFrame.this, LecturaYEscrituraDeFicheros.error ());
+                            LecturaYEscrituraDeFicheros.escribirError ( "" );
+                        }
+                    }
                 }
 
             }

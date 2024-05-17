@@ -21,38 +21,46 @@ public class ProductoDAO implements UtilesDAO {
         BufferedReader br = null;
         try {
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/InsertProductos.txt" ) );
-            String cod = br.readLine ();
-            String nombre = br.readLine ();
-            int stock = Integer.valueOf ( br.readLine () );
-            String talla = br.readLine ();
-            String color = br.readLine ();
-            String marca = br.readLine ();
-            double precio = Double.valueOf ( br.readLine () );
-            String descripcion = br.readLine ();
-            String sql = "INSERT INTO Producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) \n" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
-            Connection connection = UtilesDAO.conectar ();
-            if (connection != null) {
-                try {
-                    PreparedStatement sentencia = connection.prepareStatement ( sql );
-                    sentencia.setString ( 1, cod );
-                    sentencia.setString ( 2, nombre );
-                    sentencia.setInt ( 3, stock );
-                    sentencia.setString ( 4, talla );
-                    sentencia.setString ( 5, color );
-                    sentencia.setString ( 6, marca );
-                    sentencia.setString ( 7, descripcion );
-                    sentencia.setDouble ( 8, precio );
-                    sentencia.executeUpdate ();
-                    connection.close ();
-                } catch (SQLException ex) {
-                    System.out.println ( ex.getMessage () );
-                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+            String cod = br.readLine ();
+            if(cod!=null)
+            {
+                String nombre = br.readLine ();
+                int stock = Integer.valueOf ( br.readLine () );
+                String talla = br.readLine ();
+                String color = br.readLine ();
+                String marca = br.readLine ();
+                double precio = Double.valueOf ( br.readLine () );
+                String descripcion = br.readLine ();
+                String sql = "INSERT INTO Producto (codigo, tipo_producto, stock, talla, color, marca, descripcion, precio) \n" +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+
+                Connection connection = UtilesDAO.conectar ();
+                if (connection != null) {
+                    try {
+                        PreparedStatement sentencia = connection.prepareStatement ( sql );
+                        sentencia.setString ( 1, cod );
+                        sentencia.setString ( 2, nombre );
+                        sentencia.setInt ( 3, stock );
+                        sentencia.setString ( 4, talla );
+                        sentencia.setString ( 5, color );
+                        sentencia.setString ( 6, marca );
+                        sentencia.setString ( 7, descripcion );
+                        sentencia.setDouble ( 8, precio );
+                        sentencia.executeUpdate ();
+                        connection.close ();
+                    } catch (SQLException ex) {
+                        System.out.println ( ex.getMessage () );
+                        LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+                    }
+                } else {
+                    crear = false;
                 }
-            } else {
-                crear = false;
             }
+            else{
+                LecturaYEscrituraDeFicheros.escribirError ( "No pueden haber campos vacíos." );
+            }
+
         } catch (IOException e) {
             System.out.println ( e.getMessage () );
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );

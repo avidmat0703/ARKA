@@ -46,6 +46,8 @@ public class LecturaYEscrituraDeFicheros {
             } catch (IOException e) {
                 System.out.println ( e.getMessage () );
             }
+            EmpleadoDAO em = new EmpleadoDAO();
+            em.eliminar();
         }
     }
 
@@ -62,6 +64,8 @@ public class LecturaYEscrituraDeFicheros {
             } catch (IOException e) {
                 System.out.println ( e.getMessage () );
             }
+            ProductoDAO pp = new ProductoDAO();
+            pp.eliminar();
         }
     }
 
@@ -74,8 +78,6 @@ public class LecturaYEscrituraDeFicheros {
                 salida.write ( parte );
                 salida.newLine ();
             }
-            ProductoDAO p = new ProductoDAO ();
-            p.crear ();
         } catch (IOException ex) {
             System.out.println ( ex.getMessage () );
         } finally {
@@ -84,6 +86,8 @@ public class LecturaYEscrituraDeFicheros {
             } catch (IOException e) {
                 System.out.println ( e.getMessage () );
             }
+            ProductoDAO p = new ProductoDAO ();
+            p.crear ();
         }
     }
 
@@ -105,9 +109,9 @@ public class LecturaYEscrituraDeFicheros {
             } catch (IOException e) {
                 System.out.println ( e.getMessage () );
             }
+            EmpleadoDAO ee = new EmpleadoDAO();
+            ee.crear();
         }
-        EmpleadoDAO ee = new EmpleadoDAO();
-        ee.crear();
         return s;
     }
 
@@ -147,6 +151,8 @@ public class LecturaYEscrituraDeFicheros {
             } catch (IOException e) {
                 System.out.println ( e.getMessage () );
             }
+            EmpleadoDAO ee = new EmpleadoDAO ();
+            ee.modificar ();
         }
     }
 
@@ -167,6 +173,8 @@ public class LecturaYEscrituraDeFicheros {
             } catch (IOException e) {
                 System.out.println ( e.getMessage () );
             }
+            ProductoDAO p = new ProductoDAO ();
+            p.modificar ();
         }
     }
 
