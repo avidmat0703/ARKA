@@ -1,4 +1,4 @@
-6
+5
 1
 P001
 Camiseta
@@ -44,12 +44,3 @@ Verde
 The North Face
 Prenda
 99.99
-6
-A001
-Pulsera
-20
-L
-Oro
-Tous
-Accesorio
-75.99

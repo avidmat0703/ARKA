@@ -1,8 +1,8 @@
-P001
-2
-2
-2
-2
-2
-2
+A001
+Pulsera
+20
+L
+Oro
+Tous
+75.99
 Accesorio

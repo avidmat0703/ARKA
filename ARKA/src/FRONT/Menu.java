@@ -76,9 +76,9 @@ public class Menu extends JFrame {
         setMinimumSize(new Dimension(400, 260));
         setLocationRelativeTo(null);
         if(LecturaYEscrituraDeFicheros.stock ()!=null){
-            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/3a5d6583049505cfa1d6db07ca41bf44.jpg"));
-            int nuevoAncho = 70;
-            int nuevoAlto = 70;
+            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/diavlo.jpg"));
+            int nuevoAncho = 150;
+            int nuevoAlto = 150;
             Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
             JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.stock(), "Aviso de Stock", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);

@@ -2,6 +2,7 @@ package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -45,7 +46,12 @@ public class Inicio extends JFrame {
                         new Menu().setVisible(true);
                     }
                     else {
-                        JOptionPane.showMessageDialog(Inicio.this, LecturaYEscrituraDeFicheros.error ());
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(Inicio.this, LecturaYEscrituraDeFicheros.error (), "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                         LecturaYEscrituraDeFicheros.escribirError ( "" );
                     }
                 }
