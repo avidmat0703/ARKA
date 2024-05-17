@@ -36,31 +36,49 @@ public class AltaEmpleadoFrame extends JFrame {
         addFieldWithMargin("Contraseña:", contrasenaField = new JTextField(20));
 
         JButton altaButton = new JButton("Dar de alta este empleado");
-        altaButton.addActionListener(new ActionListener () {
+        altaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = DNIField.getText() + "," + nombreField.getText() + "," + apellido1Field.getText() + "," +
-                        apellido2Field.getText() + "," + emailField.getText() + "," + telefonoField.getText() + "," +
-                        puestoField.getText() + "," + contrasenaField.getText ();
-                LecturaYEscrituraDeFicheros.insertEmpleados(info);
-                EmpleadoDAO ee = new EmpleadoDAO ();
-                    ee.crear ();
 
+                String dni = DNIField.getText();
+                String nombre = nombreField.getText();
+                String apellido1 = apellido1Field.getText();
+                String apellido2 = apellido2Field.getText();
+                String email = emailField.getText();
+                String telefono = telefonoField.getText();
+                String puesto = puestoField.getText();
+                String contrasena = contrasenaField.getText();
                     if(LecturaYEscrituraDeFicheros.error () == null)
                     {
-                        JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,"Empleado creado correctamente.");
+                        if (dni.isEmpty() || nombre.isEmpty() || apellido1.isEmpty() ||
+                                apellido2.isEmpty() || email.isEmpty() || telefono.isEmpty() ||
+                                puesto.isEmpty() || contrasena.isEmpty()) {
+
+                            JOptionPane.showMessageDialog(AltaEmpleadoFrame.this, "Todos los campos deben estar completos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else{
+
+
+
+                            JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,"Empleado creado correctamente.");
+                            DNIField.setText("");
+                            nombreField.setText("");
+                            apellido1Field.setText("");
+                            apellido2Field.setText("");
+                            emailField.setText("");
+                            telefonoField.setText("");
+                            puestoField.setText("");
+                            contrasenaField.setText ( "" );
+                        }
                     }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,LecturaYEscrituraDeFicheros.error ());
+                    else {
+                        JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error () );
                         LecturaYEscrituraDeFicheros.escribirError ( "" );
                     }
-
-                dispose();
             }
         });
 
-        JPanel buttonPanel = new JPanel();
+            JPanel buttonPanel = new JPanel();
         buttonPanel.add(altaButton);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         add(buttonPanel);

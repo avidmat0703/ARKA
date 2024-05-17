@@ -51,6 +51,14 @@ public class AltaProductosFrame extends JFrame {
         altaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String codigo = codigoField.getText ();
+                String nombre = nombreField.getText ();
+                String stock = stockField.getText ();
+                String talla = tallaField.getText ();
+                String color = colorField.getText ();
+                String marca = marcaField.getText ();
+                String precio = precioField.getText ();
+
                 info = codigoField.getText() + "," + nombreField.getText() + "," + stockField.getText() + "," + tallaField.getText() +  "," + colorField.getText() + "," + marcaField.getText() + "," +
                         precioField.getText();
                 if(accesorioRadioButton.isSelected ())
@@ -62,22 +70,74 @@ public class AltaProductosFrame extends JFrame {
                     info += ",Prenda";
                 }
                 LecturaYEscrituraDeFicheros.insertProductos(info);
-                ProductoDAO p = new ProductoDAO ();
-                p.crear ();
+
                 if(LecturaYEscrituraDeFicheros.error () == null )
                 {
-                    JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
+                    if(codigo.isEmpty () || nombre.isEmpty () || stock.isEmpty () || talla.isEmpty () || color.isEmpty () || marca.isEmpty () || precio.isEmpty ())
+                    {
+                        JOptionPane.showMessageDialog(AltaProductosFrame.this, "Todos los campos deben estar completos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
+                        codigoField.setText("");
+                        nombreField.setText("");
+                        stockField.setText("");
+                        tallaField.setText("");
+                        colorField.setText("");
+                        marcaField.setText("");
+                        precioField.setText("");
+                    }
+
                 }
                 else{
                     JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
                     LecturaYEscrituraDeFicheros.escribirError( "" );
                 }
-
-                dispose();
             }
         });
+            /*altaButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
 
-        JPanel buttonPanel = new JPanel();
+                    String codigo = codigoField.getText();
+                    String nombre = nombreField.getText();
+                    String stock = stockField.getText();
+                    String talla = tallaField.getText();
+                    String color = colorField.getText();
+                    String marca = marcaField.getText();
+                    String precio = precioField.getText();
+
+
+                    else {
+
+                        info = codigo + "," + nombre + "," + stock + "," + talla + "," + color + "," + marca + "," + precio;
+
+                        if (accesorioRadioButton.isSelected()) {
+                            info += ",Accesorio";
+                        } else if (prendaRadioButton.isSelected()) {
+                            info += ",Prenda";
+                        }
+
+                        LecturaYEscrituraDeFicheros.insertProductos(info);
+
+                        ProductoDAO p = new ProductoDAO();
+                        p.crear();
+
+                        if (LecturaYEscrituraDeFicheros.error() == null) {
+                            JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
+                        } else {
+                            JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error());
+                            LecturaYEscrituraDeFicheros.escribirError("");
+                        }
+
+                        dispose();
+                    }
+                }
+            });*/
+
+
+            JPanel buttonPanel = new JPanel();
         buttonPanel.add(altaButton);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         add(buttonPanel);

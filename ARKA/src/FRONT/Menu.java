@@ -21,7 +21,6 @@ public class Menu extends JFrame {
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 10, 0);
 
-
         Dimension buttonSize = new Dimension(300, 30);
 
         JButton btnGestionProductos = new JButton("Gestión de productos");
@@ -76,10 +75,8 @@ public class Menu extends JFrame {
         pack();
         setMinimumSize(new Dimension(400, 260));
         setLocationRelativeTo(null);
-        /*ProductoDAO p = new ProductoDAO ();
-        if(p.stock () == null){
-            JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.error ());
-            LecturaYEscrituraDeFicheros.escribirError ( "" );
-        }*/
+        if(LecturaYEscrituraDeFicheros.stock ()!=null){
+            JOptionPane.showMessageDialog(Menu.this,LecturaYEscrituraDeFicheros.stock ( ));
+        }
     }
 }

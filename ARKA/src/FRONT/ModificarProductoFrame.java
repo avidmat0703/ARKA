@@ -68,27 +68,32 @@ public class ModificarProductoFrame extends JFrame {
                 }
                 info = String.valueOf ( cont + "," + idField.getText());
                 LecturaYEscrituraDeFicheros.modificarProducto(info);
+                idField.setText ( "" );
 
                 StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
                 if (chkCodigo.isSelected()) {
                     cambios.append(" - Código en tienda modificado: ").append(codigoField.getText()).append("\n");
                     info += "," + "codigo";
                     info += "," + codigoField.getText();
+                    codigoField.setText ( "" );
                 }
                 if (chkNombre.isSelected()) {
                     cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
                     info += "," + "Tipo_producto";
                     info += "," + nombreField.getText();
+                    nombreField.setText ( "" );
                 }
                 if (chkStock.isSelected()) {
                     cambios.append(" - Stock modificado: ").append(stockField.getText()).append("\n");
                     info += "," + "stock";
                     info += "," + stockField.getText();
+                    stockField.setText ( "" );
                 }
                 if (chkTalla.isSelected()) {
                     cambios.append(" - Talla modificada: ").append(tallaField.getText()).append("\n");
                     info += "," + "talla";
                     info += "," + tallaField.getText();
+                    tallaField.setText ( "" );
                 }
                 if (chkDescripcion.isSelected()) {
                     cambios.append(" - Descripción modificada: ").append(descripcionField.getText()).append("\n");
@@ -99,16 +104,19 @@ public class ModificarProductoFrame extends JFrame {
                     cambios.append(" - Color modificado: ").append(colorField.getText()).append("\n");
                     info += "," + "color";
                     info += "," + colorField.getText();
+                    colorField.setText ( "" );
                 }
                 if (chkMarca.isSelected()) {
                     cambios.append(" - Marca modificada: ").append(marcaField.getText()).append("\n");
                     info += "," + "marca";
                     info += "," + marcaField.getText();
+                    marcaField.setText ( "" );
                 }
                 if (chkPrecio.isSelected()) {
                     cambios.append(" - Precio modificado: ").append(precioField.getText()).append("\n");
                     info += "," + "precio";
                     info += "," + precioField.getText();
+                    precioField.setText ( "" );
                 }
                 LecturaYEscrituraDeFicheros.modificarProducto(info);
                 ProductoDAO p = new ProductoDAO ();
@@ -123,7 +131,6 @@ public class ModificarProductoFrame extends JFrame {
                     LecturaYEscrituraDeFicheros.escribirError ( "" );
                 }
 
-                dispose();
             }
         });
 

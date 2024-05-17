@@ -40,14 +40,38 @@ public class BajaProductosFrame extends JFrame {
                 if(LecturaYEscrituraDeFicheros.error () == null)
                 {
                     JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
+                    idField.setText ( "" );
                 }
                 else {
                     JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
                     LecturaYEscrituraDeFicheros.escribirError ( "" );
                 }
-                dispose();
+                String id = idField.getText();
+
+                if (id.isEmpty()) {
+
+                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "El campo ID debe estar completo.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+
+                    info = id;
+
+                    LecturaYEscrituraDeFicheros.eliminarProductos(info);
+
+                    ProductoDAO pp = new ProductoDAO();
+                    pp.eliminar();
+
+                    if (LecturaYEscrituraDeFicheros.error() == null) {
+                        JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente.");
+                    } else {
+                        JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error());
+                        LecturaYEscrituraDeFicheros.escribirError("");
+                    }
+
+                    dispose();
+                }
             }
         });
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));

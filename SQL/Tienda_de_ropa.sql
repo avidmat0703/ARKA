@@ -43,12 +43,14 @@ begin
 declare cont int;
 set cont = (select count(*) from producto where id = new.id_producto);
 if cont = 0 then
-SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El id introducido no pertenece a ningún producto.';
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El id introducido no pertenece a ningún producto.';
+elseif(select stock from producto where id = new.id_producto)<new.unidades then
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No hay suficiente stock.';
 else
-set new.precio_unidad = (select precio from producto where id = new.id_producto);
-set new.total = new.precio_unidad * new.unidades;
-set new.fecha = now();
-    END IF;
+	set new.precio_unidad = (select precio from producto where id = new.id_producto);
+	set new.total = new.precio_unidad * new.unidades;
+	set new.fecha = now();
+end if;
 end $$
 delimiter ;
 
@@ -201,7 +203,8 @@ delimiter ;
 
 DELIMITER //
 
-CREATE PROCEDURE stock()
+CREATE FUNCTION stock()
+RETURNS VARCHAR(255) DETERMINISTIC
 BEGIN
     DECLARE vfinal INT DEFAULT 0;
     DECLARE vstock INT;
@@ -220,14 +223,13 @@ BEGIN
             LEAVE bucle;
         ELSE
             SET vcontador = vcontador + 1;
-                SET mensaje = CONCAT(mensaje, ' ID: ', vid, ' Stock: ', vstock, '.');
+                SET mensaje = CONCAT(mensaje, 'ID: ', vid, ' Stock: ', vstock, ',');
         END IF;
     END LOOP;
     CLOSE cursor1;
 
     IF vcontador > 0 THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = mensaje;
+        RETURN mensaje;
     END IF;
 END //
 
@@ -263,6 +265,9 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
+INSERT INTO empleado (DNI, contrasena) values('a', 'a');
 CALL existe_empleado('12345678A');
- call stock();
 call contrasena('12345678A', '1234');
+select stock() as resultado;
+insert into venta (id, id_producto, unidades) values(1, 4, 3);
+select * from venta;
