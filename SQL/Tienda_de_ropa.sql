@@ -1,49 +1,49 @@
-Drop database if exists Tienda;
-Create database Tienda character set utf8mb4;
+DROP DATABASE IF EXISTS Tienda;
+CREATE DATABASE Tienda CHARACTER SET utf8mb4;
 Use Tienda; 
 
-CREATE table producto (
+CREATE TABLE producto (
 	id INT AUTO_INCREMENT primary key,
-    codigo varchar(20) unique,
-	tipo_producto varchar(20),
-    stock int,
-    talla varchar(10),
-    color varchar(10),
-    marca varchar(20),
+    codigo VARCHAR(20) UNIQUE,
+	tipo_producto VARCHAR(20),
+    stock INT,
+    talla VARCHAR(10),
+    color VARCHAR(10),
+    marca VARCHAR(20),
 	precio DECIMAL(5,2),
-    descripcion varchar(20)
+    descripcion VARCHAR(20)
 );
 
 CREATE TABLE empleado (
-	DNI varchar(9) primary key,
-    nombre varchar(20),
-    apellido varchar(20),
-    apellido2 varchar(20),
-    email varchar(50),
-    telefono int,
-    puesto varchar(20),
-    contrasena varchar(20)
+	DNI VARCHAR(9) primary key,
+    nombre VARCHAR(20),
+    apellido VARCHAR(20),
+    apellido2 VARCHAR(20),
+    email VARCHAR(50),
+    telefono INT,
+    puesto VARCHAR(20),
+    contrasena VARCHAR(20)
 );
 
 CREATE TABLE venta(
-    id int AUTO_INCREMENT primary key,
-    id_producto int,
-    unidades int,
-    precio_unidad decimal(5,2),
-	total decimal(5,2),
-    fecha datetime
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT,
+    unidades INT,
+    precio_unidad DECIMAL(5,2),
+	total DECIMAL(5,2),
+    fecha DATETIME
 );
 
 delimiter $$
-drop trigger if exists tg_beforeinsertventa$$
-create trigger tg_beforeinsertventa
-before insert on venta
-for each row
-begin
-declare cont int;
-set cont = (select count(*) from producto where id = new.id_producto);
+DROP TRIGGER IF EXISTS tg_beforeinsertventa$$
+CREATE TRIGGER tg_beforeinsertventa
+BEFORE INSERT ON venta
+FOR EACH ROW
+BEGIN
+DECLARE cont int;
+SET cont = (select count(*) from producto where id = new.id_producto);
 if cont = 0 then
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El id introducido no pertenece a ningún producto.';
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No existe ningún producto con el id introducido.';
 elseif(select stock from producto where id = new.id_producto)<new.unidades then
 	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No hay suficiente stock.';
 else
@@ -55,27 +55,27 @@ end $$
 delimiter ;
 
 delimiter $$
-drop trigger if exists tg_beforeinsertproducto$$
-create trigger tg_beforeinsertproducto
-before insert on producto
-for each row
-begin
-declare cont int;
-set cont = (select count(*) from producto where codigo = new.codigo);
+DROP TRIGGER IF EXISTS tg_beforeinsertproducto$$
+CREATE TRIGGER tg_beforeinsertproducto
+BEFORE INSERT ON producto
+FOR EACH ROW
+BEGIN
+DECLARE cont int;
+SET cont = (select count(*) from producto where codigo = new.codigo);
 if cont > 0 then
-SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El código del producto ya existe.';
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe un producto con el código introducido.';
     END IF;
 end $$
 delimiter ;
 
 delimiter $$
-drop trigger if exists tg_beforeinsertempleado$$
-create trigger tg_beforeinsertempleado
-before insert on empleado
-for each row
-begin
-declare cont int;
-set cont = (select count(*) from empleado where dni = new.dni);
+DROP TRIGGER IF EXISTS tg_beforeinsertempleado$$
+CREATE TRIGGER tg_beforeinsertempleado
+BEFORE INSERT ON empleado
+FOR EACH ROW
+BEGIN
+DECLARE cont int;
+SET cont = (select count(*) from empleado where dni = new.dni);
 if cont > 0 then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe un empleado con el DNI introducido.';
     END IF;
@@ -83,13 +83,13 @@ end $$
 delimiter ;
 
 delimiter $$
-drop trigger if exists tg_beforedeleteproducto$$
-create trigger tg_beforedeleteproducto
-before delete on producto
-for each row
-begin
-declare cont int;
-set cont = (select count(*) from producto where codigo = old.codigo);
+DROP TRIGGER IF EXISTS tg_beforedeleteproducto$$
+CREATE TRIGGER tg_beforedeleteproducto
+BEFORE DELETE ON PRODUCTO
+FOR EACH ROW
+BEGIN
+DECLARE cont int;
+SET cont = (select count(*) from producto where codigo = old.codigo);
 if cont = 0 then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No existe ningún producto con el id introducido.';
     END IF;
@@ -97,13 +97,13 @@ end $$
 delimiter ;
 
 delimiter $$
-drop trigger if exists tg_beforedeleteempleado$$
-create trigger tg_beforedeleteempleado
-before delete on empleado
-for each row
-begin
-declare cont int;
-set cont = (select count(*) from empleado where dni = old.dni);
+DROP TRIGGER IF EXISTS tg_beforedeleteempleado$$
+CREATE TRIGGER tg_beforedeleteempleado
+BEFORE DELETE ON Empleado
+FOR EACH ROW
+BEGIN
+DECLARE cont int;
+SET cont = (select count(*) from empleado where dni = old.dni);
 if cont = 0 then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No existe ningún empleado con el dni introducido.';
     END IF;
@@ -121,7 +121,7 @@ BEGIN
     WHERE DNI = dni_param;
     IF dni_count = 0 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El usuario no existe.';
+        SET MESSAGE_TEXT = 'No se encuentra ningún empleado con el dni introducido';
     END IF;
 END //
 DELIMITER ;
@@ -132,17 +132,14 @@ CREATE PROCEDURE delete_producto(IN id_param INT)
 BEGIN
     DECLARE id_count INT;
 
-    -- Contar el número de filas con el id especificado
     SELECT COUNT(*) INTO id_count
     FROM producto
     WHERE id = id_param;
 
-    -- Si no existe el id, lanzar una excepción
     IF id_count = 0 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El id especificado no existe en la tabla producto';
+        SET MESSAGE_TEXT = 'No se encuentra ningún producto con el id introducido.';
     ELSE
-        -- Si existe, eliminar el producto
         DELETE FROM producto
         WHERE id = id_param;
     END IF;
@@ -155,46 +152,41 @@ CREATE PROCEDURE update_producto(IN id_param INT)
 BEGIN
     DECLARE id_count INT;
 
-    -- Contar el número de filas con el id especificado
     SELECT COUNT(*) INTO id_count
     FROM producto
     WHERE id = id_param;
 
-    -- Si no existe el id, lanzar una excepción
     IF id_count = 0 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El id especificado no existe en la tabla producto';
+        SET MESSAGE_TEXT = 'No se encuentra ningún producto con el id introducido.';
     END IF;
 END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE update_empleado(IN dni_param varchar(9))
+CREATE PROCEDURE update_empleado(IN dni_param VARCHAR(9))
 BEGIN
     DECLARE dni_count INT;
 
-    -- Contar el número de filas con el id especificado
     SELECT COUNT(*) INTO dni_count
     FROM empleado
     WHERE dni = dni_param;
 
-    -- Si no existe el id, lanzar una excepción
     IF dni_count = 0 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El dni especificado no existe en la tabla "Empleado"';
+        SET MESSAGE_TEXT = 'No existe ningún empleado con el dni introducido.';
     END IF;
 END //
 delimiter ;
 
 DELIMITER //
-CREATE PROCEDURE contrasena( IN dni_param varchar(9), contrasena_param varchar(16))
+CREATE PROCEDURE contrasena( IN dni_param VARCHAR(9), contrasena_param VARCHAR(16))
 BEGIN
 	DECLARE contrasena_count INT;
     
 	SELECT COUNT(*) INTO contrasena_count
     FROM Empleado where dni = dni_param and contrasena = contrasena_param;
 
-    -- Si no existe el id, lanzar una excepción
     IF contrasena_count = 0 THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La contraseña es incorrecta.';
     END IF;
@@ -215,7 +207,6 @@ BEGIN
     DECLARE cursor1 CURSOR FOR 
         SELECT id, stock FROM producto WHERE stock <= 5;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET vfinal = 1;
-
     OPEN cursor1;
     bucle: LOOP
         FETCH cursor1 INTO vid, vstock;
@@ -265,9 +256,6 @@ VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123
 
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto) 
 VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
-INSERT INTO empleado (DNI, contrasena) values('a', 'a');
-CALL existe_empleado('12345678A');
-call contrasena('12345678A', '1234');
-select stock() as resultado;
-insert into venta (id, id_producto, unidades) values(1, 4, 3);
-select * from venta;
+
+INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto, contrasena) 
+VALUES ('a', 'a', 'a', 'a', 'a', 91, 'a', 'a');

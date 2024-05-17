@@ -63,7 +63,7 @@ public class ModificarEmpleadoFrame extends JFrame {
                 boolean empty=false;
                     info = String.valueOf ( cont + "," + DNIField.getText());
                     if(DNIField.getText ().isEmpty ()) {
-                        JOptionPane.showMessageDialog ( ModificarEmpleadoFrame.this, "Debe introducir el DNI de algún empleado.", "Error", JOptionPane.ERROR_MESSAGE );
+                        JOptionPane.showMessageDialog ( ModificarEmpleadoFrame.this, "Debe introducir el DNI de un empleado", "Error", JOptionPane.ERROR_MESSAGE );
                     }
                     else{
                     StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
@@ -140,7 +140,7 @@ public class ModificarEmpleadoFrame extends JFrame {
                             }
                         }
                         if(empty){
-                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "Los campos seleccionados no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         else{
                             LecturaYEscrituraDeFicheros.modificarEmpleado(info);
@@ -152,7 +152,7 @@ public class ModificarEmpleadoFrame extends JFrame {
                             }
                             else
                             {
-                                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
+                                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE);
                                 LecturaYEscrituraDeFicheros.escribirError ( "" );
                             }
                         }

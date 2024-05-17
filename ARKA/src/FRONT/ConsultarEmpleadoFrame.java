@@ -21,7 +21,7 @@ public class ConsultarEmpleadoFrame extends JFrame {
             cargarDatosEmpleados();
         }
         else {
-            JOptionPane.showMessageDialog(ConsultarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
+            JOptionPane.showMessageDialog(ConsultarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE);
             LecturaYEscrituraDeFicheros.escribirError ( "" );
         }
     }

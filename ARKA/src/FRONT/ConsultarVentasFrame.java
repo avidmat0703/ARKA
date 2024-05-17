@@ -22,7 +22,7 @@ public class ConsultarVentasFrame extends JFrame {
             cargarDatosVentas();
         }
         else {
-            JOptionPane.showMessageDialog(ConsultarVentasFrame.this, LecturaYEscrituraDeFicheros.error ());
+            JOptionPane.showMessageDialog(ConsultarVentasFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE);
             LecturaYEscrituraDeFicheros.escribirError ( "" );
         }
     }

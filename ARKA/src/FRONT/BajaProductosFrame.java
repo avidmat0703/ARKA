@@ -34,14 +34,14 @@ public class BajaProductosFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String id = idField.getText();
                 if (id.isEmpty()) {
-                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "El campo ID debe estar completo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "Debe introducir el ID de un producto.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     info = idField.getText ();
                     LecturaYEscrituraDeFicheros.eliminarProductos(info);
                     if (LecturaYEscrituraDeFicheros.error() == null) {
                         JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente.");
                     } else {
-                        JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error());
+                        JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error(),"Error", JOptionPane.ERROR_MESSAGE);
                         LecturaYEscrituraDeFicheros.escribirError("");
                     }
                 }

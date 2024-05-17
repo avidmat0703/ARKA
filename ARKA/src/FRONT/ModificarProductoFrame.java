@@ -69,7 +69,7 @@ public class ModificarProductoFrame extends JFrame {
                 boolean empty = false;
                 info = String.valueOf ( cont + "," + idField.getText());
                 if(idField.getText ().isEmpty ()) {
-                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID de algún producto.", "Error", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID de un producto.", "Error", JOptionPane.ERROR_MESSAGE );
                 }
                 else{
                     StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
@@ -170,10 +170,10 @@ public class ModificarProductoFrame extends JFrame {
                         }
                     }
                     if(empty){
-                        JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Los campos seleccionados no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                     else{
-                        LecturaYEscrituraDeFicheros.modificarEmpleado(info);
+                        LecturaYEscrituraDeFicheros.modificarProducto(info);
                         if(LecturaYEscrituraDeFicheros.error () == null)
                         {
                             JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString());

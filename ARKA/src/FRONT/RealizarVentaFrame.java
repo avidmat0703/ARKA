@@ -30,7 +30,7 @@ public class RealizarVentaFrame extends JFrame {
 
                 if (codigo.isEmpty() || cantidad.isEmpty()) {
 
-                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Ambos campos, código y cantidad, deben estar completos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, "No deben haber campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
 
                     info = codigo + "," + cantidad;
@@ -43,11 +43,9 @@ public class RealizarVentaFrame extends JFrame {
                     if (LecturaYEscrituraDeFicheros.error() == null) {
                         JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente");
                     } else {
-                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, LecturaYEscrituraDeFicheros.error());
+                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, LecturaYEscrituraDeFicheros.error(),"Error", JOptionPane.ERROR_MESSAGE);
                         LecturaYEscrituraDeFicheros.escribirError("");
                     }
-
-                    dispose();
                 }
             }
         });

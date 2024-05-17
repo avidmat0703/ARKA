@@ -65,12 +65,12 @@ public class AltaEmpleadoFrame extends JFrame {
                         contrasenaField.setText ( "" );
                     }
                     else {
-                        JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error () );
+                        JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE );
                         LecturaYEscrituraDeFicheros.escribirError ( "" );
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"No pueden haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"No deben haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE );
                 }
 
             }

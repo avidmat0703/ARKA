@@ -58,20 +58,21 @@ public class AltaProductosFrame extends JFrame {
                 String color = colorField.getText ();
                 String marca = marcaField.getText ();
                 String precio = precioField.getText ();
-
-                info = codigoField.getText() + "," + nombreField.getText() + "," + stockField.getText() + "," + tallaField.getText() +  "," + colorField.getText() + "," + marcaField.getText() + "," +
-                        precioField.getText();
-                if(accesorioRadioButton.isSelected ())
+                if(!((!prendaRadioButton.isSelected () && !accesorioRadioButton.isSelected ()) || codigo.isEmpty ()||nombre.isEmpty ()||stock.isEmpty ()||talla.isEmpty ()||color.isEmpty ()||marca.isEmpty ()||precio.isEmpty ()))
                 {
-                    info += ",Accesorio";
-                }
-                if(prendaRadioButton.isSelected ())
-                {
-                    info += ",Prenda";
-                }
-                LecturaYEscrituraDeFicheros.insertProductos(info);
-                if(LecturaYEscrituraDeFicheros.error () == null )
-                {
+                    info = codigoField.getText() + "," + nombreField.getText() + "," + stockField.getText() + "," + tallaField.getText() +  "," + colorField.getText() + "," + marcaField.getText() + "," +
+                            precioField.getText();
+                    if(accesorioRadioButton.isSelected ())
+                    {
+                        info += ",Accesorio";
+                    }
+                    if(prendaRadioButton.isSelected ())
+                    {
+                        info += ",Prenda";
+                    }
+                    LecturaYEscrituraDeFicheros.insertProductos(info);
+                    if(LecturaYEscrituraDeFicheros.error () == null )
+                    {
                         JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente");
                         codigoField.setText("");
                         nombreField.setText("");
@@ -81,9 +82,13 @@ public class AltaProductosFrame extends JFrame {
                         marcaField.setText("");
                         precioField.setText("");
                     }
+                    else{
+                        JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE);
+                        LecturaYEscrituraDeFicheros.escribirError( "" );
+                    }
+                }
                 else{
-                    JOptionPane.showMessageDialog(AltaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
-                    LecturaYEscrituraDeFicheros.escribirError( "" );
+                    JOptionPane.showMessageDialog ( AltaProductosFrame.this,"No deben haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE );
                 }
             }
         });

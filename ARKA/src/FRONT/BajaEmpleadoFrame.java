@@ -41,12 +41,12 @@ public class BajaEmpleadoFrame extends JFrame {
                     if (LecturaYEscrituraDeFicheros.error() == null) {
                         JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
                     } else {
-                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error());
+                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error(),"Error", JOptionPane.ERROR_MESSAGE);
                         LecturaYEscrituraDeFicheros.escribirError("");
                     }
                 }
                  else {
-                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "El campo DNI debe estar completo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Debe introducir el DNI de un empleado.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
