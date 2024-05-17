@@ -60,58 +60,103 @@ public class ModificarEmpleadoFrame extends JFrame {
                         cont++;
                     }
                 }
-                StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
-                info = String.valueOf ( cont + "," + DNIField.getText());
-                DNIField.setText ( "" );
+                boolean empty=false;
+                    info = String.valueOf ( cont + "," + DNIField.getText());
+                    if(DNIField.getText ().isEmpty ()) {
+                        JOptionPane.showMessageDialog ( ModificarEmpleadoFrame.this, "Debe introducir el DNI de algún empleado.", "Error", JOptionPane.ERROR_MESSAGE );
+                    }
+                    else{
+                    StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
+                        if (chkNombre.isSelected()) {
+                            cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
+                            info += "," + "nombre";
+                            info += "," + nombreField.getText();
+                            if(nombreField.getText ().isEmpty ())
+                            {
+                                empty=true;
+                            }
+                            else{
+                                nombreField.setText ( "" );
+                            }
 
-                if (chkNombre.isSelected()) {
-                    cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
-                    info += "," + "nombre";
-                    info += "," + nombreField.getText();
-                    nombreField.setText ( "" );
-                }
-                if (chkApellido1.isSelected()) {
-                    cambios.append(" - Primer apellido modificado: ").append(apellido1Field.getText()).append("\n");
-                    info += "," + "apellido";
-                    info+= "," + apellido1Field.getText();
-                    apellido1Field.setText ( "" );
-                }
-                if (chkApellido2.isSelected()) {
-                    cambios.append(" - Segundo apellido modificado: ").append(apellido2Field.getText()).append("\n");
-                    info += "," + "apellido2";
-                    info+= "," + apellido2Field.getText();
-                    apellido2Field.setText ( "" );
-                }
-                if (chkEmail.isSelected()) {
-                    cambios.append(" - Email modificado: ").append(emailField.getText()).append("\n");
-                    info += "," + "email";
-                    info+= "," + emailField.getText();
-                    emailField.setText ( "" );
-                }
-                if (chkTelefono.isSelected()) {
-                    cambios.append(" - Teléfono modificado: ").append(telefonoField.getText()).append("\n");
-                    info += "," + "telefono";
-                    info += "," + telefonoField.getText();
-                    telefonoField.setText ( "" );
-                }
-                if (chkPuesto.isSelected()) {
-                    cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
-                    info += "," + "puesto";
-                    info += "," + puestoField.getText();
-                    puestoField.setText ( "" );
-                }
-                LecturaYEscrituraDeFicheros.modificarEmpleado(info);
-                EmpleadoDAO ee = new EmpleadoDAO ();
-                ee.modificar ();
-                if(LecturaYEscrituraDeFicheros.error () == null)
-                {
-                    JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString());
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
-                    LecturaYEscrituraDeFicheros.escribirError ( "" );
-                }
+                        }
+                        if (chkApellido1.isSelected()) {
+                            cambios.append(" - Primer apellido modificado: ").append(apellido1Field.getText()).append("\n");
+                            info += "," + "apellido";
+                            info+= "," + apellido1Field.getText();
+                            if(apellido1Field.getText ().isEmpty ())
+                            {
+                                empty=true;
+                            }
+                            else {
+                                apellido1Field.setText ( "" );
+                            }
+                        }
+                        if (chkApellido2.isSelected()) {
+                            cambios.append(" - Segundo apellido modificado: ").append(apellido2Field.getText()).append("\n");
+                            info += "," + "apellido2";
+                            info+= "," + apellido2Field.getText();
+                            if(apellido2Field.getText ().isEmpty ())
+                            {
+                                empty=true;
+                            }
+                            else{
+                                apellido2Field.setText ( "" );
+                            }
+                        }
+                        if (chkEmail.isSelected()) {
+                            cambios.append(" - Email modificado: ").append(emailField.getText()).append("\n");
+                            info += "," + "email";
+                            info+= "," + emailField.getText();
+                            if(emailField.getText ().isEmpty ())
+                            {
+                                empty=true;
+                            }
+                            else{
+                                emailField.setText ( "" );
+                            }
+
+                        }
+                        if (chkTelefono.isSelected()) {
+                            cambios.append ( " - Teléfono modificado: " ).append ( telefonoField.getText () ).append ( "\n" );
+                            info += "," + "telefono";
+                            info += "," + telefonoField.getText ();
+                            if (telefonoField.getText ().isEmpty ()) {
+                                empty = true;
+                            } else{
+                                telefonoField.setText ( "" );
+                            }
+                        }
+                        if (chkPuesto.isSelected()) {
+                            cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
+                            info += "," + "puesto";
+                            info += "," + puestoField.getText();
+                            if(puestoField.getText ().isEmpty ())
+                            {
+                                empty=true;
+                            }
+                            else{
+                                puestoField.setText ( "" );
+                            }
+                        }
+                        if(empty){
+                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "Los campos seleccionados no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else{
+                            LecturaYEscrituraDeFicheros.modificarEmpleado(info);
+
+                            if(LecturaYEscrituraDeFicheros.error () == null)
+                            {
+                                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString());
+                                DNIField.setText ( "" );
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
+                                LecturaYEscrituraDeFicheros.escribirError ( "" );
+                            }
+                        }
+                    }
             }
         });
 

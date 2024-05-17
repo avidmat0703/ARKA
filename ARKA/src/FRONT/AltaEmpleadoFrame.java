@@ -48,33 +48,31 @@ public class AltaEmpleadoFrame extends JFrame {
                 String telefono = telefonoField.getText();
                 String puesto = puestoField.getText();
                 String contrasena = contrasenaField.getText();
+                if(!(dni.isEmpty ()||nombre.isEmpty ()||apellido1.isEmpty ()||apellido2.isEmpty ()||email.isEmpty ()||telefono.isEmpty ()||puesto.isEmpty ()||contrasena.isEmpty ()))
+                {
+                    info=dni + "," + nombre + "," + apellido1 + "," + apellido2 + "," + email + "," + telefono + "," + puesto + "," + contrasena;
+                    LecturaYEscrituraDeFicheros.insertEmpleados ( info );
                     if(LecturaYEscrituraDeFicheros.error () == null)
                     {
-                        if (dni.isEmpty() || nombre.isEmpty() || apellido1.isEmpty() ||
-                                apellido2.isEmpty() || email.isEmpty() || telefono.isEmpty() ||
-                                puesto.isEmpty() || contrasena.isEmpty()) {
-
-                            JOptionPane.showMessageDialog(AltaEmpleadoFrame.this, "Todos los campos deben estar completos.", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                        else{
-
-
-
-                            JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,"Empleado creado correctamente.");
-                            DNIField.setText("");
-                            nombreField.setText("");
-                            apellido1Field.setText("");
-                            apellido2Field.setText("");
-                            emailField.setText("");
-                            telefonoField.setText("");
-                            puestoField.setText("");
-                            contrasenaField.setText ( "" );
-                        }
+                        JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,"Empleado creado correctamente.");
+                        DNIField.setText("");
+                        nombreField.setText("");
+                        apellido1Field.setText("");
+                        apellido2Field.setText("");
+                        emailField.setText("");
+                        telefonoField.setText("");
+                        puestoField.setText("");
+                        contrasenaField.setText ( "" );
                     }
                     else {
                         JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error () );
                         LecturaYEscrituraDeFicheros.escribirError ( "" );
                     }
+                }
+                else{
+                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"No pueden haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE );
+                }
+
             }
         });
 

@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 public class BajaProductosFrame extends JFrame {
     private JTextField idField;
-
     private String info = "";
 
     public BajaProductosFrame() {
@@ -33,41 +32,18 @@ public class BajaProductosFrame extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                info = idField.getText();
-                LecturaYEscrituraDeFicheros.eliminarProductos(info);
-                ProductoDAO p = new ProductoDAO ();
-                p.eliminar ();
-                if(LecturaYEscrituraDeFicheros.error () == null)
-                {
-                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
-                    idField.setText ( "" );
-                }
-                else {
-                    JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
-                    LecturaYEscrituraDeFicheros.escribirError ( "" );
-                }
                 String id = idField.getText();
-
                 if (id.isEmpty()) {
-
                     JOptionPane.showMessageDialog(BajaProductosFrame.this, "El campo ID debe estar completo.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-
-                    info = id;
-
+                    info = idField.getText ();
                     LecturaYEscrituraDeFicheros.eliminarProductos(info);
-
-                    ProductoDAO pp = new ProductoDAO();
-                    pp.eliminar();
-
                     if (LecturaYEscrituraDeFicheros.error() == null) {
                         JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente.");
                     } else {
                         JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error());
                         LecturaYEscrituraDeFicheros.escribirError("");
                     }
-
-                    dispose();
                 }
             }
         });
