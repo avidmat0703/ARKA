@@ -3,6 +3,8 @@
 
 -Al acceder, se mostrará una ventana emergente dando aviso de falta de stock en determinados productos.
 
+-En caso de no acceder, saldrá un mensaje de error en el que no se ha podido conectar al SGBD.
+
 
 -Al cerrar la ventana, se mostrará la pantalla principal con las siguientes opciones:
     *Consultar inventario
@@ -24,7 +26,7 @@ CONSULTAR VENTAS
 -Al clicar "Volver atrás", la ventana se cierra.
 
 GESTIÓN DE PRODUCTOS
--Al hacer clic en "Gestión de productos", se mostrará n menú con las siguientes opciones:
+-Al hacer clic en "Gestión de productos", se mostrará un menú con las siguientes opciones:
     *Alta de producto
     *Baja de producto
     *Modificar producto
@@ -57,4 +59,69 @@ indicando que el producto se ha dado de baja satisfactoriamente.
 
 MODIFICAR PRODUCTO
 
+-Al hacer clic en "Modificar producto", se mostrará una pantalla con diferentes campos de texto para introducir
+el Id del producto, el código en tienda, el nombre, el stock, la talla, una breve descripción, el color, la marca
+y el precio a modificar del producto, en la pantalla se encuentra un botón "Listar todos los productos" en el que
+al hacer clic saltará una pantalla listando todos los productos de la tienda
 
+-Al elegir el producto que se quiere modificar habrá que hacer clic en el botón "Modificar este producto"
+
+-Cuando se rellenen los campos a modificar del producto saldrá un mensaje con los cambios realizados. Para cerrar la ventana
+abra que darle a la X en la esquina superior derecha de la ventana.
+
+-Al cerrarse la ventana se encontrará de vuelta en la ventana de modificar producto por si quiere modificar otro.
+
+GESTIÓN DE EMPLEADOS
+
+-Al hacer clic en "Gestión de empleados", se mostrará un menu con las siguientes opciones:
+*Alta empleado
+*Baja empleado
+*Modificar empleado
+
+ALTA DE EMPLEADO
+-Al hacer clic en "Alta de empleado", se mostrará una pantalla con diferentes campos de texto para introducir
+los atributos del nuevo empleado.
+
+-Si no se rellenan todos los campos, al pulsar en "Dar de alta este empleado"
+saldrá un mensaje de error en el que menciona que todos los campos deben estar completos.
+
+-En el caso de que estén todos los campos rellenos saldría que el empleado ha sido creado correctamente.
+
+-En el caso de que el DNI del empleado ya exista en la BBDD de la tienda mostrará un mensaje de error
+
+BAJA DE EMPLEADO
+
+-Al hacer clic en "Baja de empleado", se mostrará una pantalla con un botón para listar todos los empleados
+de la tienda y un campo de texto para introducir el DNI del empleado.
+
+-Al hacer clic en el botón "listar todos los empleados" se mostrará una lista con los empleados.
+Al elegir el empleado se autorrellenará el campo del DNI.
+
+-Al hacer clic en "Eliminar este empleado" una vez elegido el empleado con su DNI saldrá un mensaje
+diciendo que el empleado ha sido eliminado correctamente.
+
+-En el caso en el que el campo del DNI no esté completo saltará un mensaje de error en el que se menciona
+que el campo DNI debe estar completo.
+
+MODIFICAR EMPLEADO
+
+-Al hacer clic en "Modificar empleado", se mostrará una pantalla con diferentes campos de texto para modificar los datos
+del empleado.
+
+-En la pantalla se encuentra un botón "Listar todos los empleados" en el que
+al hacer clic saltará una pantalla listando todos los empleados de la tienda
+
+-Al elegir el empleado que se quiere modificar habrá que hacer clic en el botón "Modificar este empleado"
+
+-Cuando se rellenen los campos a modificar del empleado saldrá un mensaje con los cambios realizados. Para cerrar la ventana
+abra que darle a la X en la esquina superior derecha de la ventana.
+
+-Al cerrarse la ventana se encontrará de vuelta en la ventana de modificar empleado por si quiere modificar otro.
+
+REALIZAR VENTA
+
+-Al hacer clic en "Realizar venta", se mostrará una ventana con 2 campos a rellenar (campo "ID" y campo "Cantidad")
+
+-Si uno de los campos no están rellenos al pulsar "realizar venta" saldrá un mensaje de error diciendo que ambos campos, ID y cantidad, deben estar completos.
+
+-Si los campos están rellenos al pulsar "realizar venta", se mostrará un mensaje en la que la venta ha sido realizada
