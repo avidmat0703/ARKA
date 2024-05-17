@@ -21,7 +21,6 @@ public class Menu extends JFrame {
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 10, 0);
 
-
         Dimension buttonSize = new Dimension(300, 30);
 
         JButton btnGestionProductos = new JButton("Gestión de productos");

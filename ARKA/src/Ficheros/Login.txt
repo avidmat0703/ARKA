@@ -1,2 +1,2 @@
-newuser
-password
+12345678A
+1234

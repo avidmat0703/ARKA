@@ -65,7 +65,7 @@ public class LecturaYEscrituraDeFicheros {
         }
     }
 
-    public static void insertProductos(String info) {
+    public static void insertProductos(String info){
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/InsertProductos.txt" ) );
@@ -74,6 +74,8 @@ public class LecturaYEscrituraDeFicheros {
                 salida.write ( parte );
                 salida.newLine ();
             }
+            ProductoDAO p = new ProductoDAO ();
+            p.crear ();
         } catch (IOException ex) {
             System.out.println ( ex.getMessage () );
         } finally {
@@ -104,6 +106,8 @@ public class LecturaYEscrituraDeFicheros {
                 System.out.println ( e.getMessage () );
             }
         }
+        EmpleadoDAO ee = new EmpleadoDAO();
+        ee.crear();
         return s;
     }
 

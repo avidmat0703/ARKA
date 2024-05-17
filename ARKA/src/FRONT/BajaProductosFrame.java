@@ -33,6 +33,19 @@ public class BajaProductosFrame extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                info = idField.getText();
+                LecturaYEscrituraDeFicheros.eliminarProductos(info);
+                ProductoDAO p = new ProductoDAO ();
+                p.eliminar ();
+                if(LecturaYEscrituraDeFicheros.error () == null)
+                {
+                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente");
+                    idField.setText ( "" );
+                }
+                else {
+                    JOptionPane.showMessageDialog(BajaProductosFrame.this, LecturaYEscrituraDeFicheros.error ());
+                    LecturaYEscrituraDeFicheros.escribirError ( "" );
+                }
                 String id = idField.getText();
 
                 if (id.isEmpty()) {
@@ -44,8 +57,8 @@ public class BajaProductosFrame extends JFrame {
 
                     LecturaYEscrituraDeFicheros.eliminarProductos(info);
 
-                    ProductoDAO p = new ProductoDAO();
-                    p.eliminar();
+                    ProductoDAO pp = new ProductoDAO();
+                    pp.eliminar();
 
                     if (LecturaYEscrituraDeFicheros.error() == null) {
                         JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente.");

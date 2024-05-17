@@ -56,9 +56,21 @@ public class BajaEmpleadoFrame extends JFrame {
 
                     dispose();
                 }
+                info = DNIField.getText();
+                LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
+                EmpleadoDAO em = new EmpleadoDAO();
+                em.eliminar();
+                if(LecturaYEscrituraDeFicheros.error () == null)
+                {
+                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.");
+                    DNIField.setText ( "" );
+                }
+                else {
+                    JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
+                    LecturaYEscrituraDeFicheros.escribirError ( "" );
+                }
             }
         });
-
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));

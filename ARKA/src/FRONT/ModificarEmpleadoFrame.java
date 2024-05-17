@@ -62,36 +62,43 @@ public class ModificarEmpleadoFrame extends JFrame {
                 }
                 StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
                 info = String.valueOf ( cont + "," + DNIField.getText());
+                DNIField.setText ( "" );
 
                 if (chkNombre.isSelected()) {
                     cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
                     info += "," + "nombre";
                     info += "," + nombreField.getText();
+                    nombreField.setText ( "" );
                 }
                 if (chkApellido1.isSelected()) {
                     cambios.append(" - Primer apellido modificado: ").append(apellido1Field.getText()).append("\n");
                     info += "," + "apellido";
                     info+= "," + apellido1Field.getText();
+                    apellido1Field.setText ( "" );
                 }
                 if (chkApellido2.isSelected()) {
                     cambios.append(" - Segundo apellido modificado: ").append(apellido2Field.getText()).append("\n");
                     info += "," + "apellido2";
                     info+= "," + apellido2Field.getText();
+                    apellido2Field.setText ( "" );
                 }
                 if (chkEmail.isSelected()) {
                     cambios.append(" - Email modificado: ").append(emailField.getText()).append("\n");
                     info += "," + "email";
                     info+= "," + emailField.getText();
+                    emailField.setText ( "" );
                 }
                 if (chkTelefono.isSelected()) {
                     cambios.append(" - Teléfono modificado: ").append(telefonoField.getText()).append("\n");
                     info += "," + "telefono";
                     info += "," + telefonoField.getText();
+                    telefonoField.setText ( "" );
                 }
                 if (chkPuesto.isSelected()) {
                     cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
                     info += "," + "puesto";
                     info += "," + puestoField.getText();
+                    puestoField.setText ( "" );
                 }
                 LecturaYEscrituraDeFicheros.modificarEmpleado(info);
                 EmpleadoDAO ee = new EmpleadoDAO ();
@@ -105,7 +112,6 @@ public class ModificarEmpleadoFrame extends JFrame {
                     JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, LecturaYEscrituraDeFicheros.error ());
                     LecturaYEscrituraDeFicheros.escribirError ( "" );
                 }
-                dispose();
             }
         });
 
