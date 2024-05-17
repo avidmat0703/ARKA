@@ -22,7 +22,7 @@ public class ConsultarInventarioFrame extends JFrame {
             cargarDatosProductos();
         }
         else {
-            JOptionPane.showMessageDialog(ConsultarInventarioFrame.this, LecturaYEscrituraDeFicheros.error ());
+            JOptionPane.showMessageDialog(ConsultarInventarioFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE);
             LecturaYEscrituraDeFicheros.escribirError ( "" );
         }
     }
