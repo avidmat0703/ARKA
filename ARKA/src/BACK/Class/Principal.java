@@ -18,7 +18,7 @@ public class Principal {
         //System.out.println (p.listar ());
         EmpleadoDAO e = new EmpleadoDAO ();
         //e.crear ();
-        LecturaYEscrituraDeFicheros.eliminarEmpleados ( "1" );
+        //LecturaYEscrituraDeFicheros.eliminarEmpleados ( "1" );
         //e.eliminar ();
         //e.modificar ();
         //System.out.println (e.listar ());
@@ -31,5 +31,6 @@ public class Principal {
         //LecturaYEscrituraDeFicheros.Login ( "12345678A" );
         //p.stock ();
         //System.out.println (LecturaYEscrituraDeFicheros.stock ( ));
+        p.modificar ();
     }
 }

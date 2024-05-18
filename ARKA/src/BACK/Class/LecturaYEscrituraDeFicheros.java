@@ -131,6 +131,8 @@ public class LecturaYEscrituraDeFicheros {
             } catch (IOException e) {
                 System.out.println ( e.getMessage () );
             }
+            VentaDAO v = new VentaDAO();
+            v.crear();
         }
     }
 
@@ -354,6 +356,8 @@ public class LecturaYEscrituraDeFicheros {
     }
 
     public static String stock() {
+        ProductoDAO p = new ProductoDAO ();
+        p.stock ();
         String resultado = "";
         BufferedReader br = null;
         try {
@@ -362,7 +366,6 @@ public class LecturaYEscrituraDeFicheros {
             while(n!=-1){
                 resultado += String.valueOf(Character.valueOf((char) n));
                 n=br.read();
-
             }
         } catch (IOException e) {
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
@@ -373,6 +376,22 @@ public class LecturaYEscrituraDeFicheros {
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             }
         }
+        vaciarstock ();
         return  resultado;
+    }
+    public static void vaciarstock(){
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/Stock.txt" ) );
+            bw.write ( "" );
+        } catch (IOException e) {
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+        } finally {
+            try {
+                bw.close ();
+            } catch (IOException ex) {
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
+            }
+        }
     }
 }

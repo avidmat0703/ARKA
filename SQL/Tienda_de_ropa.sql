@@ -148,7 +148,7 @@ END //
 DELIMITER ;
 DELIMITER //
 
-CREATE PROCEDURE update_producto(IN id_param INT)
+CREATE PROCEDURE existe_producto(IN id_param INT)
 BEGIN
     DECLARE id_count INT;
 

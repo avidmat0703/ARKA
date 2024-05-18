@@ -145,7 +145,7 @@ public class EmpleadoDAO implements UtilesDAO {
                     String campo = br.readLine ();
                     String valor = br.readLine ();
                     String sql = "UPDATE Empleado SET " + campo + " = ? WHERE dni = ?";
-                    String sql2 = "CALL update_empleado(?)";
+                    String sql2 = "CALL existe_empleado(?)";
                     Connection connection = UtilesDAO.conectar ();
                     if(connection != null) {
                         try {

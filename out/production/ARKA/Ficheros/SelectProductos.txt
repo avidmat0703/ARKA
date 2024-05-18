@@ -2,7 +2,7 @@
 1
 P001
 Camiseta
-1
+0
 M
 Rojo
 Nike
@@ -11,7 +11,7 @@ Prenda
 2
 P002
 Pantalón
-30
+4
 L
 Azul
 Adidas
@@ -29,7 +29,7 @@ Prenda
 4
 P004
 Sudadera
-2
+10
 S
 Gris
 Reebok
@@ -38,7 +38,7 @@ Prenda
 5
 P005
 Chaqueta
-1
+10
 XL
 Verde
 The North Face

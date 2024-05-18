@@ -1,4 +1,4 @@
 1
-6
-codigo
-P006
+2
+stock
+stock-1

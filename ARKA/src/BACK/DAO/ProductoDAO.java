@@ -125,8 +125,8 @@ public class ProductoDAO implements UtilesDAO {
             for (int i = 0; i < n; i++) {
                 String campo = br.readLine ();
                 String valor = br.readLine ();
-                String sql = "UPDATE Producto SET " + campo + " = ? WHERE id = ?";
-                String sql2 = "CALL update_producto(?)";
+                String sql = "UPDATE Producto SET " + campo + " = " + valor + " WHERE id = ?";
+                String sql2 = "CALL existe_producto(?)";
                 Connection connection = UtilesDAO.conectar ();
                 if (connection != null) {
                     try {
@@ -134,8 +134,7 @@ public class ProductoDAO implements UtilesDAO {
                         PreparedStatement sentencia = connection.prepareStatement ( sql );
                         PreparedStatement sentencia2 = connection.prepareStatement ( sql2 );
                         sentencia2.setString ( 1, id );
-                        sentencia.setString ( 1, valor );
-                        sentencia.setString ( 2, id );
+                        sentencia.setString ( 1, id );
                         sentencia.executeUpdate ();
                         sentencia2.executeUpdate ();
                         connection.close ();
@@ -285,8 +284,8 @@ public class ProductoDAO implements UtilesDAO {
 
                     LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 }
-            } else {
             }
+
     }
 }
 

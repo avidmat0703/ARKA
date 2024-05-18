@@ -40,9 +40,9 @@ public class RealizarVentaFrame extends JFrame {
                 else {
                     info = codigo + "," + cantidad;
                     LecturaYEscrituraDeFicheros.insertVentas(info);
-                    VentaDAO v = new VentaDAO();
-                    v.crear();
                     if (LecturaYEscrituraDeFicheros.error() == null) {
+                        info = "1," + codigo + ",stock,stock-" + cantidad;
+                        LecturaYEscrituraDeFicheros.modificarProducto ( info );
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
                         int nuevoAncho = 100;
                         int nuevoAlto = 100;
