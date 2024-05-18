@@ -183,7 +183,7 @@ public class ModificarProductoFrame extends JFrame {
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                     }
-                    else{
+                    else {
                         LecturaYEscrituraDeFicheros.modificarProducto(info);
                         if(LecturaYEscrituraDeFicheros.error () == null) {
                             ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));

@@ -24,9 +24,9 @@ public class Inicio extends JFrame {
 
     public Inicio() {
         setTitle("Inicio");
-        setSize(400, 170);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
         addFieldWithMargin("Usuario:", usuarioField = new JTextField(20));
         addFieldWithMargin("Contraseña:", contraseñaField = new JTextField(20));
 
@@ -35,7 +35,7 @@ public class Inicio extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String usuario = usuarioField.getText();
                 String contrasena = new String(contraseñaField.getText());
-                if(usuario.isEmpty() || contrasena.isEmpty()) {
+                if (usuario.isEmpty() || contrasena.isEmpty()) {
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
                     int nuevoAncho = 70;
                     int nuevoAlto = 70;
@@ -46,7 +46,7 @@ public class Inicio extends JFrame {
                 else {
                     info = usuario + "," + contrasena;
                     LecturaYEscrituraDeFicheros.Login(info);
-                    if(LecturaYEscrituraDeFicheros.error () == null){
+                    if (LecturaYEscrituraDeFicheros.error() == null) {
                         dispose();
                         new Menu().setVisible(true);
                     }
@@ -56,21 +56,20 @@ public class Inicio extends JFrame {
                         int nuevoAlto = 70;
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                        JOptionPane.showMessageDialog(Inicio.this, LecturaYEscrituraDeFicheros.error (), "Aviso", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
-                        LecturaYEscrituraDeFicheros.escribirError ( "" );
+                        JOptionPane.showMessageDialog(Inicio.this, LecturaYEscrituraDeFicheros.error(), "Aviso", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                        LecturaYEscrituraDeFicheros.escribirError("");
                     }
                 }
             }
         });
 
-        add(btnPantallaInicio);
-        setVisible(true);
-        add(btnPantallaInicio);
-
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(btnPantallaInicio);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         add(buttonPanel);
+
+        pack();
+        setLocationRelativeTo(null);
     }
 
     private void addFieldWithMargin(String label, JTextField field) {

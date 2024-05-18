@@ -1,41 +1,56 @@
 package FRONT;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GestionProductosFrame extends JFrame {
     public GestionProductosFrame() {
         setTitle("Gestión de productos");
-        setSize(400, 180);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(null);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        add(panel);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(10, 0, 10, 0);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        Dimension buttonSize = new Dimension(300, 30);
 
         JButton btnAlta = new JButton("Alta de producto");
-        btnAlta.setBounds(50, 20, 300, 30);
-        btnAlta.addActionListener(new ActionListener () {
+        btnAlta.setPreferredSize(buttonSize);
+        btnAlta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new AltaProductosFrame().setVisible(true);
             }
         });
-        add(btnAlta);
+        panel.add(btnAlta, gbc);
 
         JButton btnBaja = new JButton("Baja de producto");
-        btnBaja.setBounds(50, 60, 300, 30);
+        btnBaja.setPreferredSize(buttonSize);
         btnBaja.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BajaProductosFrame().setVisible(true);
             }
         });
-        add(btnBaja);
+        panel.add(btnBaja, gbc);
 
         JButton btnModificar = new JButton("Modificar producto");
-        btnModificar.setBounds(50, 100, 300, 30);
+        btnModificar.setPreferredSize(buttonSize);
         btnModificar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ModificarProductoFrame().setVisible(true);
             }
         });
-        add(btnModificar);
+        panel.add(btnModificar, gbc);
+
+        pack();
+        setMinimumSize(new Dimension(380, 200));
+        setLocationRelativeTo(null);
     }
 }
