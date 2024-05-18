@@ -1,4 +1,3 @@
 - Crear documento para pruebas.
 - Errores: campos vacíos ,tipo erróneo.
-- Pantalla aviso stock.
 - (secundario) implementar imágenes.
