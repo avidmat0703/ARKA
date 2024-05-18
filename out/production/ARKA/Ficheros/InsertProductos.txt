@@ -1,8 +1,0 @@
-P008
-a
--20
-S
-Verde
-a
-10.20
-Accesorio

@@ -25,7 +25,10 @@ public class Menu extends JFrame {
         btnGestionProductos.setPreferredSize(buttonSize);
         btnGestionProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new GestionProductosFrame().setVisible(true);
+                GestionProductosFrame frame = new GestionProductosFrame();
+                frame.pack();
+                frame.setVisible(true);
+                frame.setLocation(0, 0);
             }
         });
         panel.add(btnGestionProductos, gbc);
@@ -45,7 +48,13 @@ public class Menu extends JFrame {
         btnRealizarVenta.setPreferredSize(buttonSize);
         btnRealizarVenta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new RealizarVentaFrame().setVisible(true);
+                RealizarVentaFrame frame = new RealizarVentaFrame();
+                frame.pack();
+                frame.setVisible(true);
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                int x = (screenSize.width - frame.getWidth()) / 2;
+                int y = 0;
+                frame.setLocation(x, y);
             }
         });
         panel.add(btnRealizarVenta, gbc);
@@ -55,7 +64,13 @@ public class Menu extends JFrame {
         btnGestionarEmpleados.setPreferredSize(buttonSize);
         btnGestionarEmpleados.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new GestionarEmpleadosFrame().setVisible(true);
+                GestionarEmpleadosFrame frame = new GestionarEmpleadosFrame();
+                frame.pack();
+                frame.setVisible(true);
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                int x = screenSize.width - frame.getWidth();
+                int y = 0;
+                frame.setLocation(x, y);
             }
         });
         panel.add(btnGestionarEmpleados, gbc);
@@ -73,7 +88,7 @@ public class Menu extends JFrame {
         pack();
         setMinimumSize(new Dimension(400, 260));
         setLocationRelativeTo(null);
-        if(LecturaYEscrituraDeFicheros.stock ()!=null){
+        if (LecturaYEscrituraDeFicheros.stock() != null) {
             ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/diavlo.jpg"));
             int nuevoAncho = 150;
             int nuevoAlto = 150;
