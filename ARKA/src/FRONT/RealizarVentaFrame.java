@@ -1,8 +1,6 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
-import BACK.DAO.VentaDAO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,8 +42,8 @@ public class RealizarVentaFrame extends JFrame {
                         info = "1," + codigo + ",stock,stock-" + cantidad;
                         LecturaYEscrituraDeFicheros.modificarProducto ( info );
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
-                        int nuevoAncho = 100;
-                        int nuevoAlto = 100;
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);

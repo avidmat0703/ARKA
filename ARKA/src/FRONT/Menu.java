@@ -21,46 +21,31 @@ public class Menu extends JFrame {
 
         Dimension buttonSize = new Dimension(300, 30);
 
-        JButton btnGestionProductos = new JButton("Gestión de productos");
-        btnGestionProductos.setPreferredSize(buttonSize);
-        btnGestionProductos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GestionProductosFrame frame = new GestionProductosFrame();
-                frame.pack();
-                frame.setVisible(true);
-                frame.setLocation(0, 0);
-            }
-        });
-        panel.add(btnGestionProductos, gbc);
-
         JButton btnConsultarInventario = new JButton("Consultar inventario");
-        gbc.gridy = 1;
         btnConsultarInventario.setPreferredSize(buttonSize);
         btnConsultarInventario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ConsultarInventarioFrame().setVisible(true);
+                ConsultarInventarioFrame frame = new ConsultarInventarioFrame();
+                frame.setVisible(true);
+                centerFrameOnTop(frame);
             }
         });
         panel.add(btnConsultarInventario, gbc);
 
-        JButton btnRealizarVenta = new JButton("Realizar venta");
-        gbc.gridy = 2;
-        btnRealizarVenta.setPreferredSize(buttonSize);
-        btnRealizarVenta.addActionListener(new ActionListener() {
+        gbc.gridy = 1;
+        JButton btnConsultarVentas = new JButton("Consultar ventas");
+        btnConsultarVentas.setPreferredSize(buttonSize);
+        btnConsultarVentas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                RealizarVentaFrame frame = new RealizarVentaFrame();
-                frame.pack();
+                ConsultarVentasFrame frame = new ConsultarVentasFrame();
                 frame.setVisible(true);
-                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                int x = (screenSize.width - frame.getWidth()) / 2;
-                int y = 0;
-                frame.setLocation(x, y);
+                centerFrameOnTop(frame);
             }
         });
-        panel.add(btnRealizarVenta, gbc);
+        panel.add(btnConsultarVentas, gbc);
 
+        gbc.gridy = 2;
         JButton btnGestionarEmpleados = new JButton("Gestión de empleados");
-        gbc.gridy = 3;
         btnGestionarEmpleados.setPreferredSize(buttonSize);
         btnGestionarEmpleados.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -75,26 +60,52 @@ public class Menu extends JFrame {
         });
         panel.add(btnGestionarEmpleados, gbc);
 
-        JButton btnConsultarVentas = new JButton("Consultar las ventas");
-        gbc.gridy = 4;
-        btnConsultarVentas.setPreferredSize(buttonSize);
-        btnConsultarVentas.addActionListener(new ActionListener() {
+        gbc.gridy = 3;
+        JButton btnGestionProductos = new JButton("Gestión de productos");
+        btnGestionProductos.setPreferredSize(buttonSize);
+        btnGestionProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ConsultarVentasFrame().setVisible(true);
+                GestionProductosFrame frame = new GestionProductosFrame();
+                frame.pack();
+                frame.setVisible(true);
+                frame.setLocation(0, 0);
             }
         });
-        panel.add(btnConsultarVentas, gbc);
+        panel.add(btnGestionProductos, gbc);
+
+        gbc.gridy = 4;
+        JButton btnRealizarVenta = new JButton("Realizar venta");
+        btnRealizarVenta.setPreferredSize(buttonSize);
+        btnRealizarVenta.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RealizarVentaFrame frame = new RealizarVentaFrame();
+                frame.pack();
+                frame.setVisible(true);
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                int x = (screenSize.width - frame.getWidth()) / 2;
+                int y = 0;
+                frame.setLocation(x, y);
+            }
+        });
+        panel.add(btnRealizarVenta, gbc);
 
         pack();
         setMinimumSize(new Dimension(400, 260));
         setLocationRelativeTo(null);
         if (LecturaYEscrituraDeFicheros.stock() != null) {
-            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/diavlo.jpg"));
-            int nuevoAncho = 150;
-            int nuevoAlto = 150;
+            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/ojito.jpg"));
+            int nuevoAncho = 70;
+            int nuevoAlto = 70;
             Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-            JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.stock(), "Aviso Reponer Stock Bajo", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
+            JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.stock(), "Stock Bajo", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
         }
+    }
+
+    private void centerFrameOnTop(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = 0;
+        frame.setLocation(x, y);
     }
 }

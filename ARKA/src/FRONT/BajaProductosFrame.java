@@ -22,8 +22,9 @@ public class BajaProductosFrame extends JFrame {
         listarButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ConsultarInventarioFrame().setVisible(true);
-            }
+                ConsultarInventarioFrame frame = new ConsultarInventarioFrame();
+                frame.setVisible(true);
+                centerFrameOnTop(frame);            }
         });
 
         JButton bajaButton = new JButton("Dar de baja este producto");
@@ -44,8 +45,8 @@ public class BajaProductosFrame extends JFrame {
                     LecturaYEscrituraDeFicheros.eliminarProductos(info);
                     if (LecturaYEscrituraDeFicheros.error() == null) {
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
-                        int nuevoAncho = 100;
-                        int nuevoAlto = 100;
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(BajaProductosFrame.this, "Producto eliminado correctamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
@@ -80,5 +81,12 @@ public class BajaProductosFrame extends JFrame {
         panel.add(Box.createHorizontalStrut(10));
         panel.add(field);
         add(panel);
+    }
+
+    private void centerFrameOnTop(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = 0;
+        frame.setLocation(x, y);
     }
 }

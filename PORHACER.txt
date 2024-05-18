@@ -1,3 +1,0 @@
-- Crear documento para pruebas.
-- Errores: campos vacíos ,tipo erróneo.
-- (secundario) implementar imágenes.
