@@ -89,12 +89,12 @@ public class Menu extends JFrame {
         setMinimumSize(new Dimension(400, 260));
         setLocationRelativeTo(null);
         if (LecturaYEscrituraDeFicheros.stock() != null) {
-            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/diavlo.jpg"));
-            int nuevoAncho = 150;
-            int nuevoAlto = 150;
+            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/ojito.jpg"));
+            int nuevoAncho = 70;
+            int nuevoAlto = 70;
             Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-            JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.stock(), "Aviso Reponer Stock Bajo", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
+            JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.stock(), "Stock Bajo", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
         }
     }
 }

@@ -1,9 +1,6 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
-import BACK.DAO.EmpleadoDAO;
-import BACK.DAO.ProductoDAO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -187,8 +184,8 @@ public class ModificarProductoFrame extends JFrame {
                         LecturaYEscrituraDeFicheros.modificarProducto(info);
                         if(LecturaYEscrituraDeFicheros.error () == null) {
                             ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
-                            int nuevoAncho = 100;
-                            int nuevoAlto = 100;
+                            int nuevoAncho = 70;
+                            int nuevoAlto = 70;
                             Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                             JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString(), "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);

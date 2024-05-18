@@ -1,9 +1,6 @@
 package FRONT;
 
-import BACK.Class.Empleado;
 import BACK.Class.LecturaYEscrituraDeFicheros;
-import BACK.DAO.EmpleadoDAO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +30,6 @@ public class BajaEmpleadoFrame extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obtener el valor del campo DNI
                 String dni = DNIField.getText();
 
                 if (!dni.isEmpty()) {
@@ -41,8 +37,8 @@ public class BajaEmpleadoFrame extends JFrame {
                     LecturaYEscrituraDeFicheros.eliminarEmpleados(info);
                     if (LecturaYEscrituraDeFicheros.error() == null) {
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
-                        int nuevoAncho = 100;
-                        int nuevoAlto = 100;
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
@@ -86,6 +82,4 @@ public class BajaEmpleadoFrame extends JFrame {
         panel.add(field);
         add(panel);
     }
-
-
 }

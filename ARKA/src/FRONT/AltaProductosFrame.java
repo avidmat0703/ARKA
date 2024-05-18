@@ -1,8 +1,6 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
-import BACK.DAO.ProductoDAO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +9,6 @@ import java.awt.event.ActionListener;
 public class AltaProductosFrame extends JFrame {
 
     private String info = "";
-
     private JRadioButton accesorioRadioButton;
     private JRadioButton prendaRadioButton;
     private JTextField codigoField;
@@ -71,8 +68,8 @@ public class AltaProductosFrame extends JFrame {
                     LecturaYEscrituraDeFicheros.insertProductos(info);
                     if(LecturaYEscrituraDeFicheros.error () == null ) {
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
-                        int nuevoAncho = 100;
-                        int nuevoAlto = 100;
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(AltaProductosFrame.this, "Producto añadido correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);

@@ -1,9 +1,6 @@
 package FRONT;
 
-import BACK.Class.Empleado;
 import BACK.Class.LecturaYEscrituraDeFicheros;
-import BACK.DAO.EmpleadoDAO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,16 +46,19 @@ public class AltaEmpleadoFrame extends JFrame {
                 String telefono = telefonoField.getText();
                 String puesto = puestoField.getText();
                 String contrasena = contrasenaField.getText();
+
                 if(!(dni.isEmpty ()||nombre.isEmpty ()||apellido1.isEmpty ()||apellido2.isEmpty ()||email.isEmpty ()||telefono.isEmpty ()||puesto.isEmpty ()||contrasena.isEmpty ())) {
                     info=dni + "," + nombre + "," + apellido1 + "," + apellido2 + "," + email + "," + telefono + "," + puesto + "," + contrasena;
                     LecturaYEscrituraDeFicheros.insertEmpleados ( info );
+
                     if(LecturaYEscrituraDeFicheros.error () == null) {
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
-                        int nuevoAncho = 100;
-                        int nuevoAlto = 100;
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(AltaEmpleadoFrame.this,"Empleado creado correctamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
+
                         DNIField.setText("");
                         nombreField.setText("");
                         apellido1Field.setText("");
