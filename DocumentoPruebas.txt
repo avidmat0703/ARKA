@@ -95,7 +95,6 @@ BAJA DE EMPLEADO
 de la tienda y un campo de texto para introducir el DNI del empleado.
 
 -Al hacer clic en el botón "listar todos los empleados" se mostrará una lista con los empleados.
-Al elegir el empleado se autorrellenará el campo del DNI.
 
 -Al hacer clic en "Eliminar este empleado" una vez elegido el empleado con su DNI saldrá un mensaje
 diciendo que el empleado ha sido eliminado correctamente.
@@ -110,8 +109,6 @@ del empleado.
 
 -En la pantalla se encuentra un botón "Listar todos los empleados" en el que
 al hacer clic saltará una pantalla listando todos los empleados de la tienda
-
--Al elegir el empleado que se quiere modificar habrá que hacer clic en el botón "Modificar este empleado"
 
 -Cuando se rellenen los campos a modificar del empleado saldrá un mensaje con los cambios realizados. Para cerrar la ventana
 abra que darle a la X en la esquina superior derecha de la ventana.
