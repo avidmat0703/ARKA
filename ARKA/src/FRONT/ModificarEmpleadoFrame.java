@@ -42,7 +42,9 @@ public class ModificarEmpleadoFrame extends JFrame {
         listarButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ConsultarEmpleadoFrame().setVisible(true);
+                ConsultarEmpleadoFrame frame = new ConsultarEmpleadoFrame();
+                frame.setVisible(true);
+                centerFrameOnTop(frame);
             }
         });
 
@@ -52,10 +54,8 @@ public class ModificarEmpleadoFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int cont = 0;
                 JCheckBox[] checks = {chkNombre, chkApellido1, chkApellido2, chkEmail, chkTelefono, chkPuesto};
-                for(JCheckBox check : checks)
-                {
-                    if(check.isSelected ())
-                    {
+                for(JCheckBox check : checks) {
+                    if(check.isSelected ()) {
                         cont++;
                     }
                 }
@@ -75,11 +75,10 @@ public class ModificarEmpleadoFrame extends JFrame {
                             cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
                             info += "," + "nombre";
                             info += "," + nombreField.getText();
-                            if(nombreField.getText ().isEmpty ())
-                            {
+                            if(nombreField.getText ().isEmpty ()) {
                                 empty=true;
                             }
-                            else{
+                            else {
                                 nombreField.setText ( "" );
                             }
 
@@ -88,8 +87,7 @@ public class ModificarEmpleadoFrame extends JFrame {
                             cambios.append(" - Primer apellido modificado: ").append(apellido1Field.getText()).append("\n");
                             info += "," + "apellido";
                             info+= "," + apellido1Field.getText();
-                            if(apellido1Field.getText ().isEmpty ())
-                            {
+                            if(apellido1Field.getText ().isEmpty ()) {
                                 empty=true;
                             }
                             else {
@@ -100,11 +98,10 @@ public class ModificarEmpleadoFrame extends JFrame {
                             cambios.append(" - Segundo apellido modificado: ").append(apellido2Field.getText()).append("\n");
                             info += "," + "apellido2";
                             info+= "," + apellido2Field.getText();
-                            if(apellido2Field.getText ().isEmpty ())
-                            {
+                            if(apellido2Field.getText ().isEmpty ()) {
                                 empty=true;
                             }
-                            else{
+                            else {
                                 apellido2Field.setText ( "" );
                             }
                         }
@@ -112,11 +109,10 @@ public class ModificarEmpleadoFrame extends JFrame {
                             cambios.append(" - Email modificado: ").append(emailField.getText()).append("\n");
                             info += "," + "email";
                             info+= "," + emailField.getText();
-                            if(emailField.getText ().isEmpty ())
-                            {
+                            if(emailField.getText ().isEmpty ()) {
                                 empty=true;
                             }
-                            else{
+                            else {
                                 emailField.setText ( "" );
                             }
 
@@ -127,7 +123,8 @@ public class ModificarEmpleadoFrame extends JFrame {
                             info += "," + telefonoField.getText ();
                             if (telefonoField.getText ().isEmpty ()) {
                                 empty = true;
-                            } else{
+                            }
+                            else {
                                 telefonoField.setText ( "" );
                             }
                         }
@@ -135,15 +132,14 @@ public class ModificarEmpleadoFrame extends JFrame {
                             cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
                             info += "," + "puesto";
                             info += "," + puestoField.getText();
-                            if(puestoField.getText ().isEmpty ())
-                            {
+                            if(puestoField.getText ().isEmpty ()) {
                                 empty=true;
                             }
-                            else{
+                            else {
                                 puestoField.setText ( "" );
                             }
                         }
-                        if(empty){
+                        if(empty) {
                             ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
                             int nuevoAncho = 70;
                             int nuevoAlto = 70;
@@ -206,5 +202,12 @@ public class ModificarEmpleadoFrame extends JFrame {
         panel.add(Box.createHorizontalStrut(10));
         panel.add(field);
         add(panel);
+    }
+
+    private void centerFrameOnTop(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = 0;
+        frame.setLocation(x, y);
     }
 }

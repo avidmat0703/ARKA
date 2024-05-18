@@ -22,7 +22,9 @@ public class BajaEmpleadoFrame extends JFrame {
         listarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    new ConsultarEmpleadoFrame().setVisible(true);
+                ConsultarEmpleadoFrame frame = new ConsultarEmpleadoFrame();
+                frame.setVisible(true);
+                centerFrameOnTop(frame);
             }
         });
 
@@ -81,5 +83,12 @@ public class BajaEmpleadoFrame extends JFrame {
         panel.add(Box.createHorizontalStrut(10));
         panel.add(field);
         add(panel);
+    }
+
+    private void centerFrameOnTop(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = 0;
+        frame.setLocation(x, y);
     }
 }

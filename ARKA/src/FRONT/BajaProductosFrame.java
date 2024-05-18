@@ -22,8 +22,9 @@ public class BajaProductosFrame extends JFrame {
         listarButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ConsultarInventarioFrame().setVisible(true);
-            }
+                ConsultarInventarioFrame frame = new ConsultarInventarioFrame();
+                frame.setVisible(true);
+                centerFrameOnTop(frame);            }
         });
 
         JButton bajaButton = new JButton("Dar de baja este producto");
@@ -80,5 +81,12 @@ public class BajaProductosFrame extends JFrame {
         panel.add(Box.createHorizontalStrut(10));
         panel.add(field);
         add(panel);
+    }
+
+    private void centerFrameOnTop(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = 0;
+        frame.setLocation(x, y);
     }
 }

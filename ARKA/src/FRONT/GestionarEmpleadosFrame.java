@@ -26,7 +26,9 @@ public class GestionarEmpleadosFrame extends JFrame {
         btnAltaEmpleado.setPreferredSize(buttonSize);
         btnAltaEmpleado.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new AltaEmpleadoFrame().setVisible(true);
+                AltaEmpleadoFrame altaFrame = new AltaEmpleadoFrame();
+                altaFrame.setVisible(true);
+                setWindowPositionTopRight(altaFrame);
             }
         });
         panel.add(btnAltaEmpleado, gbc);
@@ -35,7 +37,9 @@ public class GestionarEmpleadosFrame extends JFrame {
         btnBajaEmpleado.setPreferredSize(buttonSize);
         btnBajaEmpleado.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new BajaEmpleadoFrame().setVisible(true);
+                BajaEmpleadoFrame bajaFrame = new BajaEmpleadoFrame();
+                bajaFrame.setVisible(true);
+                setWindowPositionTopRight(bajaFrame);
             }
         });
         panel.add(btnBajaEmpleado, gbc);
@@ -44,7 +48,9 @@ public class GestionarEmpleadosFrame extends JFrame {
         btnModificarEmpleado.setPreferredSize(buttonSize);
         btnModificarEmpleado.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ModificarEmpleadoFrame().setVisible(true);
+                ModificarEmpleadoFrame modificarFrame = new ModificarEmpleadoFrame();
+                modificarFrame.setVisible(true);
+                setWindowPositionTopRight(modificarFrame);
             }
         });
         panel.add(btnModificarEmpleado, gbc);
@@ -52,5 +58,12 @@ public class GestionarEmpleadosFrame extends JFrame {
         pack();
         setMinimumSize(new Dimension(380, 200));
         setLocationRelativeTo(null);
+    }
+
+    private void setWindowPositionTopRight(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = screenSize.width - frame.getWidth();
+        int y = 0;
+        frame.setLocation(x, y);
     }
 }

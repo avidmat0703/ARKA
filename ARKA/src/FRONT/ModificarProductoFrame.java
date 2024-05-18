@@ -47,7 +47,9 @@ public class ModificarProductoFrame extends JFrame {
         listarButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ConsultarInventarioFrame().setVisible(true);
+                ConsultarInventarioFrame frame = new ConsultarInventarioFrame();
+                frame.setVisible(true);
+                centerFrameOnTop(frame);
             }
         });
 
@@ -57,10 +59,8 @@ public class ModificarProductoFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int cont = 0;
                 JCheckBox[] checks = {chkCodigo, chkNombre, chkStock, chkTalla, chkDescripcion, chkColor, chkMarca, chkPrecio};
-                for(JCheckBox check : checks)
-                {
-                    if(check.isSelected ())
-                    {
+                for(JCheckBox check : checks) {
+                    if(check.isSelected ()) {
                         cont++;
                     }
                 }
@@ -74,17 +74,16 @@ public class ModificarProductoFrame extends JFrame {
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                     JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID de un producto.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado );
                 }
-                else{
+                else {
                     StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
                     if (chkCodigo.isSelected()) {
                         cambios.append(" - Código en tienda modificado: ").append(codigoField.getText()).append("\n");
                         info += "," + "codigo";
                         info += "," + codigoField.getText();
-                        if(codigoField.getText ().isEmpty ())
-                        {
+                        if(codigoField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else{
+                        else {
                             codigoField.setText ( "" );
                         }
                     }
@@ -92,11 +91,10 @@ public class ModificarProductoFrame extends JFrame {
                         cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
                         info += "," + "Tipo_producto";
                         info += "," + nombreField.getText();
-                        if(nombreField.getText ().isEmpty ())
-                        {
+                        if(nombreField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else{
+                        else {
                             nombreField.setText ( "" );
                         }
                     }
@@ -104,11 +102,10 @@ public class ModificarProductoFrame extends JFrame {
                         cambios.append(" - Stock modificado: ").append(stockField.getText()).append("\n");
                         info += "," + "stock";
                         info += "," + stockField.getText();
-                        if(stockField.getText ().isEmpty ())
-                        {
+                        if(stockField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else{
+                        else {
                             stockField.setText ( "" );
                         }
                     }
@@ -116,11 +113,10 @@ public class ModificarProductoFrame extends JFrame {
                         cambios.append(" - Talla modificada: ").append(tallaField.getText()).append("\n");
                         info += "," + "talla";
                         info += "," + tallaField.getText();
-                        if(tallaField.getText ().isEmpty ())
-                        {
+                        if(tallaField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else{
+                        else {
                             tallaField.setText ( "" );
                         }
                     }
@@ -128,11 +124,10 @@ public class ModificarProductoFrame extends JFrame {
                         cambios.append(" - Descripción modificada: ").append(descripcionField.getText()).append("\n");
                         info += "," + "descripcion";
                         info += "," + descripcionField.getText();
-                        if(descripcionField.getText ().isEmpty ())
-                        {
+                        if(descripcionField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else{
+                        else {
                             descripcionField.setText ( "" );
                         }
                     }
@@ -140,11 +135,10 @@ public class ModificarProductoFrame extends JFrame {
                         cambios.append(" - Color modificado: ").append(colorField.getText()).append("\n");
                         info += "," + "color";
                         info += "," + colorField.getText();
-                        if(colorField.getText ().isEmpty ())
-                        {
+                        if(colorField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else{
+                        else {
                            colorField.setText ( "" );
                         }
                     }
@@ -152,11 +146,10 @@ public class ModificarProductoFrame extends JFrame {
                         cambios.append(" - Marca modificada: ").append(marcaField.getText()).append("\n");
                         info += "," + "marca";
                         info += "," + marcaField.getText();
-                        if(marcaField.getText ().isEmpty ())
-                        {
+                        if(marcaField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else{
+                        else {
                             marcaField.setText ( "" );
                         }
                     }
@@ -164,11 +157,10 @@ public class ModificarProductoFrame extends JFrame {
                         cambios.append(" - Precio modificado: ").append(precioField.getText()).append("\n");
                         info += "," + "precio";
                         info += "," + precioField.getText();
-                        if(precioField.getText ().isEmpty ())
-                        {
+                        if(precioField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else{
+                        else {
                             precioField.setText ( "" );
                         }
                     }
@@ -235,5 +227,12 @@ public class ModificarProductoFrame extends JFrame {
         panel.add(Box.createHorizontalStrut(10));
         panel.add(field);
         add(panel);
+    }
+
+    private void centerFrameOnTop(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = 0;
+        frame.setLocation(x, y);
     }
 }

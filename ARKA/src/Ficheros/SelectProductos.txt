@@ -11,7 +11,7 @@ Prenda
 2
 P002
 Pantalón
-30
+25
 L
 Azul
 Adidas
