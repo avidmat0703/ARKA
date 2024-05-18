@@ -1,4 +1,2 @@
-1
-aaaaaaa
-nombre
+0
 a

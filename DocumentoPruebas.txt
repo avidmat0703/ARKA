@@ -66,8 +66,9 @@ al hacer clic saltará una pantalla listando todos los productos de la tienda
 
 -Al elegir el producto que se quiere modificar habrá que hacer clic en el botón "Modificar este producto"
 
--Cuando se rellenen los campos a modificar del producto saldrá un mensaje con los cambios realizados. Para cerrar la ventana
-abra que darle a la X en la esquina superior derecha de la ventana.
+-Cuando se rellenen los campos a modificar del producto saldrá un mensaje con los cambios realizados.
+
+-Para cerrar la ventana habrá que darle a la X en la esquina superior derecha de la ventana.
 
 -Al cerrarse la ventana se encontrará de vuelta en la ventana de modificar producto por si quiere modificar otro.
 
