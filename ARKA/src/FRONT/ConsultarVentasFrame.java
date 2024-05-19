@@ -4,20 +4,25 @@ import BACK.Class.LecturaYEscrituraDeFicheros;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ConsultarVentasFrame extends JFrame {
     private JTable tablaVentas;
 
     public ConsultarVentasFrame() {
         setTitle("Consultar inventario");
-        setSize(1200, 200);
+        setSize(1200, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BorderLayout());
+
         tablaVentas = new JTable();
         JScrollPane scrollPane = new JScrollPane(tablaVentas);
         add(scrollPane, BorderLayout.CENTER);
+
         cargarDatosVentas();
-        if(LecturaYEscrituraDeFicheros.error () == null)
-        {
+
+        if (LecturaYEscrituraDeFicheros.error() == null) {
             cargarDatosVentas();
         }
         else {
@@ -26,9 +31,25 @@ public class ConsultarVentasFrame extends JFrame {
             int nuevoAlto = 70;
             Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-            JOptionPane.showMessageDialog(ConsultarVentasFrame.this, LecturaYEscrituraDeFicheros.error (),"Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
-            LecturaYEscrituraDeFicheros.escribirError ( "" );
+            JOptionPane.showMessageDialog(ConsultarVentasFrame.this, LecturaYEscrituraDeFicheros.error(), "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+            LecturaYEscrituraDeFicheros.escribirError("");
         }
+
+        JButton botonActualizar = new JButton("Actualizar la tabla");
+        botonActualizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                ConsultarVentasFrame frame = new ConsultarVentasFrame();
+                frame.setVisible(true);
+                centerFrameOnTop(frame);
+            }
+        });
+
+        JPanel panelBoton = new JPanel();
+        panelBoton.add(botonActualizar);
+
+        add(panelBoton, BorderLayout.SOUTH);
     }
 
     private void cargarDatosVentas() {
@@ -45,5 +66,12 @@ public class ConsultarVentasFrame extends JFrame {
         }
 
         tablaVentas.setModel(modeloTabla);
+    }
+
+    private void centerFrameOnTop(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = 0;
+        frame.setLocation(x, y);
     }
 }

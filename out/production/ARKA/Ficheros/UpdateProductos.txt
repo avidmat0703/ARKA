@@ -1,4 +1,4 @@
 1
-2
-precio
-34
+3
+talla
+M

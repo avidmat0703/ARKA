@@ -9,36 +9,30 @@ import java.awt.event.ActionListener;
 public class ModificarProductoFrame extends JFrame {
     private String info = "";
     private JTextField idField;
-    private JTextField codigoField;
     private JTextField nombreField;
     private JTextField stockField;
     private JTextField tallaField;
-    private JTextField descripcionField;
     private JTextField colorField;
     private JTextField marcaField;
     private JTextField precioField;
 
-    private JCheckBox chkCodigo;
     private JCheckBox chkNombre;
     private JCheckBox chkStock;
     private JCheckBox chkTalla;
-    private JCheckBox chkDescripcion;
     private JCheckBox chkColor;
     private JCheckBox chkMarca;
     private JCheckBox chkPrecio;
 
     public ModificarProductoFrame() {
         setTitle("Modificar producto");
-        setSize(450, 520);
+        setSize(450, 440);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         addFieldWithMargin("ID del Producto:", idField = new JTextField(20));
-        addFieldWithMargin("Código en tienda:", codigoField = new JTextField(20), chkCodigo = new JCheckBox());
         addFieldWithMargin("Nombre:", nombreField = new JTextField(20), chkNombre = new JCheckBox());
         addFieldWithMargin("Stock:", stockField = new JTextField(20), chkStock = new JCheckBox());
         addFieldWithMargin("Talla:", tallaField = new JTextField(20), chkTalla = new JCheckBox());
-        addFieldWithMargin("Descripción:", descripcionField = new JTextField(20), chkDescripcion = new JCheckBox());
         addFieldWithMargin("Color:", colorField = new JTextField(20), chkColor = new JCheckBox());
         addFieldWithMargin("Marca:", marcaField = new JTextField(20), chkMarca = new JCheckBox());
         addFieldWithMargin("Precio:", precioField = new JTextField(20), chkPrecio = new JCheckBox());
@@ -58,7 +52,7 @@ public class ModificarProductoFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int cont = 0;
-                JCheckBox[] checks = {chkCodigo, chkNombre, chkStock, chkTalla, chkDescripcion, chkColor, chkMarca, chkPrecio};
+                JCheckBox[] checks = {chkNombre, chkStock, chkTalla, chkColor, chkMarca, chkPrecio};
                 for(JCheckBox check : checks) {
                     if(check.isSelected ()) {
                         cont++;
@@ -76,17 +70,6 @@ public class ModificarProductoFrame extends JFrame {
                 }
                 else {
                     StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
-                    if (chkCodigo.isSelected()) {
-                        cambios.append(" - Código en tienda modificado: ").append(codigoField.getText()).append("\n");
-                        info += "," + "codigo";
-                        info += "," + codigoField.getText();
-                        if(codigoField.getText ().isEmpty ()) {
-                            empty=true;
-                        }
-                        else {
-                            codigoField.setText ( "" );
-                        }
-                    }
                     if (chkNombre.isSelected()) {
                         cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
                         info += "," + "Tipo_producto";
@@ -118,17 +101,6 @@ public class ModificarProductoFrame extends JFrame {
                         }
                         else {
                             tallaField.setText ( "" );
-                        }
-                    }
-                    if (chkDescripcion.isSelected()) {
-                        cambios.append(" - Descripción modificada: ").append(descripcionField.getText()).append("\n");
-                        info += "," + "descripcion";
-                        info += "," + descripcionField.getText();
-                        if(descripcionField.getText ().isEmpty ()) {
-                            empty=true;
-                        }
-                        else {
-                            descripcionField.setText ( "" );
                         }
                     }
                     if (chkColor.isSelected()) {

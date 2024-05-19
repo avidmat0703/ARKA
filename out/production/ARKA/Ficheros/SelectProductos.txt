@@ -7,7 +7,7 @@ M
 Rojo
 Nike
 Prenda
-19.99
+10.2
 2
 P002
 Pantalón
@@ -29,14 +29,14 @@ Prenda
 4
 P004
 Sudadera
-5
+2
 S
 Gris
 Reebok
 Prenda
 39.99
 5
-1
+P005
 Chaqueta
 1
 XL
