@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -66,6 +68,8 @@ public class ModificarProductoFrame extends JFrame {
                 }
                 boolean empty = false;
                 boolean neg = false;
+                boolean string = false ;
+                String msj = "";
                 info = String.valueOf ( cont + "," + idField.getText());
                 if(idField.getText ().isEmpty ()) {
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
@@ -99,6 +103,10 @@ public class ModificarProductoFrame extends JFrame {
                         info += "," + stockField.getText();
                         if(stockField.getText ().isEmpty ()) {
                             empty=true;
+                        }
+                        else if(!UtilesFrame.EsInt ( stockField.getText () )){
+                            string = true;
+                            msj = "El campo 'Stock' debe ser numérico.\n";
                         }
                         else if(Integer.valueOf ( stockField.getText () )<0){
                             neg=true;
@@ -143,6 +151,10 @@ public class ModificarProductoFrame extends JFrame {
                         if(precioField.getText ().isEmpty ()) {
                             empty=true;
                         }
+                        else if(!UtilesFrame.EsDouble ( precioField.getText () )){
+                            string = true;
+                            msj += "El campo 'Precio' debe ser numérico.\n";
+                        }
                         else if(Integer.valueOf ( precioField.getText () )<0){
                             neg=true;
                         }
@@ -162,6 +174,14 @@ public class ModificarProductoFrame extends JFrame {
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(ModificarProductoFrame.this, "El precio y el stock no pueden ser negativos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                    }
+                    else if( string ){
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog ( ModificarProductoFrame.this,msj,"Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                     }
                     else {
                         LecturaYEscrituraDeFicheros.modificarProducto(info);

@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -54,6 +56,14 @@ public class AltaEmpleadoFrame extends JFrame {
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                     JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"No deben haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                }
+                else if(!UtilesFrame.EsInt ( telefono )){
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"El campo 'Teléfono' no debe ser numérico.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
                 else {
                     info=dni + "," + nombre + "," + apellido1 + "," + apellido2 + "," + email + "," + telefono + "," + puesto + "," + contrasena;

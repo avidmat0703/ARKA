@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,6 +51,7 @@ public class AltaProductosFrame extends JFrame {
         altaButton.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 String codigo = codigoField.getText ();
                 String nombre = nombreField.getText ();
                 String stock = stockField.getText ();
@@ -63,6 +66,14 @@ public class AltaProductosFrame extends JFrame {
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                     JOptionPane.showMessageDialog ( AltaProductosFrame.this,"No deben haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                }
+                else if(!UtilesFrame.EsInt ( stock ) || !UtilesFrame.EsDouble ( precio )){
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog ( AltaProductosFrame.this,"Los campos 'stock' y 'precio' deben ser numéricos.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
                 else if(Integer.valueOf ( stock )<0 || Integer.valueOf ( precio )<0){
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));

@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -60,6 +62,7 @@ public class ModificarEmpleadoFrame extends JFrame {
                     }
                 }
                 boolean empty=false;
+                boolean string = false;
                     info = String.valueOf ( cont + "," + DNIField.getText());
                     if(DNIField.getText ().isEmpty ()) {
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
@@ -110,6 +113,9 @@ public class ModificarEmpleadoFrame extends JFrame {
                             if (telefonoField.getText ().isEmpty ()) {
                                 empty = true;
                             }
+                            else if(!UtilesFrame.EsInt ( telefonoField.getText () )){
+                                string = true;
+                            }
                         }
                         if (chkPuesto.isSelected()) {
                             cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
@@ -126,6 +132,14 @@ public class ModificarEmpleadoFrame extends JFrame {
                             Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                             JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                        }
+                        else if(string){
+                            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                            int nuevoAncho = 70;
+                            int nuevoAlto = 70;
+                            Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                            ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "El campo 'Teléfono' debe ser numérico.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                         }
                         else {
                             LecturaYEscrituraDeFicheros.modificarEmpleado(info);
