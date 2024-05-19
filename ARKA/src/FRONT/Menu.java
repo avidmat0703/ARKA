@@ -98,7 +98,7 @@ public class Menu extends JFrame {
             int nuevoAlto = 70;
             Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-            JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.stock(), "Stock Bajo", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
+            JOptionPane.showMessageDialog(Menu.this, LecturaYEscrituraDeFicheros.stock(), "Se recomienda reponer este stock", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
         }
     }
 

@@ -54,7 +54,7 @@ public class ConsultarInventarioFrame extends JFrame {
 
     private void cargarDatosProductos() {
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.addColumn("ID");
+        modeloTabla.addColumn("ID Producto");
         modeloTabla.addColumn("Código");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Stock");

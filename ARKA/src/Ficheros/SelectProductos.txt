@@ -2,7 +2,7 @@
 1
 P001
 Camiseta
-1
+11
 M
 Rojo
 Nike

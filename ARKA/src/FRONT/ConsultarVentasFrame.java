@@ -55,7 +55,7 @@ public class ConsultarVentasFrame extends JFrame {
     private void cargarDatosVentas() {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("ID de Venta");
-        modeloTabla.addColumn("ID");
+        modeloTabla.addColumn("ID Producto");
         modeloTabla.addColumn("Unidades");
         modeloTabla.addColumn("Precio unidad");
         modeloTabla.addColumn("Total");
