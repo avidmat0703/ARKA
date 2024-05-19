@@ -67,7 +67,6 @@ public class Inicio extends JFrame {
         buttonPanel.add(btnPantallaInicio);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         add(buttonPanel);
-
         pack();
         setLocationRelativeTo(null);
     }

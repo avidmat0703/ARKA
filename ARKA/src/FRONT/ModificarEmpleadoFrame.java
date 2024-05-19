@@ -78,10 +78,6 @@ public class ModificarEmpleadoFrame extends JFrame {
                             if(nombreField.getText ().isEmpty ()) {
                                 empty=true;
                             }
-                            else {
-                                nombreField.setText ( "" );
-                            }
-
                         }
                         if (chkApellido1.isSelected()) {
                             cambios.append(" - Primer apellido modificado: ").append(apellido1Field.getText()).append("\n");
@@ -89,9 +85,6 @@ public class ModificarEmpleadoFrame extends JFrame {
                             info+= "," + apellido1Field.getText();
                             if(apellido1Field.getText ().isEmpty ()) {
                                 empty=true;
-                            }
-                            else {
-                                apellido1Field.setText ( "" );
                             }
                         }
                         if (chkApellido2.isSelected()) {
@@ -101,9 +94,6 @@ public class ModificarEmpleadoFrame extends JFrame {
                             if(apellido2Field.getText ().isEmpty ()) {
                                 empty=true;
                             }
-                            else {
-                                apellido2Field.setText ( "" );
-                            }
                         }
                         if (chkEmail.isSelected()) {
                             cambios.append(" - Email modificado: ").append(emailField.getText()).append("\n");
@@ -112,10 +102,6 @@ public class ModificarEmpleadoFrame extends JFrame {
                             if(emailField.getText ().isEmpty ()) {
                                 empty=true;
                             }
-                            else {
-                                emailField.setText ( "" );
-                            }
-
                         }
                         if (chkTelefono.isSelected()) {
                             cambios.append ( " - Teléfono modificado: " ).append ( telefonoField.getText () ).append ( "\n" );
@@ -124,9 +110,6 @@ public class ModificarEmpleadoFrame extends JFrame {
                             if (telefonoField.getText ().isEmpty ()) {
                                 empty = true;
                             }
-                            else {
-                                telefonoField.setText ( "" );
-                            }
                         }
                         if (chkPuesto.isSelected()) {
                             cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
@@ -134,9 +117,6 @@ public class ModificarEmpleadoFrame extends JFrame {
                             info += "," + puestoField.getText();
                             if(puestoField.getText ().isEmpty ()) {
                                 empty=true;
-                            }
-                            else {
-                                puestoField.setText ( "" );
                             }
                         }
                         if(empty) {
@@ -149,7 +129,6 @@ public class ModificarEmpleadoFrame extends JFrame {
                         }
                         else {
                             LecturaYEscrituraDeFicheros.modificarEmpleado(info);
-
                             if(LecturaYEscrituraDeFicheros.error () == null) {
                                 ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/bien.jpg"));
                                 int nuevoAncho = 70;
@@ -158,6 +137,12 @@ public class ModificarEmpleadoFrame extends JFrame {
                                 ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                                 JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, cambios.toString(), "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
                                 DNIField.setText ( "" );
+                                nombreField.setText ( "" );
+                                apellido1Field.setText ( "" );
+                                apellido2Field.setText ( "" );
+                                emailField.setText ( "" );
+                                telefonoField.setText ( "" );
+                                puestoField.setText ( "" );
                             }
                             else {
                                 ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));

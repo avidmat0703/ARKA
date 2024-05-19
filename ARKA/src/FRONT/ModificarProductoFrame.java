@@ -65,6 +65,7 @@ public class ModificarProductoFrame extends JFrame {
                     }
                 }
                 boolean empty = false;
+                boolean neg = false;
                 info = String.valueOf ( cont + "," + idField.getText());
                 if(idField.getText ().isEmpty ()) {
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
@@ -83,9 +84,6 @@ public class ModificarProductoFrame extends JFrame {
                         if(codigoField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                            codigoField.setText ( "" );
-                        }
                     }
                     if (chkNombre.isSelected()) {
                         cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
@@ -93,9 +91,6 @@ public class ModificarProductoFrame extends JFrame {
                         info += "," + nombreField.getText();
                         if(nombreField.getText ().isEmpty ()) {
                             empty=true;
-                        }
-                        else {
-                            nombreField.setText ( "" );
                         }
                     }
                     if (chkStock.isSelected()) {
@@ -105,8 +100,8 @@ public class ModificarProductoFrame extends JFrame {
                         if(stockField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                            stockField.setText ( "" );
+                        else if(Integer.valueOf ( stockField.getText () )<0){
+                            neg=true;
                         }
                     }
                     if (chkTalla.isSelected()) {
@@ -116,9 +111,6 @@ public class ModificarProductoFrame extends JFrame {
                         if(tallaField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                            tallaField.setText ( "" );
-                        }
                     }
                     if (chkDescripcion.isSelected()) {
                         cambios.append(" - Descripción modificada: ").append(descripcionField.getText()).append("\n");
@@ -126,9 +118,6 @@ public class ModificarProductoFrame extends JFrame {
                         info += "," + descripcionField.getText();
                         if(descripcionField.getText ().isEmpty ()) {
                             empty=true;
-                        }
-                        else {
-                            descripcionField.setText ( "" );
                         }
                     }
                     if (chkColor.isSelected()) {
@@ -138,9 +127,6 @@ public class ModificarProductoFrame extends JFrame {
                         if(colorField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                           colorField.setText ( "" );
-                        }
                     }
                     if (chkMarca.isSelected()) {
                         cambios.append(" - Marca modificada: ").append(marcaField.getText()).append("\n");
@@ -148,9 +134,6 @@ public class ModificarProductoFrame extends JFrame {
                         info += "," + marcaField.getText();
                         if(marcaField.getText ().isEmpty ()) {
                             empty=true;
-                        }
-                        else {
-                            marcaField.setText ( "" );
                         }
                     }
                     if (chkPrecio.isSelected()) {
@@ -160,8 +143,8 @@ public class ModificarProductoFrame extends JFrame {
                         if(precioField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                            precioField.setText ( "" );
+                        else if(Integer.valueOf ( precioField.getText () )<0){
+                            neg=true;
                         }
                     }
                     if(empty) {
@@ -171,6 +154,14 @@ public class ModificarProductoFrame extends JFrame {
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                    }
+                    else if(neg){
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(ModificarProductoFrame.this, "El precio y el stock no pueden ser negativos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                     }
                     else {
                         LecturaYEscrituraDeFicheros.modificarProducto(info);
@@ -182,6 +173,14 @@ public class ModificarProductoFrame extends JFrame {
                             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                             JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString(), "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
                             idField.setText ( "" );
+                            codigoField.setText ( "" );
+                            nombreField.setText ( "" );
+                            stockField.setText ( "" );
+                            tallaField.setText ( "" );
+                            descripcionField.setText ( "" );
+                            colorField.setText ( "" );
+                            marcaField.setText ( "" );
+                            precioField.setText ( "" );
                         }
                         else {
                             ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
