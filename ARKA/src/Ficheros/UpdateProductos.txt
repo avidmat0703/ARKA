@@ -1,4 +1,4 @@
 1
 2
-stock
-stock-5
+codigo
+P001

@@ -125,18 +125,26 @@ public class ProductoDAO implements UtilesDAO {
             for (int i = 0; i < n; i++) {
                 String campo = br.readLine ();
                 String valor = br.readLine ();
-                String sql = "UPDATE Producto SET " + campo + " = " + valor + " WHERE id = ?";
-                String sql2 = "CALL existe_producto(?)";
+                String sql = "UPDATE Producto SET " + campo + " = ? WHERE id = ?";
+                String sql2 = "UPDATE Producto SET " + campo + " = " + valor + " WHERE id = ?";
+                String sql3 = "CALL existe_producto(?)";
                 Connection connection = UtilesDAO.conectar ();
                 if (connection != null) {
                     try {
-
-                        PreparedStatement sentencia = connection.prepareStatement ( sql );
-                        PreparedStatement sentencia2 = connection.prepareStatement ( sql2 );
-                        sentencia2.setString ( 1, id );
-                        sentencia.setString ( 1, id );
-                        sentencia.executeUpdate ();
-                        sentencia2.executeUpdate ();
+                        if(campo.equals ( "stock-1" )){
+                            PreparedStatement sentencia2 = connection.prepareStatement ( sql2 );
+                            sentencia2.setString ( 1, id );
+                            sentencia2.executeUpdate ();
+                        }
+                        else{
+                            PreparedStatement sentencia = connection.prepareStatement ( sql );
+                            sentencia.setString ( 1, valor );
+                            sentencia.setString ( 2, id );
+                            sentencia.executeUpdate ();
+                        }
+                        PreparedStatement sentencia3 = connection.prepareStatement ( sql3 );
+                        sentencia3.setString ( 1, id );
+                        sentencia3.executeUpdate ();
                         connection.close ();
                     } catch (SQLException ex) {
                         System.out.println ( ex.getMessage () );

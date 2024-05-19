@@ -4,7 +4,7 @@ Use Tienda;
 
 CREATE TABLE producto (
 	id INT AUTO_INCREMENT primary key,
-    codigo VARCHAR(20) UNIQUE,
+    codigo VARCHAR(20),
 	tipo_producto VARCHAR(20),
     stock INT,
     talla VARCHAR(10),
