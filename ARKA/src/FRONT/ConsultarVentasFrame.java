@@ -11,7 +11,7 @@ public class ConsultarVentasFrame extends JFrame {
     private JTable tablaVentas;
 
     public ConsultarVentasFrame() {
-        setTitle("Consultar inventario");
+        setTitle("Consultar ventas");
         setSize(1200, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());

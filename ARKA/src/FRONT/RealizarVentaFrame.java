@@ -46,7 +46,7 @@ public class RealizarVentaFrame extends JFrame {
                         int nuevoAlto = 70;
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
+                        JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Venta realizada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
                     }
                     else {
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));

@@ -66,7 +66,7 @@ public class ModificarProductoFrame extends JFrame {
                     int nuevoAlto = 70;
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID de un producto.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado );
+                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID del producto.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado );
                 }
                 else {
                     StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
