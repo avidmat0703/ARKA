@@ -29,14 +29,14 @@ Prenda
 4
 P004
 Sudadera
-2
+5
 S
 Gris
 Reebok
 Prenda
 39.99
 5
-P005
+1
 Chaqueta
 1
 XL

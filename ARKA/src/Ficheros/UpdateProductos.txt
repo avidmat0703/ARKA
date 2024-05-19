@@ -1,4 +1,4 @@
 1
-2
-codigo
-P001
+3
+talla
+M

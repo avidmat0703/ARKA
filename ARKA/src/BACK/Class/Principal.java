@@ -32,5 +32,6 @@ public class Principal {
         //p.stock ();
         //System.out.println (LecturaYEscrituraDeFicheros.stock ( ));
         p.modificar ();
+
     }
 }

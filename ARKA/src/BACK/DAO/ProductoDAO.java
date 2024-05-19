@@ -131,7 +131,7 @@ public class ProductoDAO implements UtilesDAO {
                 Connection connection = UtilesDAO.conectar ();
                 if (connection != null) {
                     try {
-                        if(campo.equals ( "stock-1" )){
+                        if(valor.length ()>=6 && valor.substring (0, 6).equals ( "stock-" )){
                             PreparedStatement sentencia2 = connection.prepareStatement ( sql2 );
                             sentencia2.setString ( 1, id );
                             sentencia2.executeUpdate ();
