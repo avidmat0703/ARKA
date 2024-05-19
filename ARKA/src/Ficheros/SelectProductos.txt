@@ -1,13 +1,13 @@
 5
 1
 P001
-Camiseta
-1
+s
+-1
 M
 Rojo
 Nike
 Prenda
-19.99
+-1.0
 2
 P002
 Pantalón
@@ -21,7 +21,7 @@ Prenda
 P003
 Zapatos
 20
-42
+M
 Negro
 Puma
 Prenda
@@ -37,7 +37,7 @@ Prenda
 39.99
 5
 1
-Chaqueta
+fg
 1
 XL
 Verde
