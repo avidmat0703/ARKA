@@ -277,8 +277,6 @@ public class ProductoDAO implements UtilesDAO {
                     }
                     connection.close ();
                 } catch (SQLException ex) {
-
-                    LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 }
             }
 

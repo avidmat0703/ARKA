@@ -92,7 +92,7 @@ public class Menu extends JFrame {
         pack();
         setMinimumSize(new Dimension(400, 260));
         setLocationRelativeTo(null);
-        if (LecturaYEscrituraDeFicheros.stock() != null) {
+        if (LecturaYEscrituraDeFicheros.stock() != "") {
             ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/ojito.jpg"));
             int nuevoAncho = 70;
             int nuevoAlto = 70;
