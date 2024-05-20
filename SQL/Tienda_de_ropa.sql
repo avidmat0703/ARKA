@@ -227,35 +227,25 @@ END //
 DELIMITER ;
 
 DELIMITER ;
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
-VALUES ('P001', 'Camiseta', 1, 'M', 'Rojo', 'Nike', 19.99, 'Camiseta de algodón');
-
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
-VALUES ('P002', 'Pantalón', 30, 'L', 'Azul', 'Adidas', 29.99, 'Pantalón deportivo');
-
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
-VALUES ('P003', 'Zapatos', 20, '42', 'Negro', 'Puma', 49.99, 'Zapatos de running');
-
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
-VALUES ('P004', 'Sudadera', 2, 'S', 'Gris', 'Reebok', 39.99, 'Sudadera con capucha');
-
-INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion)
-VALUES ('P005', 'Chaqueta', 1, 'XL', 'Verde', 'The North Face', 99.99, 'Chaqueta impermeable');
-
-INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto, contrasena)
-VALUES ('12345678A', 'Juan', 'García', 'López', 'juan@example.com', 123456789, 'Gerente', '1234');
-
-INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto)
-VALUES ('23456789B', 'María', 'Martínez', 'Pérez', 'maria@example.com', 987654321, 'Asistente');
-
-INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto)
-VALUES ('34567890C', 'Pedro', 'Rodríguez', 'Sánchez', 'pedro@example.com', 654987321, 'Contador');
-
-INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto)
-VALUES ('45678901D', 'Laura', 'López', 'Gómez', 'laura@example.com', 789654123, 'Vendedor');
-
-INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto)
-VALUES ('56789012E', 'Carlos', 'Fernández', 'Díaz', 'carlos@example.com', 456789123, 'Recepcionista');
-
-INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto, contrasena)
-VALUES ('a', 'a', 'a', 'a', 'a', 91, 'a', 'a');
+INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio, descripcion) VALUES
+('P001', 'camiseta', 4, 'M', 'rojo', 'Nike', 19.99, 'Camiseta deportiva'),
+('P002', 'pantalon', 40, 'L', 'azul', 'Adidas', 39.99, 'Pantalón casual'),
+('P003', 'zapatos', 30, '42', 'negro', 'Puma', 59.99, 'Zapatos de correr'),
+('P004', 'chaqueta', 20, 'XL', 'verde', 'Reebok', 79.99, 'Chaqueta impermeable'),
+('P005', 'gorro', 100, 'U', 'gris', 'Under Armour', 15.99, 'Gorro de lana'),
+('P006', 'camiseta', 70, 'S', 'blanco', 'Nike', 17.99, 'Camiseta básica'),
+('P007', 'pantalon', 60, 'M', 'negro', 'Adidas', 34.99, 'Pantalón deportivo'),
+('P008', 'zapatos', 25, '44', 'blanco', 'Puma', 64.99, 'Zapatos casuales'),
+('P009', 'chaqueta', 15, 'L', 'rojo', 'Reebok', 89.99, 'Chaqueta térmica'),
+('P010', 'gorro', 80, 'U', 'azul', 'Under Armour', 12.99, 'Gorro ligero');
+INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto, contrasena) VALUES
+('12345678A', 'Carlos', 'García', 'Pérez', 'carlos.garcia@example.com', 600123456, 'Vendedor', '1234'),
+('23456789B', 'María', 'López', 'Sánchez', 'maria.lopez@example.com', 600234567, 'Gerente', 'password2'),
+('34567890C', 'José', 'Martínez', 'Ruiz', 'jose.martinez@example.com', 600345678, 'Cajero', 'password3'),
+('45678901D', 'Ana', 'Fernández', 'Gómez', 'ana.fernandez@example.com', 600456789, 'Vendedor', 'password4'),
+('56789012E', 'Luis', 'González', 'Díaz', 'luis.gonzalez@example.com', 600567890, 'Almacén', 'password5'),
+('67890123F', 'Elena', 'Hernández', 'Martín', 'elena.hernandez@example.com', 600678901, 'Vendedor', 'password6'),
+('78901234G', 'Raúl', 'Rodríguez', 'Moreno', 'raul.rodriguez@example.com', 600789012, 'Vendedor', 'password7'),
+('89012345H', 'Laura', 'Jiménez', 'Álvarez', 'laura.jimenez@example.com', 600890123, 'Cajero', 'password8'),
+('90123456I', 'David', 'Sánchez', 'Romero', 'david.sanchez@example.com', 600901234, 'Gerente', 'password9'),
+('01234567J', 'Sara', 'Torres', 'Navarro', 'sara.torres@example.com', 600012345, 'Almacén', 'password10');
