@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +27,7 @@ public class ModificarProductoFrame extends JFrame {
 
     public ModificarProductoFrame() {
         setTitle("Modificar producto");
-        setSize(450, 440);
+        setSize(450, 520);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -59,6 +61,9 @@ public class ModificarProductoFrame extends JFrame {
                     }
                 }
                 boolean empty = false;
+                boolean neg = false;
+                boolean string = false ;
+                String msj = "";
                 info = String.valueOf ( cont + "," + idField.getText());
                 if(idField.getText ().isEmpty ()) {
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
@@ -66,9 +71,21 @@ public class ModificarProductoFrame extends JFrame {
                     int nuevoAlto = 70;
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID del producto.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado );
+                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe introducir el ID de un producto.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado );
+                }
+                else if(cont == 0 ){
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog ( ModificarProductoFrame.this, "Debe marcar alguna casilla para hacer cambios.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado );
                 }
                 else {
+                    if(!UtilesFrame.EsInt ( idField.getText () )){
+                        string = true;
+                        msj += "El campo 'ID' debe ser numérico.\n";
+                    }
                     StringBuilder cambios = new StringBuilder("Cambios realizados:\n");
                     if (chkNombre.isSelected()) {
                         cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
@@ -76,9 +93,6 @@ public class ModificarProductoFrame extends JFrame {
                         info += "," + nombreField.getText();
                         if(nombreField.getText ().isEmpty ()) {
                             empty=true;
-                        }
-                        else {
-                            nombreField.setText ( "" );
                         }
                     }
                     if (chkStock.isSelected()) {
@@ -88,8 +102,12 @@ public class ModificarProductoFrame extends JFrame {
                         if(stockField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                            stockField.setText ( "" );
+                        else if(!UtilesFrame.EsInt ( stockField.getText () )){
+                            string = true;
+                            msj += "El campo 'Stock' debe ser numérico.\n";
+                        }
+                        else if(Integer.valueOf ( stockField.getText () )<0){
+                            neg=true;
                         }
                     }
                     if (chkTalla.isSelected()) {
@@ -99,9 +117,6 @@ public class ModificarProductoFrame extends JFrame {
                         if(tallaField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                            tallaField.setText ( "" );
-                        }
                     }
                     if (chkColor.isSelected()) {
                         cambios.append(" - Color modificado: ").append(colorField.getText()).append("\n");
@@ -109,9 +124,6 @@ public class ModificarProductoFrame extends JFrame {
                         info += "," + colorField.getText();
                         if(colorField.getText ().isEmpty ()) {
                             empty=true;
-                        }
-                        else {
-                           colorField.setText ( "" );
                         }
                     }
                     if (chkMarca.isSelected()) {
@@ -121,9 +133,6 @@ public class ModificarProductoFrame extends JFrame {
                         if(marcaField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                            marcaField.setText ( "" );
-                        }
                     }
                     if (chkPrecio.isSelected()) {
                         cambios.append(" - Precio modificado: ").append(precioField.getText()).append("\n");
@@ -132,8 +141,12 @@ public class ModificarProductoFrame extends JFrame {
                         if(precioField.getText ().isEmpty ()) {
                             empty=true;
                         }
-                        else {
-                            precioField.setText ( "" );
+                        else if(!UtilesFrame.EsDouble ( precioField.getText () )){
+                            string = true;
+                            msj += "El campo 'Precio' debe ser numérico.\n";
+                        }
+                        else if(Integer.valueOf ( precioField.getText () )<0){
+                            neg=true;
                         }
                     }
                     if(empty) {
@@ -143,6 +156,22 @@ public class ModificarProductoFrame extends JFrame {
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(ModificarProductoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                    }
+                    else if(neg){
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(ModificarProductoFrame.this, "El precio y el stock no pueden ser negativos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                    }
+                    else if( string ){
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog ( ModificarProductoFrame.this,msj,"Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                     }
                     else {
                         LecturaYEscrituraDeFicheros.modificarProducto(info);
@@ -154,6 +183,12 @@ public class ModificarProductoFrame extends JFrame {
                             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                             JOptionPane.showMessageDialog(ModificarProductoFrame.this, cambios.toString(), "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
                             idField.setText ( "" );
+                            nombreField.setText ( "" );
+                            stockField.setText ( "" );
+                            tallaField.setText ( "" );
+                            colorField.setText ( "" );
+                            marcaField.setText ( "" );
+                            precioField.setText ( "" );
                         }
                         else {
                             ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
