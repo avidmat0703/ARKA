@@ -1,3 +1,6 @@
+IMPORTANTE: INTRODUCIR LOS DATOS DE USUARIO Y CONTRASEÑA DE SQL EN EL FICHERO "USUARIO.TXT", UBICADO EN BACK/FICHEROS.
+ES IMPRESCINDIBLE NO MODIFICAR EL RESTO DE LOS FICHEROS PARA EL CORRECTO FUNCIONAMIENTO DEL PROGRAMA.
+
 - Al ejecutar la aplicación, se muestra la pantalla de login.(PARA ACCEDER: USUARIO = 12345678A, CONTRASEÑA = 1234)
 
 
@@ -8,21 +11,73 @@ NOTA: En caso de haber algún error en la conectividad, saldrá un mensaje de er
 -Al cerrar la ventana emergente, se mostrará la pantalla principal con las siguientes opciones:
     *Consultar inventario
     *Consultar ventas
-    *Gestión de producto
     *Gestión de empleados
+    *Gestión de producto
     *Realizar Venta
 
 CONSULTAR INVENTARIO
 -Al hacer clic en "Consultar inventario", se mostrará una tabla con todos los productos y sus características.
 
 
--Al clicar "Volver atrás", la ventana se cierra.
+-Al clicar "Actualizar la tabla", la tabla se actualiza.
 
 CONSULTAR VENTAS
 -Al hacer clic en "Consultar ventas", se mostrará una tabla con las ventas y sus características.
 
+-Al clicar "Actualizar la tabla", la tabla se actualiza.
 
--Al clicar "Volver atrás", la ventana se cierra.
+
+GESTIÓN DE EMPLEADOS
+
+-Al hacer clic en "Gestión de empleados", se mostrará un menu con las siguientes opciones:
+*Alta empleado
+*Baja empleado
+*Modificar empleado
+
+ALTA DE EMPLEADO
+-Al hacer clic en "Alta de empleado", se mostrará una pantalla con diferentes campos de texto para introducir
+los atributos del nuevo empleado.
+
+-Si no se rellenan todos los campos, al pulsar en "Dar de alta este empleado"
+saldrá un mensaje de error en el que menciona que todos los campos deben estar completos.
+
+
+-Al introducir un producto con código "12345678A" (ya existe en la base de datos), el programa mostrará un mensaje de error.
+
+
+-En el caso de introducir un tipo de dato erróneo en el campo "teléfono", se mostrará un mensaje de error.
+
+
+-En el caso de que estén todos los campos rellenos y el ID aún no esté registrado saldría que el empleado ha sido creado correctamente.
+
+BAJA DE EMPLEADO
+
+-Al hacer clic en "Baja de empleado", se mostrará una pantalla con un botón para listar todos los empleados
+de la tienda y un campo de texto para introducir el DNI del empleado a eliminar.
+
+-Al hacer clic en el botón "listar todos los empleados" se mostrará una tabla con los empleados.
+
+-Al hacer clic en "Eliminar este empleado", si el DNI está registrado, saldrá un mensaje
+diciendo que el empleado ha sido eliminado correctamente.
+
+-En el caso en el que el campo del DNI esté vacío o no exista en la BBDD, saltará un mensaje de error en el que se menciona
+que el campo DNI debe estar completo.
+
+-Al introducir en el campo DNI "11111111F" (no existe en la base de datos) y clicar en "Dar de baja este empleado", mostrará un mensaje de error.
+
+
+-Al introducir en el campo DNI "12345678A" y clicar en "Dar de baja este empleado", el programa mostrará un mensaje
+indicando que el empleado se ha dado de baja satisfactoriamente.
+
+MODIFICAR EMPLEADO
+
+-Al hacer clic en "Modificar empleado", se mostrará una pantalla con diferentes campos de texto, según los campos que se deseen modificar.
+Hay un botón "Listar todos los empleados", que mostrará la plantilla. No se podrá dejar el campo de DNI vacío, tampoco los campos seleccionados
+para modificar. Hay que introducir un DNI existente en la BBDD, de lo contrario se mostrará un error. En los campos numéricos no se
+podrá introducir otro tipo de datos.
+
+
+-Cuando se rellenen los campos a modificar del empleado saldrá un mensaje con los cambios realizados.
 
 
 GESTIÓN DE PRODUCTOS
@@ -71,56 +126,6 @@ podrá introducir otro tipo de datos.
 -Cuando se rellenen los campos a modificar del producto saldrá un mensaje con los cambios realizados.
 
 
--Al cerrarse la ventana se encontrará de vuelta en la ventana de "modificar producto" por si quiere modificar otro.
-
-
-GESTIÓN DE EMPLEADOS
-
--Al hacer clic en "Gestión de empleados", se mostrará un menu con las siguientes opciones:
-*Alta empleado
-*Baja empleado
-*Modificar empleado
-
-ALTA DE EMPLEADO
--Al hacer clic en "Alta de empleado", se mostrará una pantalla con diferentes campos de texto para introducir
-los atributos del nuevo empleado.
-
--Si no se rellenan todos los campos, al pulsar en "Dar de alta este empleado"
-saldrá un mensaje de error en el que menciona que todos los campos deben estar completos.
-
--En el caso de que estén todos los campos rellenos saldría que el empleado ha sido creado correctamente.
-
--En el caso de que el DNI del empleado ya exista en la BBDD de la tienda mostrará un mensaje de error
-
--En el caso de introducir un tipo de dato erróneo en el campo "teléfono", se mostrará un mensaje de error.
-
-BAJA DE EMPLEADO
-
--Al hacer clic en "Baja de empleado", se mostrará una pantalla con un botón para listar todos los empleados
-de la tienda y un campo de texto para introducir el DNI del empleado.
-
--Al hacer clic en el botón "listar todos los empleados" se mostrará una lista con los empleados.
-
--Al hacer clic en "Eliminar este empleado" una vez elegido el empleado con su DNI saldrá un mensaje
-diciendo que el empleado ha sido eliminado correctamente.
-
--En el caso en el que el campo del DNI esté vacío o no exista en la BBDD, saltará un mensaje de error en el que se menciona
-que el campo DNI debe estar completo.
-
-
-MODIFICAR EMPLEADO
-
--Al hacer clic en "Modificar empleado", se mostrará una pantalla con diferentes campos de texto, según los campos que se deseen modificar.
-Hay un botón "Listar todos los empleados", que mostrará la plantilla. No se podrá dejar el campo de DNI vacío, tampoco los campos seleccionados
-para modificar. Hay que introducir un DNI existente en la BBDD, de lo contrario se mostrará un error. En los campos numéricos no se
-podrá introducir otro tipo de datos.
-
-
-
--Cuando se rellenen los campos a modificar del empleado saldrá un mensaje con los cambios realizados.
-
-
--Al cerrarse la ventana se encontrará de vuelta en la ventana de "modificar empleado" por si quiere modificar otro.
 
 REALIZAR VENTA
 
