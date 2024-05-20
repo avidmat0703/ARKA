@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ARKA:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ARKA_jar</output-path>
+    <root id="archive" name="ARKA.jar">
+      <element id="module-output" name="ARKA" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ARKA/src/FRONT/libr/mysql-connector-j-8.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ARKA/src/FRONT/libr/JTattoo-1.6.13.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
