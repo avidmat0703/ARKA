@@ -27,7 +27,7 @@ public class ModificarProductoFrame extends JFrame {
 
     public ModificarProductoFrame() {
         setTitle("Modificar producto");
-        setSize(450, 520);
+        setSize(450,  440);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
