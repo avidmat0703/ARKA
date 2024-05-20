@@ -1,4 +1,4 @@
-- Al ejecutar la aplicación, se muestra la pantalla de login.(PARA ACCEDER: USUARIO = 12345678A, CONTRASEÑA = 1234.)
+- Al ejecutar la aplicación, se muestra la pantalla de login.(PARA ACCEDER: USUARIO = 12345678A, CONTRASEÑA = 1234)
 
 
 -Al acceder, se mostrará una ventana emergente dando aviso de falta de stock en determinados productos.

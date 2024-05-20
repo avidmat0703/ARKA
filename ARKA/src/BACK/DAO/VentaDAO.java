@@ -30,7 +30,6 @@ public class VentaDAO  implements UtilesDAO {
                     sentencia.executeUpdate ();
                     connection.close ();
                 } catch (SQLException ex) {
-                    System.out.println ( ex.getMessage () );
                     LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                     crear = false;
                 }
@@ -41,7 +40,6 @@ public class VentaDAO  implements UtilesDAO {
         }
         catch (IOException e)
         {
-            System.out.println (e.getMessage ());
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             crear = false;
         }
@@ -51,7 +49,6 @@ public class VentaDAO  implements UtilesDAO {
             }
             catch (IOException ex)
             {
-                System.out.println (ex.getMessage ());
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 crear = false;
             }
@@ -115,7 +112,6 @@ public class VentaDAO  implements UtilesDAO {
                     }
                 }
                 catch(IOException e){
-                    System.out.println (e.getMessage ());
                     LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                     listar=false;
                 }

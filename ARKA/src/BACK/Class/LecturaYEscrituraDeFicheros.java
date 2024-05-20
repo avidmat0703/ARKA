@@ -20,16 +20,13 @@ public class LecturaYEscrituraDeFicheros {
                 salida.newLine ();
             }
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
             LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
-            System.out.println ( ee.existeYContrasenaCorrecta () );
         }
     }
 
@@ -39,12 +36,11 @@ public class LecturaYEscrituraDeFicheros {
             salida = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/DeleteEmpleados.txt" ) );
             salida.write ( info );
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             EmpleadoDAO em = new EmpleadoDAO();
             em.eliminar();
@@ -57,12 +53,12 @@ public class LecturaYEscrituraDeFicheros {
             salida = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/DeleteProductos.txt" ) );
             salida.write ( info );
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             ProductoDAO pp = new ProductoDAO();
             pp.eliminar();
@@ -79,12 +75,12 @@ public class LecturaYEscrituraDeFicheros {
                 salida.newLine ();
             }
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             ProductoDAO p = new ProductoDAO ();
             p.crear ();
@@ -102,12 +98,12 @@ public class LecturaYEscrituraDeFicheros {
                 salida.newLine ();
             }
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             EmpleadoDAO ee = new EmpleadoDAO();
             ee.crear();
@@ -124,12 +120,12 @@ public class LecturaYEscrituraDeFicheros {
             salida.newLine ();
             salida.write ( inf[1] );
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
             VentaDAO v = new VentaDAO();
             v.crear();
@@ -146,12 +142,10 @@ public class LecturaYEscrituraDeFicheros {
                 salida.newLine ();
             }
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
             }
             EmpleadoDAO ee = new EmpleadoDAO ();
             ee.modificar ();
@@ -168,12 +162,11 @@ public class LecturaYEscrituraDeFicheros {
                 salida.newLine ();
             }
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
             }
             ProductoDAO p = new ProductoDAO ();
             p.modificar ();
@@ -195,17 +188,15 @@ public class LecturaYEscrituraDeFicheros {
                         s[i][j] = br.readLine ();
 
                     }
-                    System.out.println ( Arrays.toString ( s[i] ) );
                 }
                 resultado = s;
             } catch (IOException ex) {
-                System.out.println ( ex.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             } finally {
                 try {
                     br.close ();
                 } catch (IOException e) {
-                    System.out.println ( e.getMessage () );
+                    LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                 }
             }
         }
@@ -226,16 +217,15 @@ public class LecturaYEscrituraDeFicheros {
                     for (int j = 0; j < 9; j++) {
                         s[i][j] = br.readLine ();
                     }
-                    System.out.println ( Arrays.toString ( s[i] ) );
                 }
                 resultado = s;
             } catch (IOException ex) {
-                System.out.println ( ex.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             } finally {
                 try {
                     br.close ();
                 } catch (IOException e) {
-                    System.out.println ( e.getMessage () );
+                    LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                 }
             }
         }
@@ -257,16 +247,15 @@ public class LecturaYEscrituraDeFicheros {
                         s[i][j] = br.readLine ();
 
                     }
-                    System.out.println ( Arrays.toString ( s[i] ) );
                 }
                 resultado = s;
             } catch (IOException ex) {
-                System.out.println ( ex.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             } finally {
                 try {
                     br.close ();
                 } catch (IOException e) {
-                    System.out.println ( e.getMessage () );
+                    LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                 }
             }
         }
@@ -280,12 +269,12 @@ public class LecturaYEscrituraDeFicheros {
             br = new BufferedReader ( new FileReader ( "ARKA/src/Ficheros/Error.txt" ) );
             error = br.readLine ();
         } catch (IOException e) {
-            System.out.println ( e.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
         } finally {
             try {
                 br.close ();
             } catch (IOException ex) {
-                System.out.println ( ex.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             }
         }
         return error;
@@ -297,12 +286,12 @@ public class LecturaYEscrituraDeFicheros {
             bw = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/Error.txt" ) );
             bw.write ( s );
         } catch (IOException e) {
-            System.out.println ( e.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
         } finally {
             try {
                 bw.close ();
             } catch (IOException ex) {
-                ex.getMessage ();
+                LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             }
         }
     }
@@ -313,12 +302,12 @@ public class LecturaYEscrituraDeFicheros {
             salida = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/SelectProductos.txt" ) );
             salida.write ( "" );
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
         }
     }
@@ -329,12 +318,12 @@ public class LecturaYEscrituraDeFicheros {
             salida = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/SelectEmpleados.txt" ) );
             salida.write ( "" );
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
         }
     }
@@ -345,12 +334,12 @@ public class LecturaYEscrituraDeFicheros {
             salida = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/SelectVentas.txt" ) );
             salida.write ( "" );
         } catch (IOException ex) {
-            System.out.println ( ex.getMessage () );
+            LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
         } finally {
             try {
                 salida.close ();
             } catch (IOException e) {
-                System.out.println ( e.getMessage () );
+                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
         }
     }

@@ -42,7 +42,6 @@ public class EmpleadoDAO implements UtilesDAO {
                         sentencia.executeUpdate ();
                         connection.close ();
                     } catch (SQLException e) {
-                        System.out.println ( e.getMessage () );
                         LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                         crear = false;
                     }
@@ -55,7 +54,6 @@ public class EmpleadoDAO implements UtilesDAO {
         }
         catch (IOException e)
         {
-            System.out.println (e.getMessage ());
             crear = false;
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
         }
@@ -65,7 +63,6 @@ public class EmpleadoDAO implements UtilesDAO {
             }
             catch (IOException ex)
             {
-                System.out.println (ex.getMessage ());
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 crear = false;
             }
@@ -90,7 +87,6 @@ public class EmpleadoDAO implements UtilesDAO {
                         sentencia.executeUpdate ();
                         connection.close ();
                     } catch (SQLException ex) {
-                        System.out.println ( ex.getMessage () );
                         LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                         eliminar = false;
                     }
@@ -104,7 +100,6 @@ public class EmpleadoDAO implements UtilesDAO {
                             sentencia.executeUpdate ();
                             con.close ();
                         } catch (SQLException ex) {
-                            System.out.println ( ex.getMessage () );
                             LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                             eliminar = false;
                         }
@@ -115,7 +110,6 @@ public class EmpleadoDAO implements UtilesDAO {
         }
         catch (IOException e)
         {
-            System.out.println (e.getMessage ());
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             eliminar = false;
         }
@@ -125,7 +119,6 @@ public class EmpleadoDAO implements UtilesDAO {
             }
             catch (IOException ex)
             {
-                System.out.println (ex.getMessage ());
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 eliminar = false;
             }
@@ -158,7 +151,6 @@ public class EmpleadoDAO implements UtilesDAO {
                             sentencia2.executeUpdate ();
                             connection.close ();
                         } catch (SQLException ex) {
-                            System.out.println ( ex.getMessage () );
                             LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                             modificar = false;
                         }
@@ -170,7 +162,6 @@ public class EmpleadoDAO implements UtilesDAO {
         }
         catch (IOException e)
         {
-            System.out.println (e.getMessage ());
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             modificar = false;
         }
@@ -180,7 +171,6 @@ public class EmpleadoDAO implements UtilesDAO {
             }
             catch (IOException ex)
             {
-                System.out.println (ex.getMessage ());
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 modificar = false;
             }
@@ -238,7 +228,6 @@ public class EmpleadoDAO implements UtilesDAO {
                     }
                 }
                 catch(IOException e){
-                    System.out.println (e.getMessage ());
                     LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                     listar = false;
                 }
@@ -254,7 +243,6 @@ public class EmpleadoDAO implements UtilesDAO {
                     }
                 }
             } catch (SQLException e) {
-                System.out.println (e.getMessage ());
                 LecturaYEscrituraDeFicheros.escribirError( e.getMessage () );
                 listar=false;
             }
@@ -281,7 +269,6 @@ public class EmpleadoDAO implements UtilesDAO {
                         sentencia.executeUpdate ();
                         connection.close ();
                     } catch (SQLException ex) {
-                        System.out.println ( ex.getMessage () );
                         LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                         existe = false;
                     }
@@ -300,7 +287,6 @@ public class EmpleadoDAO implements UtilesDAO {
                             sentencia2.executeUpdate ();
                             con.close ();
                         } catch (SQLException ex) {
-                            System.out.println ( ex.getMessage () );
                             LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                             existe = false;
                         }
@@ -312,7 +298,6 @@ public class EmpleadoDAO implements UtilesDAO {
         }
         catch (IOException e)
         {
-            System.out.println (e.getMessage ());
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             existe = false;
         }
@@ -322,7 +307,6 @@ public class EmpleadoDAO implements UtilesDAO {
             }
             catch (IOException ex)
             {
-                System.out.println (ex.getMessage ());
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 existe = false;
             }

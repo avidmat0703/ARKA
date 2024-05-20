@@ -50,7 +50,6 @@ public class ProductoDAO implements UtilesDAO {
                         sentencia.executeUpdate ();
                         connection.close ();
                     } catch (SQLException ex) {
-                        System.out.println ( ex.getMessage () );
                         LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                     }
                 } else {
@@ -62,13 +61,11 @@ public class ProductoDAO implements UtilesDAO {
             }
 
         } catch (IOException e) {
-            System.out.println ( e.getMessage () );
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
         } finally {
             try {
                 br.close ();
             } catch (IOException ex) {
-                System.out.println ( ex.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 crear = false;
             }
@@ -93,21 +90,18 @@ public class ProductoDAO implements UtilesDAO {
                     connection.close ();
                 } catch (SQLException ex) {
                     eliminar = false;
-                    System.out.println ( ex.getMessage () );
                     LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 }
             } else {
                 eliminar = false;
             }
         } catch (IOException e) {
-            System.out.println ( e.getMessage () );
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             eliminar = false;
         } finally {
             try {
                 br.close ();
             } catch (IOException ex) {
-                System.out.println ( ex.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
             }
         }
@@ -147,7 +141,6 @@ public class ProductoDAO implements UtilesDAO {
                         sentencia3.executeUpdate ();
                         connection.close ();
                     } catch (SQLException ex) {
-                        System.out.println ( ex.getMessage () );
                         modificar = false;
                         LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                     }
@@ -158,14 +151,12 @@ public class ProductoDAO implements UtilesDAO {
 
             }
         } catch (IOException e) {
-            System.out.println ( e.getMessage () );
             LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             modificar = false;
         } finally {
             try {
                 br.close ();
             } catch (IOException ex) {
-                System.out.println ( ex.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 modificar = false;
             }
@@ -230,7 +221,6 @@ public class ProductoDAO implements UtilesDAO {
                         bw.newLine ();
                     }
                 } catch (IOException e) {
-                    System.out.println ( e.getMessage () );
                     LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                     listar = false;
                 } finally {
@@ -242,7 +232,6 @@ public class ProductoDAO implements UtilesDAO {
                     }
                 }
             } catch (SQLException e) {
-                System.out.println ( e.getMessage () );
                 LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
                 listar = false;
             }
@@ -288,7 +277,6 @@ public class ProductoDAO implements UtilesDAO {
                     }
                     connection.close ();
                 } catch (SQLException ex) {
-                    System.out.println ( ex.getMessage () );
 
                     LecturaYEscrituraDeFicheros.escribirError ( ex.getMessage () );
                 }
