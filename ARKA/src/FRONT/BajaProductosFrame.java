@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -39,6 +41,15 @@ public class BajaProductosFrame extends JFrame {
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                     JOptionPane.showMessageDialog(BajaProductosFrame.this, "Debe introducir el ID de un producto.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                }
+                else if(!UtilesFrame.EsInt ( id ))
+                {
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog(BajaProductosFrame.this, "El ID debe ser numérico.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
                 else {
                     info = idField.getText ();

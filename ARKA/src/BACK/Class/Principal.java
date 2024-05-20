@@ -3,6 +3,7 @@ package BACK.Class;
 import BACK.DAO.EmpleadoDAO;
 import BACK.DAO.ProductoDAO;
 import BACK.DAO.VentaDAO;
+import BACK.Interfaz.UtilesFrame;
 import FRONT.ConsultarInventarioFrame;
 
 import java.util.Arrays;
@@ -31,7 +32,12 @@ public class Principal {
         //LecturaYEscrituraDeFicheros.Login ( "12345678A" );
         //p.stock ();
         //System.out.println (LecturaYEscrituraDeFicheros.stock ( ));
-        p.modificar ();
-
+        //p.modificar ();
+        if(!UtilesFrame.EsInt ( "1" ) || !UtilesFrame.EsDouble ( "i" )){
+            System.out.println ("no pasa");
+        }
+        else{
+            System.out.println ("pasa");
+        }
     }
 }

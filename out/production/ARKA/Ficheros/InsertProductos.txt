@@ -1,8 +1,8 @@
-A001
+oo
 a
-15
-S
+2
 a
 a
-10.20
-Prenda
+a
+1
+Accesorio
