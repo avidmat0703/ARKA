@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +28,6 @@ public class RealizarVentaFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String codigo = codigoField.getText();
                 String cantidad = cantidadField.getText();
-
                 if (codigo.isEmpty() || cantidad.isEmpty()) {
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
                     int nuevoAncho = 70;
@@ -34,6 +35,14 @@ public class RealizarVentaFrame extends JFrame {
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                     JOptionPane.showMessageDialog(RealizarVentaFrame.this, "No deben haber campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                }
+                else if(!UtilesFrame.EsInt ( codigo ) || !UtilesFrame.EsInt ( cantidad )){
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog(RealizarVentaFrame.this, "Los campos deben ser numéricos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
                 else {
                     info = codigo + "," + cantidad;
