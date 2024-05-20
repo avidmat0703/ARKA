@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Tienda_de_ropa.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+    <script-file value="$PROJECT_DIR$/ARKA/src/SQL/Tienda_de_ropa.sql" />
+    <script-mode>FILE</script-mode>
+    <data-source id="74eea659-234b-4e00-b757-a37da2ee3341" />
+    <method v="2" />
+  </configuration>
+</component>
