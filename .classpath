@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="ARKA/src"/>
-	<classpathentry kind="lib" path=".idea/shelf/Uncommitted_changes_before_Update_at_18_05_2024_18_42_[Changes]/JTattoo-1.6.13.jar"/>
-	<classpathentry kind="lib" path=".idea/shelf/Uncommitted_changes_before_Update_at_18_05_2024_18_42_[Changes]/mysql-connector-j-8.3.0.jar"/>
-	<classpathentry kind="output" path="out/production/ARKA"/>
-</classpath>
