@@ -1,4 +1,4 @@
-6
+5
 1
 P001
 Camiseta
@@ -11,7 +11,7 @@ Prenda
 2
 P002
 Pantalón
-25
+30
 L
 Azul
 Adidas
@@ -38,18 +38,9 @@ Prenda
 5
 P005
 Chaqueta
-2
+1
 XL
 Verde
 The North Face
 Prenda
 99.99
-6
-a
-a
-3
-a
-a
-a
-Accesorio
-78.0
