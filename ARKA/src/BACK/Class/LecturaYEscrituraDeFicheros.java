@@ -10,7 +10,6 @@ import java.util.Arrays;
 public class LecturaYEscrituraDeFicheros {
 
     public static void Login(String info) {
-        EmpleadoDAO ee = new EmpleadoDAO ();
         BufferedWriter salida = null;
         try {
             salida = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/Login.txt" ) );
@@ -27,6 +26,8 @@ public class LecturaYEscrituraDeFicheros {
             } catch (IOException e) {
                 LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
             }
+            EmpleadoDAO ee = new EmpleadoDAO ();
+            ee.existeYContrasenaCorrecta ();
         }
     }
 

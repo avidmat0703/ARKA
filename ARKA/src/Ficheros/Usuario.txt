@@ -1,2 +1,2 @@
 newuser
-password
+passwor
