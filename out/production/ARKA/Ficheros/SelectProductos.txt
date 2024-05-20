@@ -2,7 +2,7 @@
 1
 P001
 Camiseta
-1
+10
 M
 Rojo
 Nike
@@ -10,7 +10,7 @@ Prenda
 19.99
 2
 P002
-Pantalón
+a
 30
 L
 Azul

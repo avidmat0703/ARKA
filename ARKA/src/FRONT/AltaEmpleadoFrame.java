@@ -63,7 +63,7 @@ public class AltaEmpleadoFrame extends JFrame {
                     int nuevoAlto = 70;
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"El campo 'Teléfono' no debe ser numérico.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"El campo 'Teléfono' debe ser numérico.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
                 else {
                     info=dni + "," + nombre + "," + apellido1 + "," + apellido2 + "," + email + "," + telefono + "," + puesto + "," + contrasena;
