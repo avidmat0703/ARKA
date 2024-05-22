@@ -41,4 +41,13 @@ public interface UtilesFrame {
             return false;
         }
     }
+    public static boolean esValido(String s){
+        if(s.charAt ( 0 ) == ' ')
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

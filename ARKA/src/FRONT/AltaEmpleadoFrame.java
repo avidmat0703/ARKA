@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AltaEmpleadoFrame extends JFrame {
 
@@ -47,22 +49,28 @@ public class AltaEmpleadoFrame extends JFrame {
                 String telefono = telefonoField.getText();
                 String puesto = puestoField.getText();
                 String contrasena = contrasenaField.getText();
-
-                if((dni.isEmpty ()||nombre.isEmpty ()||apellido1.isEmpty ()||apellido2.isEmpty ()||email.isEmpty ()||telefono.isEmpty ()||puesto.isEmpty ()||contrasena.isEmpty ())) {
-                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
-                    int nuevoAncho = 70;
-                    int nuevoAlto = 70;
-                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
-                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"No deben haber campos vacíos.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                boolean valido = true;
+                List<String> campos = new ArrayList<> ();
+                campos.add ( dni );
+                campos.add ( nombre );
+                campos.add ( apellido1 );
+                campos.add ( apellido2 );
+                campos.add ( email );
+                campos.add ( telefono );
+                campos.add ( puesto );
+                campos.add ( contrasena );
+                for(String campo : campos){
+                    if(campo.isEmpty () || !UtilesFrame.esValido ( campo ) ){
+                        valido = false;
+                    }
                 }
-                else if(!UtilesFrame.EsInt ( telefono )){
+                if(!valido) {
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
                     int nuevoAncho = 70;
                     int nuevoAlto = 70;
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"El campo 'Teléfono' debe ser numérico (máximo 9 dígitos).","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"Algún campo no es válido o está vacío.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
                 else if(!UtilesFrame.dniCorrecto ( dni )){
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
@@ -72,13 +80,13 @@ public class AltaEmpleadoFrame extends JFrame {
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                     JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"El DNI debe tener el formato correcto (España).","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
-                else if(contrasena.equals ( " " )){
+                else if(!UtilesFrame.EsInt ( telefono )){
                     ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
                     int nuevoAncho = 70;
                     int nuevoAlto = 70;
                     Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"La contraseña debe tener al menos un caracter ó un número.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"El campo 'Teléfono' debe ser numérico (máximo 9 dígitos).","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
                 else {
                     info=dni + "," + nombre + "," + apellido1 + "," + apellido2 + "," + email + "," + telefono + "," + puesto + "," + contrasena;

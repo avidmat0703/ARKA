@@ -1,6 +1,8 @@
 package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
+import BACK.Interfaz.UtilesFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,6 +46,15 @@ public class BajaEmpleadoFrame extends JFrame {
                         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "Empleado eliminado correctamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE, iconoRedimensionado);
+                    }
+                    else if(!UtilesFrame.dniCorrecto ( dni )){
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog(BajaEmpleadoFrame.this, "El DNI debe tener el formato correcto (España).","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                        LecturaYEscrituraDeFicheros.escribirError("");
                     }
                     else {
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));

@@ -1,7 +1,7 @@
 IMPORTANTE: INTRODUCIR LOS DATOS DE USUARIO Y CONTRASEÑA DE SQL EN EL FICHERO "USUARIO.TXT", UBICADO EN BACK/FICHEROS.
 ES IMPRESCINDIBLE NO MODIFICAR EL RESTO DE LOS FICHEROS PARA EL CORRECTO FUNCIONAMIENTO DEL PROGRAMA.
 
-- Al ejecutar la aplicación, se muestra la pantalla de login.(PARA ACCEDER: USUARIO = 12345678A, CONTRASEÑA = 1234)
+- Al ejecutar la aplicación, se muestra la pantalla de login.(PARA ACCEDER: USUARIO = 88013943G, CONTRASEÑA = 1234)
 
 
 -Al acceder, se mostrará una ventana emergente dando aviso de falta de stock en determinados productos.
@@ -42,13 +42,16 @@ los atributos del nuevo empleado.
 saldrá un mensaje de error en el que menciona que todos los campos deben estar completos.
 
 
--Al introducir un producto con código "12345678A" (ya existe en la base de datos), el programa mostrará un mensaje de error.
+-Al introducir un empleado con código "88013943G" (ya existe en la base de datos), el programa mostrará un mensaje de error.
+
+
+-Al introducir un DNI con un formato incorrecto (DNI de España), el programa mostrará un mensaje de error.
 
 
 -En el caso de introducir un tipo de dato erróneo en el campo "teléfono", se mostrará un mensaje de error.
 
 
--En el caso de que estén todos los campos rellenos y el ID aún no esté registrado saldría que el empleado ha sido creado correctamente.
+-En el caso de que estén todos los campos rellenos y el DNI aún no esté registrado saldrá que el empleado ha sido creado correctamente.
 
 BAJA DE EMPLEADO
 
@@ -63,10 +66,10 @@ diciendo que el empleado ha sido eliminado correctamente.
 -En el caso en el que el campo del DNI esté vacío o no exista en la BBDD, saltará un mensaje de error en el que se menciona
 que el campo DNI debe estar completo.
 
--Al introducir en el campo DNI "11111111F" (no existe en la base de datos) y clicar en "Dar de baja este empleado", mostrará un mensaje de error.
+-Al introducir en el campo DNI "12345678A" (no existe en la base de datos) y clicar en "Dar de baja este empleado", mostrará un mensaje de error.
 
 
--Al introducir en el campo DNI "12345678A" y clicar en "Dar de baja este empleado", el programa mostrará un mensaje
+-Al introducir en el campo DNI "88013943G" y clicar en "Dar de baja este empleado", el programa mostrará un mensaje
 indicando que el empleado se ha dado de baja satisfactoriamente.
 
 MODIFICAR EMPLEADO
@@ -100,6 +103,9 @@ El programa no permitirá activar las dos opciones al mismo tiempo.
 -Al introducir un producto con precio o stock negativo, el programa mostrará un mensaje de error.
 
 -Si se introduce un valor no numérico en los campos de precio o stock, el programa mostrará un mensaje de error.
+
+-Si se han seguido las indicaciones del programa correctamente, al introducir un producto saldrá un mensaje de que se ha introducido
+correctamente.
 
 BAJA DE PRODUCTO
 

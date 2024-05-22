@@ -62,7 +62,7 @@ public class ModificarEmpleadoFrame extends JFrame {
                     }
                 }
                 boolean empty=false;
-                boolean string = false;
+                boolean valido = true;
                     info = String.valueOf ( cont + "," + DNIField.getText());
                     if(DNIField.getText ().isEmpty ()) {
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
@@ -94,68 +94,57 @@ public class ModificarEmpleadoFrame extends JFrame {
                             cambios.append(" - Nombre modificado: ").append(nombreField.getText()).append("\n");
                             info += "," + "nombre";
                             info += "," + nombreField.getText();
-                            if(nombreField.getText ().isEmpty ()) {
-                                empty=true;
+                            if(nombreField.getText ().isEmpty () ||!UtilesFrame.esValido ( nombreField.getText () )){
+                                valido = false;
                             }
                         }
                         if (chkApellido1.isSelected()) {
                             cambios.append(" - Primer apellido modificado: ").append(apellido1Field.getText()).append("\n");
                             info += "," + "apellido";
                             info+= "," + apellido1Field.getText();
-                            if(apellido1Field.getText ().isEmpty ()) {
-                                empty=true;
+                            if(apellido1Field.getText ().isEmpty () ||!UtilesFrame.esValido ( apellido1Field.getText () )){
+                                valido = false;
                             }
                         }
                         if (chkApellido2.isSelected()) {
                             cambios.append(" - Segundo apellido modificado: ").append(apellido2Field.getText()).append("\n");
                             info += "," + "apellido2";
                             info+= "," + apellido2Field.getText();
-                            if(apellido2Field.getText ().isEmpty ()) {
-                                empty=true;
+                            if(apellido2Field.getText ().isEmpty () ||!UtilesFrame.esValido ( apellido2Field.getText () )){
+                                valido = false;
                             }
                         }
                         if (chkEmail.isSelected()) {
                             cambios.append(" - Email modificado: ").append(emailField.getText()).append("\n");
                             info += "," + "email";
                             info+= "," + emailField.getText();
-                            if(emailField.getText ().isEmpty ()) {
-                                empty=true;
+                            if(emailField.getText ().isEmpty () ||!UtilesFrame.esValido ( emailField.getText () )){
+                                valido = false;
                             }
                         }
                         if (chkTelefono.isSelected()) {
                             cambios.append ( " - Teléfono modificado: " ).append ( telefonoField.getText () ).append ( "\n" );
                             info += "," + "telefono";
                             info += "," + telefonoField.getText ();
-                            if (telefonoField.getText ().isEmpty ()) {
-                                empty = true;
-                            }
-                            else if(!UtilesFrame.EsInt ( telefonoField.getText () )){
-                                string = true;
+                            if(telefonoField.getText ().isEmpty () ||!UtilesFrame.EsInt( telefonoField.getText () )){
+                                valido = false;
                             }
                         }
                         if (chkPuesto.isSelected()) {
                             cambios.append(" - Puesto modificado: ").append(puestoField.getText()).append("\n");
                             info += "," + "puesto";
                             info += "," + puestoField.getText();
-                            if(puestoField.getText ().isEmpty ()) {
-                                empty=true;
+                            if(puestoField.getText ().isEmpty () ||!UtilesFrame.esValido ( puestoField.getText () )){
+                                valido = false;
                             }
                         }
-                        if(empty) {
+                        else if(!valido){
                             ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
                             int nuevoAncho = 70;
                             int nuevoAlto = 70;
                             Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
                             ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "Los campos seleccionados no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
-                        }
-                        else if(string){
-                            ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
-                            int nuevoAncho = 70;
-                            int nuevoAlto = 70;
-                            Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
-                            ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
-                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "El campo 'Teléfono' debe ser numérico.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                            JOptionPane.showMessageDialog(ModificarEmpleadoFrame.this, "Algún campo no es válido o está vacío.", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                         }
                         else {
                             LecturaYEscrituraDeFicheros.modificarEmpleado(info);
