@@ -2,7 +2,6 @@ package FRONT;
 
 import BACK.Class.LecturaYEscrituraDeFicheros;
 import BACK.Interfaz.UtilesFrame;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
