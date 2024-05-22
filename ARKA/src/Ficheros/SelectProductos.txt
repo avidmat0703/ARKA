@@ -2,7 +2,7 @@
 1
 P001
 camiseta
-50
+4
 M
 rojo
 Nike

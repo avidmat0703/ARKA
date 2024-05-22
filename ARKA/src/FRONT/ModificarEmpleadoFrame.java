@@ -72,6 +72,14 @@ public class ModificarEmpleadoFrame extends JFrame {
                         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                         JOptionPane.showMessageDialog ( ModificarEmpleadoFrame.this, "Debe introducir el DNI de un empleado", "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                     }
+                    else if(!UtilesFrame.dniCorrecto ( DNIField.getText () )){
+                        ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                        int nuevoAncho = 70;
+                        int nuevoAlto = 70;
+                        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                        ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                        JOptionPane.showMessageDialog ( ModificarEmpleadoFrame.this,"El DNI debe tener el formato correcto (España).","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                    }
                     else if(cont ==0){
                         ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
                         int nuevoAncho = 70;

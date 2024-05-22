@@ -12,7 +12,7 @@ public class LecturaYEscrituraDeFicheros {
     public static void Login(String info) {
         BufferedWriter salida = null;
         try {
-            salida = new BufferedWriter ( new FileWriter ( "ARKA/src/Ficheros/Login.txt" ) );
+            salida = new BufferedWriter ( new FileWriter ( "Login.txt" ) );
             String[] partes = info.split ( "," );
             for (String parte : partes) {
                 salida.write ( parte );
@@ -41,7 +41,7 @@ public class LecturaYEscrituraDeFicheros {
             try {
                 salida.close ();
             } catch (IOException e) {
-                LecturaYEscrituraDeFicheros.escribirError ( e.getMessage () );
+                escribirError ( e.getMessage () );
             }
             EmpleadoDAO em = new EmpleadoDAO();
             em.eliminar();

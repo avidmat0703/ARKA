@@ -65,6 +65,22 @@ public class AltaEmpleadoFrame extends JFrame {
                     ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
                     JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"El campo 'Teléfono' debe ser numérico (máximo 9 dígitos).","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
                 }
+                else if(!UtilesFrame.dniCorrecto ( dni )){
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"El DNI debe tener el formato correcto (España).","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                }
+                else if(contrasena.equals ( " " )){
+                    ImageIcon imagenOriginal = new ImageIcon(Menu.class.getResource("/FRONT/libr/V.jpg"));
+                    int nuevoAncho = 70;
+                    int nuevoAlto = 70;
+                    Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+                    ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
+                    JOptionPane.showMessageDialog ( AltaEmpleadoFrame.this,"La contraseña debe tener al menos un caracter ó un número.","Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
+                }
                 else {
                     info=dni + "," + nombre + "," + apellido1 + "," + apellido2 + "," + email + "," + telefono + "," + puesto + "," + contrasena;
                     LecturaYEscrituraDeFicheros.insertEmpleados ( info );

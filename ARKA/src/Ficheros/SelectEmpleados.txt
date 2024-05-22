@@ -1,4 +1,4 @@
-10
+11
 01234567J
 Sara
 Torres
@@ -48,6 +48,13 @@ Martín
 elena.hernandez@example.com
 600678901
 Vendedor
+77796092H
+Jose
+Cuevas
+Marfil
+josedavidcuevasmarfil@gmail.com
+612206028
+Jefe
 78901234G
 Raúl
 Rodríguez
