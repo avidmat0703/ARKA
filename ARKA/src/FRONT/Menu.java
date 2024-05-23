@@ -39,7 +39,7 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ConsultarVentasFrame frame = new ConsultarVentasFrame();
                 frame.setVisible(true);
-                centerFrameOnTop(frame);
+                centerFrameOnBottom(frame);
             }
         });
         panel.add(btnConsultarVentas, gbc);
@@ -106,6 +106,13 @@ public class Menu extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - frame.getWidth()) / 2;
         int y = 0;
+        frame.setLocation(x, y);
+    }
+
+    private void centerFrameOnBottom(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = screenSize.height - frame.getHeight()-50;
         frame.setLocation(x, y);
     }
 }

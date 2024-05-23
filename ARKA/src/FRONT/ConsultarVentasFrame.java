@@ -29,7 +29,7 @@ public class ConsultarVentasFrame extends JFrame {
             dispose();
             ConsultarVentasFrame frame = new ConsultarVentasFrame();
             frame.setVisible(true);
-            centerFrameOnTop(frame);
+            centerFrameOnBottom(frame);
         });
 
         JPanel panelBoton = new JPanel();
@@ -57,10 +57,10 @@ public class ConsultarVentasFrame extends JFrame {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE, iconoRedimensionado);
     }
 
-    private void centerFrameOnTop(JFrame frame) {
+    private void centerFrameOnBottom(JFrame frame) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = 0;
+        int y = screenSize.height - frame.getHeight()-50;
         frame.setLocation(x, y);
     }
 }
