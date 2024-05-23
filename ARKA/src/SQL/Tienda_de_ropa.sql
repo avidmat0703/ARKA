@@ -22,7 +22,7 @@ CREATE TABLE empleado (
                           email VARCHAR(50),
                           telefono INT,
                           puesto VARCHAR(20),
-                          contrasena VARCHAR(20)
+                          contrasena VARCHAR(30)
 );
 
 CREATE TABLE venta(
@@ -239,13 +239,13 @@ INSERT INTO producto (codigo, tipo_producto, stock, talla, color, marca, precio,
 ('P009', 'chaqueta', 15, 'L', 'rojo', 'Reebok', 89.99, 'Chaqueta térmica'),
 ('P010', 'gorro', 80, 'U', 'azul', 'Under Armour', 12.99, 'Gorro ligero');
 INSERT INTO empleado (DNI, nombre, apellido, apellido2, email, telefono, puesto, contrasena) VALUES
-('12345678A', 'Carlos', 'García', 'Pérez', 'carlos.garcia@example.com', 600123456, 'Vendedor', '1234'),
-('23456789B', 'María', 'López', 'Sánchez', 'maria.lopez@example.com', 600234567, 'Gerente', 'password2'),
-('34567890C', 'José', 'Martínez', 'Ruiz', 'jose.martinez@example.com', 600345678, 'Cajero', 'password3'),
-('45678901D', 'Ana', 'Fernández', 'Gómez', 'ana.fernandez@example.com', 600456789, 'Vendedor', 'password4'),
-('56789012E', 'Luis', 'González', 'Díaz', 'luis.gonzalez@example.com', 600567890, 'Almacén', 'password5'),
-('67890123F', 'Elena', 'Hernández', 'Martín', 'elena.hernandez@example.com', 600678901, 'Vendedor', 'password6'),
-('78901234G', 'Raúl', 'Rodríguez', 'Moreno', 'raul.rodriguez@example.com', 600789012, 'Vendedor', 'password7'),
-('89012345H', 'Laura', 'Jiménez', 'Álvarez', 'laura.jimenez@example.com', 600890123, 'Cajero', 'password8'),
-('90123456I', 'David', 'Sánchez', 'Romero', 'david.sanchez@example.com', 600901234, 'Gerente', 'password9'),
-('01234567J', 'Sara', 'Torres', 'Navarro', 'sara.torres@example.com', 600012345, 'Almacén', 'password10');
+('88013943G', 'Carlos', 'García', 'Pérez', 'carlos.garcia@example.com', 600123456, 'Vendedor', '1234'),
+('59390475J', 'María', 'López', 'Sánchez', 'maria.lopez@example.com', 600234567, 'Gerente', '1234'),
+('53627607W', 'José', 'Martínez', 'Ruiz', 'jose.martinez@example.com', 600345678, 'Cajero', '1234'),
+('88125447G', 'Ana', 'Fernández', 'Gómez', 'ana.fernandez@example.com', 600456789, 'Vendedor', '1234'),
+('61173437S', 'Luis', 'González', 'Díaz', 'luis.gonzalez@example.com', 600567890, 'Almacén', '1234'),
+('90752995D', 'Elena', 'Hernández', 'Martín', 'elena.hernandez@example.com', 600678901, 'Vendedor', '1234'),
+('47765159R', 'Raúl', 'Rodríguez', 'Moreno', 'raul.rodriguez@example.com', 600789012, 'Vendedor', '1234'),
+('45134216M', 'Laura', 'Jiménez', 'Álvarez', 'laura.jimenez@example.com', 600890123, 'Cajero', '1234'),
+('77796092H', 'David', 'Sánchez', 'Romero', 'david.sanchez@example.com', 600901234, 'Gerente', '1234'),
+('76792815R', 'Sara', 'Torres', 'Navarro', 'sara.torres@example.com', 600012345, 'Almacén', '1234');
